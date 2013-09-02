@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 
-  before_filter :authenticate_user
+  before_filter :authenticate_user, :only => [:index]
 
   def create
     ActiveRecord::Base.transaction do
