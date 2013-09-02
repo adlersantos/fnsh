@@ -1,6 +1,7 @@
 <div class="col-md-4">
   <h2>Sign Up</h2>
-  <form action="/session" method="post" role="form">
+  <form action="/users" method="post" role="form">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <div class="form-group">
       <label for="username">Username:</label> <br>
       <input type="text" name="user[username]" id="username" class="form-control" placeholder="Username" >

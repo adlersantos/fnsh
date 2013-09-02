@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
     if @user.save
       login_user(@user)
-      render 'show.rabl'
+      redirect_to root_url
     else
       flash.now[:errors] ||= []
       flash.how[:errors] << @user.errors.full_messages.to_sentence
