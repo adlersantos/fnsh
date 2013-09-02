@@ -9,6 +9,6 @@ class Project < ActiveRecord::Base
     foreign_key: :project_id
 
   has_many :users,
-    class_name: "User",
-    foreign_key: :user_id
+    through: :user_projects,
+    source: :user
 end
