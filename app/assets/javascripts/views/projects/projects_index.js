@@ -3,7 +3,7 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
     var that = this;
     that.$el = $('div.projects');
 
-    var events = ["add", "destroy"];
+    var events = ["add", "change", "destroy"];
     _(events).each(function (event) {
       that.listenTo(that.collection, event, that.render);
     });

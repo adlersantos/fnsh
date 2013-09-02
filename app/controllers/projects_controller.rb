@@ -43,4 +43,14 @@ class ProjectsController < ApplicationController
       format.json { render 'show.rabl' }
     end
   end
+
+  def update
+    @project = Project.find(params[:id])
+    @project.update_attributes(params[:project])
+
+    respond_to do |format|
+      format.html { render 'index.rabl' }
+      format.json { render 'index.rabl' }
+    end
+  end
 end

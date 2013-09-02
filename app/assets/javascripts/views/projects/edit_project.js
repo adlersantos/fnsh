@@ -1,7 +1,7 @@
 BC.Views.EditProject = Backbone.View.extend({
 
   events: {
-    "click .submit-edit-project": "editProjectHandler"
+    "click input.edit-project": "editProjectHandler"
   },
 
   template: JST['projects/edit_project'],
@@ -17,14 +17,16 @@ BC.Views.EditProject = Backbone.View.extend({
     event.preventDefault();
 
     projectData = $('form.edit-project').serialize();
+    projectID = BC.getID(event.currentTarget, 'project');
 
     $.ajax({
-      url: '/projects',
-      type: "POST",
+      url: '/projects/' + projectID,
+      type: "PUT",
       data: projectData,
       dataType: 'json',
       success: function (responseData) {
-        console.log('project updated!')
+        console.log('project updated!');
+        BC.projects.fetch(function () {});
       }
     });
   }
