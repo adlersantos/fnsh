@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
+
+  def authenticate_user
+    redirect_to new_session_url unless logged_in?
+  end
 end
