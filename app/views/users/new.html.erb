@@ -1,0 +1,11 @@
+<h1>Sign Up</h1>
+
+<form action="/users" method="post">
+  <label>Username: <input type="text" name="user[username]" value="<%= @user.username %>" /></label>
+  <label>Password: <input type="password" name="user[password]" /></label>
+  <input type="submit" value="Sign Up" />
+</form>
+
+<p>
+  <%= link_to "Login", new_session_path %>
+</p>
