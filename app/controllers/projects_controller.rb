@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 
-  # before_filter :redirect_logged_in_user
+  before_filter :authenticate_user
 
   def create
     ActiveRecord::Base.transaction do
