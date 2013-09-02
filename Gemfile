@@ -13,6 +13,7 @@ gem 'pry-rails'
 gem 'rabl'
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :github => 'anjlab/bootstrap-rails'
+gem 'pg'
 # gem 'therubyracer'
 # gem 'less-rails'
 # gem 'flat-ui-rails'
@@ -20,11 +21,9 @@ gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'pg'
 end
 
 group :production do
-  gem 'pg'
 end
 
 # Gems used only for assets and not required
