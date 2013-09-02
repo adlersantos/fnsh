@@ -2,6 +2,11 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
   initialize: function () {
     var that = this;
     that.$el = $('div.projects');
+
+    var events = ["add", "destroy"];
+    _(events).each(function (event) {
+      that.listenTo(that.collection, event, that.render);
+    });
   },
 
   events: {
@@ -11,6 +16,13 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
   },
 
   template: JST['projects/index'],
+
+  createProject: function (event) {
+    event.preventDefault();
+
+    var projectForm = new BC.Views.CreateProject();
+    $('.project').html(projectForm.render().$el);
+  },
 
   editProject: function (event) {
     event.preventDefault();
@@ -39,12 +51,5 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
 
     var projectView = new BC.Views.Project({model: projectModel});
     $('.project').html(projectView.render().$el);
-  },
-
-  createProject: function (event) {
-    event.preventDefault();
-
-    var projectForm = new BC.Views.CreateProject();
-    $('.project').html(projectForm.render().$el);
   }
 });

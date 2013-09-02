@@ -24,7 +24,9 @@ BC.Views.CreateProject = Backbone.View.extend({
       data: projectData,
       dataType: 'json',
       success: function (responseData) {
-        console.log('project created')
+        console.log('project created');
+        $('.projects').empty();
+        BC.projects.fetch(function () {});
       }
     });
   }

@@ -13,10 +13,10 @@ BC.Views.EditProject = Backbone.View.extend({
     return this;
   },
 
-  createProjectHandler: function (event) {
+  editProjectHandler: function (event) {
     event.preventDefault();
 
-    projectData = $('form.create-project').serialize();
+    projectData = $('form.edit-project').serialize();
 
     $.ajax({
       url: '/projects',
@@ -24,7 +24,7 @@ BC.Views.EditProject = Backbone.View.extend({
       data: projectData,
       dataType: 'json',
       success: function (responseData) {
-        console.log('project created')
+        console.log('project updated!')
       }
     });
   }

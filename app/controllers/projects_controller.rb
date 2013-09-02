@@ -3,7 +3,19 @@ class ProjectsController < ApplicationController
   # before_filter :redirect_logged_in_user
 
   def create
-    @project = Project.new(params[:project])
+    ActiveRecord::Base.transaction do
+      @project = Project.new(params[:project])
+
+      if @project.save
+        @user_project = UserProject.new(user_id: current_user.id,
+                                        project_id: @project.id)
+        @user_project.save
+      else
+        flash[:errors] ||= []
+        flash[:errors] << "Something went wrong, please try again."
+        render :back
+      end
+    end
 
     if @project.save
       respond_to do |format|
