@@ -57,7 +57,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
 
-    unless params[:added_username].strip.blank?
+    unless params[:added_username].blank?
       ActiveRecord::Base.transaction do
         @user = User.find_by_username(params[:added_username])
 
@@ -67,6 +67,12 @@ class ProjectsController < ApplicationController
           flash.now[:errors] ||= []
           flash.now[:errors] << "Username doesn't exist."
         end
+      end
+    end
+
+    unless params[:created_task_list].blank?
+      ActiveRecord::Base.transaction do
+        TaskList.create(title: params[:created_task_list], project_id: @project.id)
       end
     end
 

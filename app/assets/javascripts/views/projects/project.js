@@ -2,10 +2,18 @@ BC.Views.Project = Backbone.View.extend({
 
   events: {
     "click .project-name": "renameProject",
-    "click a.add-user": "addUser"
+    "click a.add-user": "addUser",
+    "click a.put-task-list-form": "putTaskListForm"
   },
 
   template: JST['projects/project'],
+
+  putTaskListForm: function (event) {
+    var createTaskListForm = new BC.Views.CreateTaskList();
+    createTaskListForm = createTaskListForm.render().$el;
+    createTaskListForm.insertBefore('a.put-task-list-form');
+    $('a.put-task-list-form').hide();
+  },
 
   addUser: function (event) {
     event.stopPropagation();
@@ -31,7 +39,8 @@ BC.Views.Project = Backbone.View.extend({
   render: function () {
     var projectTemplate = this.template({
       project: this.model,
-      projectUsers: this.model.get('users')
+      projectUsers: this.model.get('users'),
+      taskLists: this.model.get('task_lists')
     });
 
     this.$el.html(projectTemplate);
