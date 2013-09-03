@@ -21,7 +21,10 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
   createProject: function (event) {
     event.preventDefault();
 
-    var projectForm = new BC.Views.CreateProject();
+    var projectID = $('.project h2').attr('project-id');
+    var project = BC.projects.get(projectID);
+
+    var projectForm = new BC.Views.CreateProject({model: project});
     $('.project').html(projectForm.render().$el);
   },
 

@@ -1,6 +1,6 @@
 BC.Views.CreateProject = Backbone.View.extend({
-  initialize: function () {
-    var that = this;
+  initialize: function (opts) {
+    this.model = opts['model'];
   },
 
   events: {
@@ -11,14 +11,14 @@ BC.Views.CreateProject = Backbone.View.extend({
   template: JST['projects/create_project'],
 
   render: function () {
-    var newProjForm = this.template;
+    var newProjForm = this.template({shownProject: this.model});
 
     this.$el.html(newProjForm);
     return this;
   },
 
   cancelCreateProject: function (event) {
-    $('.project').empty();
+    BC.regenerateProjectView(this.model);
   },
 
   createProjectHandler: function (event) {

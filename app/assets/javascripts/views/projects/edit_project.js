@@ -1,8 +1,8 @@
 BC.Views.EditProject = Backbone.View.extend({
 
   events: {
-    "click input.edit-project": "editProjectHandler",
-    "click input.cancel-edit-project": "cancelEditProject"
+    "click input.rename-project": "renameProject",
+    "click input.cancel-rename-project": "cancelRenameProject"
   },
 
   template: JST['projects/edit_project'],
@@ -14,11 +14,11 @@ BC.Views.EditProject = Backbone.View.extend({
     return this;
   },
 
-  cancelEditProject: function (event) {
-    $('.project').empty();
+  cancelRenameProject: function (event) {
+    BC.regenerateProjectView(event);
   },
 
-  editProjectHandler: function (event) {
+  renameProject: function (event) {
     event.preventDefault();
 
     projectData = $('form.edit-project').serialize();
