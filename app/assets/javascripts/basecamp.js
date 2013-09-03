@@ -24,14 +24,19 @@ window.BC = {
     if (param instanceof Backbone.Model) {
 
       var projectModel = BC.projects.get(param.get('id'));
-      var projectView = new BC.Views.Project({model: projectModel});
+      var projectView = new BC.Views.Project({
+        model: projectModel,
+      });
       $('.project').html(projectView.render().$el);
 
     } else if (param instanceof jQuery.Event) {
 
       var projectID = BC.getID(param.currentTarget, 'project');
       var projectModel = BC.projects.get(projectID);
-      var projectView = new BC.Views.Project({model: projectModel});
+      var projectView = new BC.Views.Project({
+        model: projectModel
+        // projectUsers: projectModel.get('users')
+      });
       $('.project').html(projectView.render().$el)
 
     } else if (typeof(param) === "undefined") {
@@ -39,7 +44,6 @@ window.BC = {
       $('.project').empty();
 
     }
-
   }
 };
 

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   attr_accessible :password, :username
   attr_reader :password
 
+  validates :username, :uniqueness => true
   validates :username, :password_digest, :presence => true
   validates :password, :length => { :minimum => 3 }
 
