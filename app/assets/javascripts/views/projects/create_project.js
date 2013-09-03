@@ -1,7 +1,11 @@
 BC.Views.CreateProject = Backbone.View.extend({
+  initialize: function () {
+    var that = this;
+  },
 
   events: {
-    "click input.create-project": "createProjectHandler"
+    "click input.create-project": "createProjectHandler",
+    "click input.cancel-create-project": "cancelCreateProject"
   },
 
   template: JST['projects/create_project'],
@@ -13,21 +17,17 @@ BC.Views.CreateProject = Backbone.View.extend({
     return this;
   },
 
+  cancelCreateProject: function (event) {
+    $('.project').empty();
+  },
+
   createProjectHandler: function (event) {
     event.preventDefault();
 
-    projectData = $('form.create-project').serialize();
+    var projectData = $('form.create-project').serializeJSON();
+    $('.project').empty();
 
-    $.ajax({
-      url: '/projects',
-      type: "POST",
-      data: projectData,
-      dataType: 'json',
-      success: function (responseData) {
-        console.log('project created');
-        $('.projects').empty();
-        BC.projects.fetch(function () {});
-      }
-    });
+    BC.projects.create(projectData);
+    BC.projects.fetch(function () {});
   }
 });
