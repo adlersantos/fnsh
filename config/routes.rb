@@ -3,5 +3,6 @@ Basecamp::Application.routes.draw do
 
   resources :users
   resources :projects
+  resources :task_lists
   resource :session, :only => [:new, :create, :destroy]
 end
