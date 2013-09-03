@@ -23,6 +23,7 @@ BC.Views.EditProject = Backbone.View.extend({
 
     projectData = $('form.edit-project').serialize();
     projectID = BC.getID(event.currentTarget, 'project');
+    project = BC.projects.get(projectID);
 
     $.ajax({
       url: '/projects/' + projectID,
@@ -31,7 +32,12 @@ BC.Views.EditProject = Backbone.View.extend({
       dataType: 'json',
       success: function (responseData) {
         console.log('project updated!');
-        BC.projects.fetch(function () {});
+        project.fetch({
+          success: function () {
+            BC.regenerateProjectView(project);
+          }
+        });
+        // debugger
       }
     });
   }
