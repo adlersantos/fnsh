@@ -13,7 +13,7 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
     "click .project-link": "showProject",
     "click .create-project": "createProject",
     "click .edit-project": "editProject",
-    "click .delete-project": "deleteProject"
+    "click .delete-project": "deleteProject",
   },
 
   template: JST['projects/index'],
@@ -33,7 +33,7 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
 
     var projectID = parseInt(BC.getID(event.currentTarget, 'project'));
 
-    projectToDelete = this.collection.get(projectID);
+    var projectToDelete = this.collection.get(projectID);
     projectToDelete.destroy();
 
     $('.project').empty();
@@ -64,7 +64,10 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
     var projectID = BC.getID(event.currentTarget, 'project');
     var projectModel = BC.projects.get(projectID);
 
-    var projectView = new BC.Views.Project({model: projectModel});
+    var projectView = new BC.Views.Project({
+      model: projectModel
+      // taskLists: projectModel.get('task_lists')
+    });
     $('.project').html(projectView.render().$el);
   }
 });

@@ -12,9 +12,9 @@
 <script>
   $('.project-row').hover(
     function () {
-      var deleteButton ="<a class='delete-project' project-id='"
+      var deleteButton ="<a class='delete-project text-danger pull-right' project-id='"
                        + BC.getID(this, 'project')
-                       + "' href='#' style='float:right;'>Delete</a>";
+                       + "' href='#'>Delete</a>";
       $(this).append($(deleteButton));
     },
     function () {

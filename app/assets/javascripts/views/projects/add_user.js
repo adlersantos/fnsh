@@ -16,9 +16,9 @@ BC.Views.AddUser = Backbone.View.extend({
   addUser: function (event) {
     event.preventDefault();
 
-    projectData = $('form.add-user').serialize();
-    projectID = BC.getID('.project-name', 'project');
-    project = BC.projects.get(projectID);
+    var projectData = $('form.add-user').serialize();
+    var projectID = BC.getID('.project-name', 'project');
+    var project = BC.projects.get(projectID);
 
     $.ajax({
       url: '/projects/' + projectID,
