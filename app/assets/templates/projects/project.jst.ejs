@@ -1,13 +1,14 @@
-<h2 class="project-name" project-id="<%= project.escape('id') %>">
+<h2 class="row project-name" project-id="<%= project.escape('id') %>">
   <%= project.escape('name') %>
 </h2>
 
-<h5>Participants:</h5>
-<% projectUsers.each(function(user) { %>
-  <%= user.escape('username') %> <br>
-  liz <br>
-<% }) %>
-
+<div class="row">
+  <h5>Participants:</h5>
+  <% projectUsers.each(function(user) { %>
+    <%= user.escape('username') %> <br>
+  <% }) %>
+  <a href="#" class="add-user" project-id="<%= project.escape('id') %>">Add a participant</a>
+</div>
 <!-- <select>
 
   <option value=""></option>
@@ -16,4 +17,3 @@
 <!-- <a href="#" class="delete-project" project-id="<%= project.escape('id') %>">Delete project</a><br> -->
 <!-- <a data-toggle="modal" href="#myModal" class="">Delete project</a><br> -->
 
-<a href="#" class="add-user" project-id="<%= project.escape('id') %>">Add a participant</a>

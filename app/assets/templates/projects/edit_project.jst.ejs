@@ -1,11 +1,12 @@
-<form role="form" class="edit-project col-md-6">
-  <div class="form-group">
-    <label for="project-name">Name:</label> <br>
-    <input type="text" name="project[name]" class="form-control" value="<%= project.escape('name') %>">
-  </div>
+<div class="row" style="margin-top:10px">
+  <form role="form" class="edit-project col-md-6">
+    <div class="form-group">
+      <input type="text" name="project[name]" class="form-control" value="<%= project.escape('name') %>">
+    </div>
 
-  <div class="form-group">
-    <input type="submit" value="Update project" project-id="<%= project.escape('id') %>" class="edit-project btn btn-primary btn-small">
-    <input type="button" value="Cancel" class="cancel-edit-project btn btn-primary btn-small">
-  </div>
-</form>
+    <div class="form-group">
+      <input type="submit" value="Rename project" project-id="<%= project.escape('id') %>" class="rename-project btn btn-primary btn-xs">
+      <input type="button" value="Cancel" project-id="<%= project.escape('id') %>" class="cancel-rename-project btn btn-primary btn-xs">
+    </div>
+  </form>
+</div>
