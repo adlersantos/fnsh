@@ -21,6 +21,7 @@ BC.Views.EditProject = Backbone.View.extend({
 
   renameProject: function (event) {
     event.preventDefault();
+    var that = this;
 
     projectData = $('form.edit-project').serialize();
     projectID = BC.getID(event.currentTarget, 'project');

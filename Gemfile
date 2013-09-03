@@ -3,20 +3,16 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.13'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
+                              :github => 'anjlab/bootstrap-rails'
 gem 'backbone-on-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'ejs'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'pg'
 gem 'pry-rails'
 gem 'rabl'
-gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-                              :github => 'anjlab/bootstrap-rails'
-gem 'pg'
-# gem 'therubyracer'
-# gem 'less-rails'
-# gem 'flat-ui-rails'
 
 group :development do
   gem 'better_errors'
@@ -37,7 +33,6 @@ gem 'coffee-rails', '~> 3.2.1'
 
 gem 'uglifier', '>= 1.0.3'
 
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
