@@ -31,13 +31,12 @@ BC.Views.EditProject = Backbone.View.extend({
       data: projectData,
       dataType: 'json',
       success: function (responseData) {
-        console.log('project updated!');
+        console.log(responseData);
         project.fetch({
           success: function () {
             BC.regenerateProjectView(project);
           }
         });
-        // debugger
       }
     });
   }
