@@ -1,19 +1,22 @@
 BC.Views.Project = Backbone.View.extend({
+  initialize: function () {
+    this.taskLists = this.model.get('task_lists');
+
+    var that = this;
+    var events = ["add", "change", "destroy"];
+    _(events).each(function (event) {
+      that.listenTo(that.taskLists, event, that.render)
+    });
+  },
 
   events: {
     "click .project-name": "renameProject",
     "click a.add-user": "addUser",
-    "click a.put-task-list-form": "putTaskListForm"
+    "click a.put-task-list-form": "putTaskListForm",
+    "click a.delete-task-list": "deleteTaskList"
   },
 
   template: JST['projects/project'],
-
-  putTaskListForm: function (event) {
-    var createTaskListForm = new BC.Views.CreateTaskList();
-    createTaskListForm = createTaskListForm.render().$el;
-    createTaskListForm.insertBefore('a.put-task-list-form');
-    $('a.put-task-list-form').hide();
-  },
 
   addUser: function (event) {
     event.stopPropagation();
@@ -22,6 +25,23 @@ BC.Views.Project = Backbone.View.extend({
     addUserForm = addUserForm.render().$el
     addUserForm.insertBefore('a.add-user');
     $('a.add-user').hide();
+  },
+
+  deleteTaskList: function (event) {
+    event.preventDefault();
+    var that = this;
+
+    var taskListID = BC.getID(event.currentTarget, 'task-list');
+    var taskListToDelete = that.model.get('task_lists').get(taskListID);
+
+    taskListToDelete.destroy();
+  },
+
+  putTaskListForm: function (event) {
+    var createTaskListForm = new BC.Views.CreateTaskList();
+    createTaskListForm = createTaskListForm.render().$el;
+    createTaskListForm.insertBefore('a.put-task-list-form');
+    $('a.put-task-list-form').hide();
   },
 
   renameProject: function (event) {

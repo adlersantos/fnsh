@@ -15,9 +15,9 @@ BC.Views.CreateTaskList = Backbone.View.extend({
   createTaskList: function (event) {
     event.preventDefault();
 
-    projectData = $('form.create-task-list').serialize();
-    projectID = BC.getID('.project-name', 'project');
-    project = BC.projects.get(projectID);
+    var projectData = $('form.create-task-list').serialize();
+    var projectID = BC.getID('.project-name', 'project');
+    var project = BC.projects.get(projectID);
 
     $.ajax({
       url: '/projects/' + projectID,

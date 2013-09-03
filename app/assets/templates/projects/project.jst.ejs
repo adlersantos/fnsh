@@ -3,28 +3,46 @@
 </h2>
 
 <div class="row project-users">
-  <h5>Participants</h5>
+  <h5 style="color:#00B351;">Participants</h5>
   <% projectUsers.each(function(user) { %>
     <%= user.escape('username') %> <br>
   <% }) %>
-  <a href="#" class="add-user">Add a participant</a>
+  <a href="#" class="add-user"><small>Add a participant</small></a>
 </div>
 
 <div class="row task-lists">
-  <h4>Task Lists</h4>
+  <h4 style="color:#00B351;">Task Lists</h4>
+
   <div class="lists-container">
     <% taskLists.each(function(taskList) { %>
       <div class="task-list" style="height:20px; width:200px; margin-bottom:5px;">
-        <span style="cursor:pointer; text-decoration: underline;"><%= taskList.escape('title') %></span> <br>
+        <div class="task-list-title"
+             task-list-id="<%= taskList.escape('id') %>">
+          <strong style="cursor:pointer; text-decoration: underline;"><%= taskList.escape('title') %></strong>
+        </div><br>
       </div>
     <% }) %>
   </div>
-  <a href="#" class="put-task-list-form">Add a task list</a>
+
+  <a href="#" class="put-task-list-form"><small>Create task list</small></a>
 </div>
 
 <script>
   $(function() {
-    $( ".lists-container" ).sortable({axis: 'y'});
+    $( ".lists-container" ).sortable({
+      axis: 'y'
+    });
     $( ".lists-container" ).disableSelection();
   });
+
+  $('.task-list-title').hover(
+    function () {
+      var deleteButton ="<a class='delete-task-list' task-list-id='"
+                       + BC.getID(this, 'task-list')
+                       + "' href='#' style='margin-left:10px;'><span class='glyphicon glyphicon-trash'></span></a>";
+      $(this).append($(deleteButton));
+    },
+    function () {
+      $(this).find('a.delete-task-list').remove();
+    });
 </script>
