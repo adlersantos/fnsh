@@ -20,11 +20,6 @@ BC.Views.AddUser = Backbone.View.extend({
     projectID = BC.getID('.project-name', 'project');
     project = BC.projects.get(projectID);
 
-    // if textbox is empty, then don't do ajax request
-    if ($('input.project-user').html()) {
-      console.log('empty string is still true');
-    }
-
     $.ajax({
       url: '/projects/' + projectID,
       type: 'PUT',
