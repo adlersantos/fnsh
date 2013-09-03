@@ -8,6 +8,8 @@ development:
   database: finsh
   host: localhost
   pool: 5
+  user: Adler
+  password:
   timeout: 5000
 
 # Warning: The database defined as "test" will be erased and

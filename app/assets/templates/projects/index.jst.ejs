@@ -15,9 +15,14 @@
       var editButton = "<a class='edit-project' project-id='"
                        + BC.getID(this, 'project')
                        + "' href='#' style='float:right;'>Edit</a>";
+      var deleteButton ="<a class='delete-project' project-id='"
+                       + BC.getID(this, 'project')
+                       + "' href='#' style='float:right; margin-left:4px;'>Delete</a>";
+      $(this).append($(deleteButton));
       $(this).append($(editButton));
     },
     function () {
       $(this).find('.edit-project').remove();
+      $(this).find('.delete-project').remove();
     });
 </script>

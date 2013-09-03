@@ -25,6 +25,16 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+
+    respond_to do |format|
+      format.html { render 'index.rabl' }
+      format.json { render 'index.rabl' }
+    end
+  end
+
   def index
     @user = current_user
     @projects = Project.all
