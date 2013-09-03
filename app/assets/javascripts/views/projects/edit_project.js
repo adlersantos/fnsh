@@ -15,7 +15,8 @@ BC.Views.EditProject = Backbone.View.extend({
   },
 
   cancelRenameProject: function (event) {
-    BC.regenerateProjectView(event);
+    $('.project-name').show();
+    this.$el.hide();
   },
 
   renameProject: function (event) {

@@ -24,7 +24,7 @@ BC.Views.Project = Backbone.View.extend({
 
     var editNameForm = new BC.Views.EditProject({model: projectModel});
 
-    $('.project-name').remove()
+    $('.project-name').hide()
     $('.project').prepend(editNameForm.render().$el)
   },
 

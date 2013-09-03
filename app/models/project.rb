@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
 
-  attr_accessible :name, :users
+  attr_accessible :name, :users, :users_attributes
 
   validates :name, :presence => true
 
@@ -11,4 +11,6 @@ class Project < ActiveRecord::Base
   has_many :users,
     through: :user_projects,
     source: :user
+
+  # accepts_nested_attributes_for :users
 end

@@ -56,6 +56,20 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
+
+    unless params[:added_username].strip.blank?
+      ActiveRecord::Base.transaction do
+        @user = User.find_by_username(params[:added_username])
+
+        if @user
+          UserProject.create(project_id: @project.id, user_id: @user.id)
+        else
+          flash.now[:errors] ||= []
+          flash.now[:errors] << "Username doesn't exist."
+        end
+      end
+    end
+
     @project.update_attributes(params[:project])
 
     respond_to do |format|
