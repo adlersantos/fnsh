@@ -59,8 +59,8 @@ class ProjectsController < ApplicationController
     @project.update_attributes(params[:project])
 
     respond_to do |format|
-      format.html { render 'index.rabl' }
-      format.json { render 'index.rabl' }
+      format.html { render 'show.rabl' }
+      format.json { render 'show.rabl' }
     end
   end
 end

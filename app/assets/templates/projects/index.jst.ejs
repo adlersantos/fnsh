@@ -2,7 +2,7 @@
 <hr>
 <% projects.each(function (project) { %>
   <div class="project-row row" project-id="<%= project.escape('id') %>">
-    <a class="project-link col-md-2" project-id="<%= project.escape('id') %>" href="#"><%= project.escape('name') %></a>
+    <a class="project-link col-md-2" style="float:none;" project-id="<%= project.escape('id') %>" href="#"><%= project.escape('name') %></a>
   </div>
 <% }) %>
 
