@@ -1,4 +1,4 @@
-<h2 class="row project-name" project-id="<%= project.escape('id') %>">
+<h2 style="margin-top:0px; cursor:pointer;" class="row project-name" project-id="<%= project.escape('id') %>">
   <%= project.escape('name') %>
 </h2>
 
@@ -31,4 +31,11 @@
     function () {
       $(this).find('a.delete-task-list').remove();
     });
+  $('.project-name').hover(
+    function () {
+      $(this).append('<small class="rename-note"><small>click to rename</small></small>');
+    },
+    function () {
+      $('.rename-note').hide();
+    })
 </script>
