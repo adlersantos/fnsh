@@ -7,4 +7,8 @@ end
 
 child :task_lists do
   attributes :id, :title
+
+  child :tasks do
+    attributes :id, :finished, :name, :task_list_id
+  end
 end
