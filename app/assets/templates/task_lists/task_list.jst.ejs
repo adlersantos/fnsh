@@ -1,14 +1,18 @@
 <h4 style="color:#00B351;">Task Lists</h4>
 
-  <div class="lists-container">
-    <% taskLists.each(function(taskList) { %>
-      <div class="task-list" style="height:20px; width:200px; margin-bottom:5px;">
-        <div class="task-list-title"
-             task-list-id="<%= taskList.escape('id') %>">
-          <strong style="cursor:pointer; text-decoration: underline;"><%= taskList.escape('title') %></strong>
-        </div><br>
-      </div>
-    <% }) %>
-  </div>
+<div class="lists-container">
+  <% taskLists.each(function(taskList) { %>
 
-  <a href="#" class="put-task-list-form"><small>Create task list</small></a>
+    <div class="task-list" style="height:20px; width:200px; margin-bottom:5px;">
+      <div class="task-list-title"
+           task-list-id="<%= taskList.escape('id') %>">
+        <strong style="cursor:pointer; text-decoration: underline;"><%= taskList.escape('title') %></strong>
+      </div><br>
+
+      <div class="tasks"></div>
+    </div>
+
+  <% }) %>
+</div>
+
+<a href="#" class="put-task-list-form"><small>Create task list</small></a>
