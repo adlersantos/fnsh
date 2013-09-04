@@ -21,16 +21,6 @@
     $( ".lists-container" ).disableSelection();
   });
 
-  $('.task-list-title').hover(
-    function () {
-      var deleteButton ="<a class='delete-task-list' task-list-id='"
-                       + BC.getID(this, 'task-list')
-                       + "' href='#' style='margin-left:10px;'><span class='glyphicon glyphicon-trash'></span></a>";
-      $(this).append($(deleteButton));
-    },
-    function () {
-      $(this).find('a.delete-task-list').remove();
-    });
   $('.project-name').hover(
     function () {
       $(this).append('<small class="rename-note"><small>click to rename</small></small>');
