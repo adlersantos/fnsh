@@ -2,17 +2,32 @@
 
 <div class="lists-container">
   <% taskLists.each(function(taskList) { %>
-
-    <div class="task-list" style="height:20px; width:200px; margin-bottom:5px;">
-      <div class="task-list-title"
+    <div class="task-list" style="width:200px; margin: 15px 0 15px 0;">
+      <div class="task-list-title" style="margin-bottom:10px;"
            task-list-id="<%= taskList.escape('id') %>">
         <strong style="cursor:pointer; text-decoration: underline;"><%= taskList.escape('title') %></strong>
-      </div><br>
-
-      <div class="tasks"></div>
-    </div>
+      </div>
+      <div class="tasks" style="margin-left:15px;">
+        <% _(taskList.get('tasks')).each(function(task) { %>
+        <div class="" style="height:20px; cursor:pointer;">
+          <input type="checkbox" task-id="<%= task.id %>"
+                 value="task" class="task-checkbox"
+                 style="margin: 0 5px 0;"><span style="padding-bottom:6px;"><%= task.name %></span><br>
+        </div>
+        <% }) %>
+        <a href="#" style="margin-left:7px;" class="put-task-form">Add a task</a>
+      </div>
+    </div><!-- task list -->
 
   <% }) %>
+  <a href="#" class="put-task-list-form"><small>Create task list</small></a>
 </div>
 
-<a href="#" class="put-task-list-form"><small>Create task list</small></a>
+
+<script>
+  $(".tasks").sortable({axis: 'y'});
+  $(".tasks").disableSelection();
+  $(".task-checkbox").on('click', function () {
+    $(this).next().toggleClass('line-through')
+  });
+</script>
