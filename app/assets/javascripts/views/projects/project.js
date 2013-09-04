@@ -1,19 +1,9 @@
 BC.Views.Project = Backbone.View.extend({
-  initialize: function () {
-    this.taskLists = this.model.get('task_lists');
-
-    var that = this;
-    var events = ["add", "change", "destroy"];
-    _(events).each(function (event) {
-      that.listenTo(that.taskLists, event, that.render)
-    });
-  },
 
   events: {
     "click .project-name": "renameProject",
     "click a.add-user": "addUser",
-    "click a.put-task-list-form": "putTaskListForm",
-    "click a.delete-task-list": "deleteTaskList"
+    "click a.put-task-list-form": "putTaskListForm"
   },
 
   template: JST['projects/project'],
@@ -25,16 +15,6 @@ BC.Views.Project = Backbone.View.extend({
     addUserForm = addUserForm.render().$el
     addUserForm.insertBefore('a.add-user');
     $('a.add-user').hide();
-  },
-
-  deleteTaskList: function (event) {
-    event.preventDefault();
-    var that = this;
-
-    var taskListID = BC.getID(event.currentTarget, 'task-list');
-    var taskListToDelete = that.model.get('task_lists').get(taskListID);
-
-    taskListToDelete.destroy();
   },
 
   putTaskListForm: function (event) {
@@ -63,7 +43,14 @@ BC.Views.Project = Backbone.View.extend({
       taskLists: this.model.get('task_lists')
     });
 
-    this.$el.html(projectTemplate);
+    this.$el.append(projectTemplate);
+
+    var taskListsView = new BC.Views.TaskList({
+      collection: this.model.get('task_lists')
+    });
+
+    this.$el.append(taskListsView.render().$el);
+
     return this;
   }
 });
