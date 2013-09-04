@@ -6,9 +6,9 @@ BC.Views.AddTask = Backbone.View.extend({
 
   template: JST['tasks/add_task'],
 
-  cancelAddTask: function () {
+  cancelAddTask: function (event) {
     $('form.add-task').hide();
-    $('.put-task-form').show();
+    $('a.put-task-form').show();
   },
 
   render: function () {
