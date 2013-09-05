@@ -14,7 +14,8 @@ BC.Views.TaskList = Backbone.View.extend({
     "click .delete-task-list": "deleteTaskList",
     "click .put-add-task-form": "putAddTaskForm",
     "click .cancel-add-task": "cancelAddTask",
-    "click button.add-task": "createTask"
+    "click button.add-task": "createTask",
+    "click .delete-task": "deleteTask"
   },
 
   template: JST['task_lists/task_list'],
@@ -35,6 +36,29 @@ BC.Views.TaskList = Backbone.View.extend({
       url: '/projects/' + that.project.get('id'),
       type: 'PUT',
       data: taskData,
+      dataType: 'json',
+      success: function (responseData) {
+        console.log(responseData);
+        that.project.fetch({
+          success: function () {
+            BC.regenerateProjectView(that.project);
+            console.log(responseData);
+          }
+        });
+      }
+    });
+  },
+
+  deleteTask: function (event) {
+    event.preventDefault();
+    var that = this;
+
+    var taskID = BC.getID(event.currentTarget, 'task');
+    var taskToDelete = this.taskLists.get(taskListID);
+
+    $.ajax({
+      url: '/tasks/' + taskID,
+      type: 'DELETE',
       dataType: 'json',
       success: function (responseData) {
         console.log(responseData);
