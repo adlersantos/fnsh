@@ -7,8 +7,8 @@
       <div class="panel-heading" style="padding:5px 10px; cursor:pointer;">
         <div class="task-list-title" task-list-id="<%= taskList.escape('id') %>">
           <span style="text-decoration: underline;"><%= taskList.escape('title') %></span>
-          <span class="pull-right"
-               style="cursor:pointer; float:right;">delete</span>
+          <button class="delete-task-list pull-right btn btn-danger btn-xs"
+               style="cursor:pointer;">delete</button>
         </div>
       </div>
       <div class="tasks" style="margin:10px 30px;">
@@ -49,8 +49,6 @@
     tolerance: "pointer",
     items: ".task"
   });
-  $(".put-add-task-form").sortable("disable");
-  $("form.add-task").sortable("disable");
   $(".tasks").disableSelection();
 
   $(".task-checkbox").on('click',  function () {
