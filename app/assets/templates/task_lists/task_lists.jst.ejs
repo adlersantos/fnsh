@@ -1,0 +1,14 @@
+<h4 style="color:#00B351;">Task Lists</h4>
+
+<div class="task-lists"></div>
+
+<div class="button-put-task-list-form"></div>
+
+<script>
+  $(document).ready(function () {
+    $( ".task-lists" ).sortable({
+      axis: 'y'
+    });
+    $( ".task-lists" ).disableSelection();
+  });
+</script>
