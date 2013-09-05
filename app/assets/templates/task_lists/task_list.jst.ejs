@@ -8,23 +8,28 @@
            task-list-id="<%= taskList.escape('id') %>">
         <strong style="cursor:pointer; text-decoration: underline;"><%= taskList.escape('title') %></strong>
       </div>
-      <div class="tasks" style="margin-left:15px;">
 
-        <% _(taskList.get('tasks')).each(function(task) { %>
-        <div class="" style="height:20px; cursor:pointer;">
-          <input type="checkbox" task-id="<%= task.id %>"
-                 value="task" class="task-checkbox"
-                 style="margin: 0 5px 0;"><span style="padding-bottom:6px;"><%= task.name %></span><br>
-        </div><!-- task -->
-        <% }) %>
+      <div class="tasks-container" style="margin-left:15px;">
+        <div class="tasks">
+          <% _(taskList.get('tasks')).each(function(task) { %>
+          <div class="" style="height:20px; cursor:pointer;">
+            <input type="checkbox" task-id="<%= task.id %>"
+                   value="task" class="task-checkbox"
+                   style="margin: 0 5px 0;"><span style="padding-bottom:6px;"><%= task.name %></span><br>
+          </div><!-- task -->
+          <% }) %>
+        </div>
 
-        <a href="#" style="margin-left:7px;" class="put-task-form">Add a task</a>
+        <a href="#" style="margin-left:7px;" class="put-add-task-form">Add a task</a>
+
         <form style="margin: 5px 0 0 5px; width:250px;" class="hidden add-task form-inline" role="form">
           <div class="form-group">
             <input type="text" name="added_task" style="height:20px;"
                    class="input-sm form-control" placeholder="Enter task name">
+            <input type="hidden" name="task_list_id" value="<%= taskList.get('id') %>">
           </div>
-          <button type="submit" class="add-task btn btn-primary btn-xs">Add task</button>
+          <button type="submit" class="add-task btn btn-primary btn-xs"
+                  task-list-id="<%= taskList.get('id') %>">Add task</button>
           <button type="button" class="cancel-add-task btn btn-primary btn-xs">x</button>
         </form>
 

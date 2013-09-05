@@ -46,6 +46,7 @@ BC.Views.Project = Backbone.View.extend({
     this.$el.append(projectTemplate);
 
     var taskListsView = new BC.Views.TaskList({
+      model: this.model,
       collection: this.model.get('task_lists')
     });
 

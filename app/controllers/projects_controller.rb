@@ -76,6 +76,14 @@ class ProjectsController < ApplicationController
       end
     end
 
+    unless params[:added_task].blank?
+      ActiveRecord::Base.transaction do
+        Task.create(name: params[:added_task],
+                    task_list_id: params[:task_list_id],
+                    finished: false)
+      end
+    end
+
     @project.update_attributes(params[:project])
 
     respond_to do |format|
