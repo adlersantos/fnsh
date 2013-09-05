@@ -16,7 +16,12 @@
 <script>
   $(function() {
     $( ".lists-container" ).sortable({
-      axis: 'y'
+      axis: 'y',
+      placeholder: "sortable-placeholder",
+      opacity: 0.7,
+      forcePlaceholderSize: true,
+      tolerance: "pointer",
+      handle: ".panel-heading"
     });
     $( ".lists-container" ).disableSelection();
   });

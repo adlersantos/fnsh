@@ -1,32 +1,26 @@
-<h3 style="color:#00B351;">Task Lists</h3>
+<h4 style="color:#00B351;">Task Lists</h4>
 
 <div class="lists-container">
   <% taskLists.each(function(taskList) { %>
 
     <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h5 class="panel-title"><%= taskList.escape('title') %></h5>
-      </div>
-    </div>
-    <div class="task-list" style="width:200px; margin: 15px 0 15px 0;">
-      <div class="task-list-title" style="margin-bottom:10px;"
-           task-list-id="<%= taskList.escape('id') %>">
-        <strong style="cursor:pointer; text-decoration: underline;"><%= taskList.escape('title') %></strong>
-      </div>
-
-      <div class="tasks-container" style="margin-left:15px;">
-        <div class="tasks">
-          <% _(taskList.get('tasks')).each(function(task) { %>
-          <div class="" style="height:20px; cursor:pointer;">
-            <input type="checkbox" task-id="<%= task.id %>"
-                   value="task" class="task-checkbox"
-                   style="margin: 0 5px 0;"><span style="padding-bottom:6px;"><%= task.name %></span><br>
-          </div><!-- task -->
-          <% }) %>
+      <div class="panel-heading" style="padding:5px 10px; cursor:pointer;">
+        <div class="task-list-title" task-list-id="<%= taskList.escape('id') %>">
+          <span style="text-decoration: underline;"><%= taskList.escape('title') %></span>
+          <span class="pull-right"
+               style="cursor:pointer; float:right;">delete</span>
         </div>
+      </div>
+      <div class="tasks" style="margin:10px 30px;">
+        <% _(taskList.get('tasks')).each(function(task) { %>
+        <div class="task" style="height:20px; cursor:pointer;">
+          <input type="checkbox" task-id="<%= task.id %>"
+                 value="task" class="task-checkbox"
+                 style="margin: 0 5px 0;"><span style="padding-bottom:6px;"><%= task.name %></span><br>
+        </div><!-- task -->
+        <% }) %>
 
-        <a href="#" style="margin-left:7px;" class="put-add-task-form">Add a task</a>
-
+        <a href="#" class="put-add-task-form" style="margin:3px; 10px;">Add a task</a>
         <form style="margin: 5px 0 0 5px; width:250px;" class="hidden add-task form-inline" role="form">
           <div class="form-group">
             <input type="text" name="added_task" style="height:20px;"
@@ -38,8 +32,8 @@
           <button type="button" class="cancel-add-task btn btn-primary btn-xs">x</button>
         </form>
 
-      </div><!-- tasks -->
-    </div><!-- task list -->
+      </div>
+    </div>
 
   <% }) %>
 </div>
@@ -47,21 +41,19 @@
 <a href="#" class="put-task-list-form"><small>Create task list</small></a>
 
 <script>
-  $(".tasks").sortable({axis: 'y'});
+  $(".tasks").sortable({
+    axis: 'y',
+    placeholder: "sortable-placeholder",
+    opacity: 0.7,
+    forcePlaceholderSize: true,
+    tolerance: "pointer",
+    items: ".task"
+  });
+  $(".put-add-task-form").sortable("disable");
+  $("form.add-task").sortable("disable");
   $(".tasks").disableSelection();
 
   $(".task-checkbox").on('click',  function () {
     $(this).next().toggleClass('line-through')
-  });
-
-  $('.task-list-title').hover(
-    function () {
-      var deleteButton ="<a class='delete-task-list' task-list-id='"
-                       + BC.getID(this, 'task-list')
-                       + "' href='#' style='margin-left:10px;'><span class='glyphicon glyphicon-trash'></span></a>";
-      $(this).append($(deleteButton));
-    },
-    function () {
-      $(this).find('a.delete-task-list').remove();
   });
 </script>
