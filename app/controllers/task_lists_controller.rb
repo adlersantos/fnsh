@@ -10,4 +10,13 @@ class TaskListsController < ApplicationController
       format.json { render 'projects/show.rabl' }
     end
   end
+
+  def index
+    @task_lists = TaskList.all
+
+    respond_to do |format|
+      format.html { render 'index.rabl' }
+      format.json { render 'index.rabl' }
+    end
+  end
 end

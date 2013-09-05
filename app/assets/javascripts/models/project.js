@@ -6,6 +6,8 @@ BC.Models.Project = Backbone.Model.extend({
     var projectTaskLists = new BC.Collections.TaskLists(data.task_lists);
     data.task_lists = projectTaskLists;
 
+    console.log('---data---');
+    console.log(data)
     return data;
   }
 });

@@ -11,12 +11,13 @@
                style="cursor:pointer;">delete</button>
         </div>
       </div>
-      <div class="tasks" style="margin:10px 30px;">
-        <% _(taskList.get('tasks')).each(function(task) { %>
+      <div class="tasks" style="margin:15px 30px;">
+        <% taskList.get('tasks').each(function(task) { %>
         <div class="task" style="height:20px; cursor:pointer;">
-          <input type="checkbox" task-id="<%= task.id %>"
+          <input type="checkbox" task-id="<%= task.get('id') %>"
                  value="task" class="task-checkbox"
-                 style="margin: 0 5px 0;"><span style="padding-bottom:6px;"><%= task.name %></span><br>
+                 style="margin: 0 5px 0;"><span style="padding-bottom:6px;"><%= task.get('name') %></span>
+          <span class="delete-task pull-right" task-id="<%= task.get('id') %>">x</span>
         </div><!-- task -->
         <% }) %>
 

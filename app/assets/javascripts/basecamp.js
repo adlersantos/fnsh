@@ -67,5 +67,11 @@ $(document).ready(function(){
     });
   };
 
+  // $.fn.keyup = function (e) {
+  //   debugger
+  //   if (e.keyCode == 13) { $('.save').click(); }     // enter
+  //   if (e.keyCode == 27) { $('form.create-project').hide(); }
+  // };
+
   BC.initialize();
 });
