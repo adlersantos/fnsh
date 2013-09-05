@@ -1,8 +1,13 @@
-<h4 style="color:#00B351;">Task Lists</h4>
+<h3 style="color:#00B351;">Task Lists</h3>
 
 <div class="lists-container">
   <% taskLists.each(function(taskList) { %>
 
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h5 class="panel-title"><%= taskList.escape('title') %></h5>
+      </div>
+    </div>
     <div class="task-list" style="width:200px; margin: 15px 0 15px 0;">
       <div class="task-list-title" style="margin-bottom:10px;"
            task-list-id="<%= taskList.escape('id') %>">
