@@ -2,27 +2,39 @@
 
 <div class="lists-container">
   <% taskLists.each(function(taskList) { %>
+
     <div class="task-list" style="width:200px; margin: 15px 0 15px 0;">
       <div class="task-list-title" style="margin-bottom:10px;"
            task-list-id="<%= taskList.escape('id') %>">
         <strong style="cursor:pointer; text-decoration: underline;"><%= taskList.escape('title') %></strong>
       </div>
       <div class="tasks" style="margin-left:15px;">
+
         <% _(taskList.get('tasks')).each(function(task) { %>
         <div class="" style="height:20px; cursor:pointer;">
           <input type="checkbox" task-id="<%= task.id %>"
                  value="task" class="task-checkbox"
                  style="margin: 0 5px 0;"><span style="padding-bottom:6px;"><%= task.name %></span><br>
-        </div>
+        </div><!-- task -->
         <% }) %>
+
         <a href="#" style="margin-left:7px;" class="put-task-form">Add a task</a>
-      </div>
+        <form style="margin: 5px 0 0 5px; width:250px;" class="hidden add-task form-inline" role="form">
+          <div class="form-group">
+            <input type="text" name="added_task" style="height:20px;"
+                   class="input-sm form-control" placeholder="Enter task name">
+          </div>
+          <button type="submit" class="add-task btn btn-primary btn-xs">Add task</button>
+          <button type="button" class="cancel-add-task btn btn-primary btn-xs">x</button>
+        </form>
+
+      </div><!-- tasks -->
     </div><!-- task list -->
 
   <% }) %>
-  <a href="#" class="put-task-list-form"><small>Create task list</small></a>
 </div>
 
+<a href="#" class="put-task-list-form"><small>Create task list</small></a>
 
 <script>
   $(".tasks").sortable({axis: 'y'});

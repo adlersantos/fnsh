@@ -10,10 +10,17 @@ BC.Views.TaskList = Backbone.View.extend({
   },
 
   events: {
-    "click a.delete-task-list": "deleteTaskList"
+    "click a.delete-task-list": "deleteTaskList",
+    "click .put-task-form": "putAddTaskForm",
+    "click .cancel-add-task": "cancelAddTask"
   },
 
   template: JST['task_lists/task_list'],
+
+  cancelAddTask: function (event) {
+    $(event.currentTarget).parent().toggleClass('hidden');
+    $(event.currentTarget).parent().prev().toggleClass('hidden');
+  },
 
   deleteTaskList: function (event) {
     event.preventDefault();
@@ -23,6 +30,11 @@ BC.Views.TaskList = Backbone.View.extend({
     var taskListToDelete = this.taskLists.get(taskListID);
 
     taskListToDelete.destroy();
+  },
+
+  putAddTaskForm: function (event) {
+    $(event.currentTarget).toggleClass('hidden');
+    $(event.currentTarget).next().toggleClass('hidden');
   },
 
   render: function () {

@@ -1,14 +1,32 @@
 BC.Views.AddTask = Backbone.View.extend({
 
   events: {
-    "click .cancel-add-task": "cancelAddTask"
+    "click .add-task": "createTask"
   },
 
   template: JST['tasks/add_task'],
 
-  cancelAddTask: function (event) {
-    $('form.add-task').hide();
-    $('a.put-task-form').show();
+  createTask: function () {
+    event.preventDefault();
+
+    var projectData = $('form.create-task-list').serialize();
+    var projectID = BC.getID('.project-name', 'project');
+    var project = BC.projects.get(projectID);
+
+    $.ajax({
+      url: '/projects/' + projectID,
+      type: 'PUT',
+      data: projectData,
+      dataType: 'json',
+      success: function (responseData) {
+        console.log(responseData);
+        project.fetch({
+          success: function () {
+            BC.regenerateProjectView(project);
+          }
+        });
+      }
+    });
   },
 
   render: function () {
