@@ -4,7 +4,6 @@ BC.Views.Project = Backbone.View.extend({
     "click .project-name": "renameProject",
     "click a.add-user": "addUser",
     "click a.put-task-list-form": "putTaskListForm",
-    "click .put-task-form": "putAddTaskForm"
   },
 
   template: JST['projects/project'],
@@ -16,13 +15,6 @@ BC.Views.Project = Backbone.View.extend({
     addUserForm = addUserForm.render().$el
     addUserForm.insertBefore('a.add-user');
     $('a.add-user').hide();
-  },
-
-  putAddTaskForm: function (event) {
-    var createTaskForm = new BC.Views.AddTask();
-    createTaskForm = createTaskForm.render().$el;
-    createTaskForm.insertBefore(event.currentTarget);
-    $(event.currentTarget).hide();
   },
 
   putTaskListForm: function (event) {
