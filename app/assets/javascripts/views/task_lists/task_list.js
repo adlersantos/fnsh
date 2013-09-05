@@ -60,6 +60,7 @@ BC.Views.TaskList = Backbone.View.extend({
   putAddTaskForm: function (event) {
     $(event.currentTarget).toggleClass('hidden');
     $(event.currentTarget).next().toggleClass('hidden');
+    BC.inputFocus();
   },
 
   render: function () {

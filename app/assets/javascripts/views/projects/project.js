@@ -22,6 +22,8 @@ BC.Views.Project = Backbone.View.extend({
     createTaskListForm = createTaskListForm.render().$el;
     createTaskListForm.insertBefore('a.put-task-list-form');
     $('a.put-task-list-form').hide();
+
+    BC.inputFocus();
   },
 
   renameProject: function (event) {

@@ -14,6 +14,7 @@
 </div>
 
 <script>
+
   $(function() {
     $( ".lists-container" ).sortable({
       axis: 'y',
@@ -24,13 +25,15 @@
       handle: ".panel-heading"
     });
     $( ".lists-container" ).disableSelection();
-  });
 
-  $('.project-name').hover(
-    function () {
-      $(this).append('<small class="rename-note"><small>click to rename</small></small>');
-    },
-    function () {
-      $('.rename-note').hide();
-    })
+    $('.project-name').hover(
+      function () {
+        $(this).append('<small class="rename-note"><small>click to rename</small></small>');
+      },
+      function () {
+        $('.rename-note').hide();
+      }
+    );
+
+  });
 </script>

@@ -1,7 +1,7 @@
 <div class="row" style="margin-top:10px">
   <form role="form" class="edit-project col-md-6">
     <div class="form-group">
-      <input type="text" name="project[name]" class="input-lg form-control" value="<%= project.escape('name') %>">
+      <input type="text" name="project[name]" class="project-name input-lg form-control" value="<%= project.escape('name') %>">
     </div>
 
     <div class="form-group">
@@ -10,3 +10,7 @@
     </div>
   </form>
 </div>
+
+<script>
+  $('input.project-name').selectRange(100, 100);
+</script>
