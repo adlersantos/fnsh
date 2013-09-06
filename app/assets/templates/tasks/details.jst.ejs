@@ -10,5 +10,9 @@
 </h4>
 
 <form class="task-details">
-  <textarea class="form-control" name="task[name]" rows="2" placeholder="Description"></textarea>
+  <textarea class="task-description form-control" name="task[name]" rows="2" placeholder="Description"></textarea>
 </form>
+
+<script>
+  $('textarea').autosize();
+</script>
