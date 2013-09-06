@@ -6,7 +6,7 @@ BC.Views.TaskList = Backbone.View.extend({
     var that = this;
     var events = ["add", "change", "destroy"];
     _(events).each(function (event) {
-      that.listenTo(that.taskLists, event, that.render)
+      that.listenTo(that.taskLists, event, that.render);
     });
   },
 
@@ -29,24 +29,38 @@ BC.Views.TaskList = Backbone.View.extend({
     event.preventDefault();
     var that = this;
 
-    var addTaskForm = $(event.currentTarget).parent();
-    var taskData = addTaskForm.serialize();
+    var taskListID = BC.getID(event.currentTarget, 'task-list');
+    var taskList = this.taskLists.get(taskListID);
+    var tasks = taskList.get('tasks');
 
-    $.ajax({
-      url: '/projects/' + that.project.get('id'),
-      type: 'PUT',
-      data: taskData,
-      dataType: 'json',
+    tasks.url = /projects/ + this.project.get('id') + '/task_lists/' + taskListID + '/tasks'
+    var taskData = $(event.currentTarget.parentElement).serializeJSON();
+
+    tasks.create(taskData, {
       success: function (responseData) {
+        console.log('TASK CREATED!');
         console.log(responseData);
-        that.project.fetch({
-          success: function () {
-            BC.regenerateProjectView(that.project);
-            console.log(responseData);
-          }
-        });
-      }
+      },
+      wait: true
     });
+
+    this.taskLists.fetch(function () {});
+
+    // $.ajax({
+    //   url: '/projects/' + that.project.get('id'),
+    //   type: 'PUT',
+    //   data: taskData,
+    //   dataType: 'json',
+    //   success: function (responseData) {
+    //     console.log(responseData);
+    //     that.project.fetch({
+    //       success: function () {
+    //         BC.regenerateProjectView(that.project);
+    //         console.log(responseData);
+    //       }
+    //     });
+    //   }
+    // });
   },
 
   deleteTask: function (event) {

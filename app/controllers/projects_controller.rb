@@ -70,12 +70,6 @@ class ProjectsController < ApplicationController
       end
     end
 
-    unless params[:created_task_list].blank?
-      ActiveRecord::Base.transaction do
-        TaskList.create(title: params[:created_task_list], project_id: @project.id)
-      end
-    end
-
     unless params[:added_task].blank?
       ActiveRecord::Base.transaction do
         Task.create(name: params[:added_task],
