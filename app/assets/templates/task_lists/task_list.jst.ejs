@@ -26,11 +26,11 @@
           <div class="form-group">
             <input type="text" name="task[name]" style="height:20px;"
                    class="input-sm form-control" placeholder="Enter task name">
-            <input type="hidden" name="task_list_id" value="<%= taskList.get('id') %>">
           </div>
           <button type="submit" class="add-task btn btn-primary btn-xs"
                   task-list-id="<%= taskList.get('id') %>">Add task</button>
-          <button type="button" class="cancel-add-task btn btn-primary btn-xs">x</button>
+          <button type="button" class="cancel-add-task btn btn-primary btn-xs"
+                  task-list-id="<%= taskList.get('id') %>">x</button>
         </form>
 
       </div>

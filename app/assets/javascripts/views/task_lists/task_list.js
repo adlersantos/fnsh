@@ -45,44 +45,26 @@ BC.Views.TaskList = Backbone.View.extend({
     });
 
     this.taskLists.fetch(function () {});
-
-    // $.ajax({
-    //   url: '/projects/' + that.project.get('id'),
-    //   type: 'PUT',
-    //   data: taskData,
-    //   dataType: 'json',
-    //   success: function (responseData) {
-    //     console.log(responseData);
-    //     that.project.fetch({
-    //       success: function () {
-    //         BC.regenerateProjectView(that.project);
-    //         console.log(responseData);
-    //       }
-    //     });
-    //   }
-    // });
   },
 
   deleteTask: function (event) {
     event.preventDefault();
-    var that = this;
 
     var taskID = BC.getID(event.currentTarget, 'task');
-    var taskToDelete = this.taskLists.get(taskListID);
+    var task = BC.tasks.get(taskID);
+    var taskListID = task.get('task_list_id');
 
-    $.ajax({
-      url: '/tasks/' + taskID,
-      type: 'DELETE',
-      dataType: 'json',
-      success: function (responseData) {
-        console.log(responseData);
-        that.project.fetch({
-          success: function () {
-            BC.regenerateProjectView(that.project);
-          }
-        });
-      }
+    var taskList = this.taskLists.get(taskListID);
+    var tasks = taskList.get('tasks');
+
+    task.url = /projects/ + this.project.get('id')
+                + '/task_lists/' + taskListID + '/tasks/' + task.get('id');
+
+    task.destroy({
+      wait: true
     });
+
+    this.taskLists.fetch(function () {});
   },
 
   deleteTaskList: function (event) {

@@ -16,6 +16,18 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+
+    @tasks = Task.all
+
+    respond_to do |format|
+      format.html { render 'index.rabl' }
+      format.json { render 'index.rabl' }
+    end
+  end
+
   def index
     @tasks = Task.all
     respond_to do |format|
