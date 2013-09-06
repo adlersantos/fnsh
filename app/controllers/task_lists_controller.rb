@@ -28,7 +28,7 @@ class TaskListsController < ApplicationController
   end
 
   def index
-    @task_lists = TaskList.all
+    @task_lists = TaskList.where("project_id = ?", params[:project_id])
 
     respond_to do |format|
       format.html { render 'index.rabl' }
