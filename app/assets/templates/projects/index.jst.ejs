@@ -2,24 +2,21 @@
 <hr>
 
 <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
-<% projects.each(function (project) { %>
-  <li><a class="project-link" project-id="<%= project.escape('id') %>" href="#"><%= project.escape('name') %></a></li>
-
-<!--   <div class="project-row row" project-id="<%= project.escape('id') %>">
-    <a class="project-link col-md-2" style="float:none;" project-id="<%= project.escape('id') %>" href="#"><%= project.escape('name') %></a>
-  </div>
- --><% }) %>
+  <% projects.each(function (project) { %>
+    <li><a class="project-link" project-id="<%= project.escape('id') %>" href="#"><%= project.escape('name') %></a></li>
+  <% }) %>
 </ul>
 
 <br>
 <a href="#" class="create-project">Create project</a>
 
 <script>
-  $('.project-row').hover(
+  $('.project-link').hover(
     function () {
-      var deleteButton ="<a class='delete-project text-danger pull-right' project-id='"
-                       + BC.getID(this, 'project')
-                       + "' href='#'>Delete</a>";
+
+      var deleteButton = "<button type='button' class='btn btn-danger btn-xs delete-project pull-right' project-id='"
+                         + BC.getID(this, 'project')
+                         + "' href='#'>&times;</button>";
       $(this).append($(deleteButton));
     },
     function () {

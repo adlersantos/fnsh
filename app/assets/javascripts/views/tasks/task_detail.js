@@ -3,6 +3,15 @@ BC.Views.TaskDetail = Backbone.View.extend({
     this.task = opts['model'];
   },
 
+  events: {
+    "enterKey .task-description": "test"
+  },
+
+  test: function (event) {
+    event.preventDefault();
+    console.log('ENTER!!!!');
+  },
+
   template: JST['tasks/details'],
 
   render: function () {

@@ -68,8 +68,10 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
       model: projectModel
     });
 
-    $('ul.nav .active').toggleClass('active')
+    $('ul.nav .active').toggleClass('active');
     $(event.currentTarget.parentElement).toggleClass('active');
+
+    $('.task-details').empty();
     $('.project').html(projectView.render().$el);
   }
 });

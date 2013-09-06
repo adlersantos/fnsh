@@ -21,12 +21,12 @@
                    value="task" class="task-checkbox"
                    style="margin: 0 5px 0;">
                    <span class="task-name" style="padding-bottom:6px;" task-id="<%= task.get('id') %>"><%= task.get('name') %></span>
-            <span class="delete-task pull-right" task-id="<%= task.get('id') %>">x</span>
+            <span class="delete-task pull-right" task-id="<%= task.get('id') %>">&times;</span>
           </div><!-- task -->
           <% }) %>
         </div>
 
-        <a href="#" class="put-add-task-form" style="margin-left:24px; text-decoration:underline;">Add a task</a>
+        <a href="#" class="put-add-task-form" style="margin-left:27px; text-decoration:underline;">Add a task</a>
         <form style="margin: 5px 0 0 5px; width:250px;" class="add-task hidden form-inline" role="form">
           <div class="form-group">
             <input autofocus type="text" name="task[name]" style="height:20px;"
@@ -35,7 +35,7 @@
           <button type="submit" class="add-task btn btn-primary btn-xs"
                   task-list-id="<%= taskList.get('id') %>">Add task</button>
           <button type="button" class="cancel-add-task btn btn-primary btn-xs"
-                  task-list-id="<%= taskList.get('id') %>">x</button>
+                  task-list-id="<%= taskList.get('id') %>">&times;</button>
         </form>
 
         <% var finishedTasks = taskList.get('tasks').where({finished: true}) %>
