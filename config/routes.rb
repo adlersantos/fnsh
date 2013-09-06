@@ -8,6 +8,6 @@ Basecamp::Application.routes.draw do
     end
   end
 
-  resources :tasks, :only => [:index, :show]
+  resources :tasks, :only => [:index, :update]
   resource :session, :only => [:new, :create, :destroy]
 end

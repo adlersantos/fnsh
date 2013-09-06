@@ -35,4 +35,16 @@ class TasksController < ApplicationController
       format.json { render 'index.rabl' }
     end
   end
+
+  def update
+    @task = Task.find(params[:id])
+    @task.update_attributes(params[:task])
+
+    # @tasks = Task.all
+
+    respond_to do |format|
+      format.html { render 'show.rabl' }
+      format.json { render 'show.rabl' }
+    end
+  end
 end
