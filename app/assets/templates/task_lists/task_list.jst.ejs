@@ -2,7 +2,7 @@
 
 <div class="lists-container">
   <% taskLists.each(function(taskList) { %>
-
+    <% debugger %>
     <div class="panel panel-primary">
       <div class="panel-heading" style="padding:3px 2px 4px 10px; cursor:pointer;">
         <div class="task-list-title" task-list-id="<%= taskList.escape('id') %>">
@@ -11,12 +11,25 @@
                style="cursor:pointer;">delete</button>
         </div>
       </div>
+
       <div class="tasks" style="margin:15px 30px;">
-        <% taskList.get('tasks').each(function(task) { %>
+
+        <% _(taskList.get('tasks').where({finished: false})).each(function(task) { %>
         <div class="task" style="height:20px; cursor:pointer;">
           <input type="checkbox" task-id="<%= task.get('id') %>"
                  value="task" class="task-checkbox"
-                 style="margin: 0 5px 0;"><span style="padding-bottom:6px;"><%= task.get('name') %></span>
+                 style="margin: 0 5px 0;">
+                 <span style="padding-bottom:6px;"><%= task.get('name') %></span>
+          <span class="delete-task pull-right" task-id="<%= task.get('id') %>">x</span>
+        </div><!-- task -->
+        <% }) %>
+
+        <% _(taskList.get('tasks').where({finished: true})).each(function(task) { %>
+        <div class="task" style="height:20px; cursor:pointer;">
+          <input type="checkbox" task-id="<%= task.get('id') %>"
+                 value="task" class="task-checkbox"
+                 style="margin: 0 5px 0;" checked>
+                 <span style="padding-bottom:6px;" class="line-through"><%= task.get('name') %></span>
           <span class="delete-task pull-right" task-id="<%= task.get('id') %>">x</span>
         </div><!-- task -->
         <% }) %>
@@ -61,8 +74,4 @@
     items: ".task"
   });
   $(".tasks").disableSelection();
-
-  $(".task-checkbox").on('click',  function () {
-    $(this).next().toggleClass('line-through')
-  });
 </script>

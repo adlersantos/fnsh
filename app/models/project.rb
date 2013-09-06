@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
 
-  attr_accessible :name, :users, :users_attributes
+  attr_accessible :name, :users
 
   validates :name, :presence => true
 

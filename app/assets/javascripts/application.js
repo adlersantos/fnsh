@@ -14,7 +14,7 @@
 //= require jquery.ui.sortable
 //= require jquery_ujs
 //= require jquery.serializeJSON.min
-//= require twitter/bootstrap
+//= require twitter/bootstrap/button
 //= require underscore
 //= require backbone
 //= require basecamp
