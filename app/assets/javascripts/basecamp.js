@@ -39,7 +39,6 @@ window.BC = {
       var projectModel = BC.projects.get(projectID);
       var projectView = new BC.Views.Project({
         model: projectModel
-        // projectUsers: projectModel.get('users')
       });
       $('.project').html(projectView.render().$el)
 
@@ -66,12 +65,6 @@ $(document).ready(function(){
       }
     });
   };
-
-  // $.fn.keyup = function (e) {
-  //   debugger
-  //   if (e.keyCode == 13) { $('.save').click(); }     // enter
-  //   if (e.keyCode == 27) { $('form.create-project').hide(); }
-  // };
 
   BC.initialize();
 });

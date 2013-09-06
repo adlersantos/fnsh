@@ -15,6 +15,4 @@ class Project < ActiveRecord::Base
   has_many :task_lists,
     class_name: "TaskList",
     foreign_key: :project_id
-
-  # accepts_nested_attributes_for :users
 end
