@@ -48,8 +48,8 @@ BC.Views.Project = Backbone.View.extend({
 
   render: function () {
 
-    console.log('fetching tasks lists')
-    this.taskLists.fetch();
+    console.log('fetching tasks lists');
+    this.taskLists.fetch({data: {project_id: this.project.get('id')}});
 
     var projectTemplate = this.template({
       project: this.model,
