@@ -19,7 +19,7 @@
             <input type="checkbox" task-id="<%= task.get('id') %>"
                    value="task" class="task-checkbox"
                    style="margin: 0 5px 0;">
-                   <span style="padding-bottom:6px;"><%= task.get('name') %></span>
+                   <span class="task-name" style="padding-bottom:6px;" data-toggle="popover" data-placement="bottom"><%= task.get('name') %></span>
             <span class="delete-task pull-right" task-id="<%= task.get('id') %>">x</span>
           </div><!-- task -->
           <% }) %>
@@ -59,7 +59,14 @@
 
 <a href="#" class="put-task-list-form"><small>Create task list</small></a>
 
+<div class="popover fade bottom in" style="top: 15300px; left: 659.5px; display: block;">
+  <div class="arrow"></div>
+  <h3 class="popover-title" style="display: none;"></h3>
+  <div class="popover-content">Vivamus sagittis lacus vel augue laoreet rutrum faucibus.</div>
+</div>
+
 <script>
+  $('span.task-name').popover('toggle')
   $( ".lists-container" ).sortable({
     axis: 'y',
     placeholder: "sortable-placeholder",
