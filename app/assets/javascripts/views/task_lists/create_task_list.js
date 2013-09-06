@@ -22,10 +22,6 @@ BC.Views.CreateTaskList = Backbone.View.extend({
         console.log('TASK CREATED!');
         console.log(responseData);
       },
-      errors: function (responseData) {
-        console.log('Task failed!');
-        console.log(responseData);
-      },
       wait: true
     });
     this.collection.fetch(function () {});

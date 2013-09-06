@@ -22,9 +22,9 @@
         <% }) %>
 
         <a href="#" class="put-add-task-form" style="margin:3px; 10px;">Add a task</a>
-        <form style="margin: 5px 0 0 5px; width:250px;" class="hidden add-task form-inline" role="form">
+        <form style="margin: 5px 0 0 5px; width:250px;" class="add-task hidden form-inline" role="form">
           <div class="form-group">
-            <input type="text" name="added_task" style="height:20px;"
+            <input type="text" name="task[name]" style="height:20px;"
                    class="input-sm form-control" placeholder="Enter task name">
             <input type="hidden" name="task_list_id" value="<%= taskList.get('id') %>">
           </div>
