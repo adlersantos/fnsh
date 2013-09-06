@@ -45,6 +45,7 @@ BC.Views.TaskList = Backbone.View.extend({
       wait: true
     });
 
+    BC.tasks.fetch();
     this.taskLists.fetch(function () {});
   },
 
@@ -96,6 +97,9 @@ BC.Views.TaskList = Backbone.View.extend({
       $(event.currentTarget).next().toggleClass('line-through');
       task.save();
     }
+
+    BC.tasks.fetch();
+    this.taskLists.fetch();
   },
 
   render: function () {
