@@ -16,7 +16,8 @@ BC.Views.TaskList = Backbone.View.extend({
     "click .cancel-add-task": "cancelAddTask",
     "click button.add-task": "createTask",
     "click .delete-task": "deleteTask",
-    "click input.task-checkbox": "toggleTaskCompletion"
+    "click input.task-checkbox": "toggleTaskCompletion",
+    "click span.task-name": "showTaskDetail"
   },
 
   template: JST['task_lists/task_list'],
@@ -84,6 +85,14 @@ BC.Views.TaskList = Backbone.View.extend({
     $(event.currentTarget).next().toggleClass('hidden');
   },
 
+  showTaskDetail: function (event) {
+    var taskID = BC.getID(event.currentTarget, 'task');
+    var task = BC.tasks.get(taskID);
+
+    var taskDetailView = new BC.Views.TaskDetail({model: task});
+    taskDetailView.render();
+  },
+
   toggleTaskCompletion: function (event) {
     taskID = BC.getID(event.currentTarget, 'task');
     task = BC.tasks.get(taskID);
@@ -100,6 +109,9 @@ BC.Views.TaskList = Backbone.View.extend({
 
     BC.tasks.fetch();
     this.taskLists.fetch();
+
+    var taskDetailView = new BC.Views.TaskDetail({model: task});
+    taskDetailView.render();
   },
 
   render: function () {
