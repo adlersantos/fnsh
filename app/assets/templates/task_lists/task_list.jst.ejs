@@ -4,7 +4,7 @@
   <% taskLists.each(function(taskList) { %>
 
     <div class="panel panel-primary">
-      <div class="panel-heading" style="padding:5px 10px; cursor:pointer;">
+      <div class="panel-heading" style="padding:3px 2px 4px 10px; cursor:pointer;">
         <div class="task-list-title" task-list-id="<%= taskList.escape('id') %>">
           <span style="text-decoration: underline;"><%= taskList.escape('title') %></span>
           <button class="delete-task-list pull-right btn btn-danger btn-xs"
@@ -21,7 +21,7 @@
         </div><!-- task -->
         <% }) %>
 
-        <a href="#" class="put-add-task-form" style="margin:3px; 10px;">Add a task</a>
+        <a href="#" class="put-add-task-form" style="margin-left:24px; text-decoration:underline;">Add a task</a>
         <form style="margin: 5px 0 0 5px; width:250px;" class="add-task hidden form-inline" role="form">
           <div class="form-group">
             <input autofocus type="text" name="task[name]" style="height:20px;"
