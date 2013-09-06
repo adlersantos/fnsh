@@ -6,6 +6,11 @@ window.BC = {
 
   initialize: function() {
     BC.projects = new BC.Collections.Projects();
+    BC.tasks = new BC.Collections.Tasks();
+    BC.tasks.url = '/tasks/';
+
+    BC.tasks.fetch();
+    // debugger
 
     BC.projects.fetch({
       success: function () {
