@@ -12,7 +12,7 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
   events: {
     "click .project-link": "showProject",
     "click .create-project": "putCreateProjectForm",
-    "click .edit-project": "editProject",
+    "click .edit-project": "putEditProjectForm",
     "click .delete-project": "deleteProject",
   },
 
@@ -29,7 +29,7 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
     $('.project').empty();
   },
 
-  editProject: function (event) {
+  putEditProjectForm: function (event) {
     event.preventDefault();
 
     var projectID = BC.getID(event.currentTarget, 'project');
@@ -47,8 +47,6 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
 
     var projectForm = new BC.Views.CreateProject({model: project});
     $('.project').html(projectForm.render().$el);
-
-    BC.inputFocus();
   },
 
   render: function () {
@@ -68,7 +66,6 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
 
     var projectView = new BC.Views.Project({
       model: projectModel
-      // taskLists: projectModel.get('task_lists')
     });
     $('.project').html(projectView.render().$el);
   }

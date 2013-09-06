@@ -24,8 +24,8 @@
         <a href="#" class="put-add-task-form" style="margin:3px; 10px;">Add a task</a>
         <form style="margin: 5px 0 0 5px; width:250px;" class="add-task hidden form-inline" role="form">
           <div class="form-group">
-            <input type="text" name="task[name]" style="height:20px;"
-                   class="input-sm form-control" placeholder="Enter task name">
+            <input autofocus type="text" name="task[name]" style="height:20px;"
+                   class="task-name input-sm form-control" placeholder="Enter task name">
           </div>
           <button type="submit" class="add-task btn btn-primary btn-xs"
                   task-list-id="<%= taskList.get('id') %>">Add task</button>

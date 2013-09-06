@@ -10,7 +10,6 @@ window.BC = {
     BC.tasks.url = '/tasks/';
 
     BC.tasks.fetch();
-    // debugger
 
     BC.projects.fetch({
       success: function () {
@@ -18,10 +17,6 @@ window.BC = {
         Backbone.history.start();
       }
     });
-  },
-
-  inputFocus: function () {
-    $("input:text:visible:first").focus();
   },
 
   getID: function (target, objectString) {
