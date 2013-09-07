@@ -16,7 +16,7 @@
 
       var deleteButton = "<button type='button' class='btn btn-danger btn-xs delete-project pull-right' project-id='"
                          + BC.getID(this, 'project')
-                         + "' href='#'>&times;</button>";
+                         + "' href='#'><span class='glyphicon glyphicon-remove'></span></button>";
       $(this).append($(deleteButton));
     },
     function () {
