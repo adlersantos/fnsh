@@ -1,17 +1,42 @@
 <h4>
-  <div class="col-md-2" style="padding-left:5px; width:33px; cursor:pointer;">
+  <div class="row" style="display:block; margin-left:0; margin-bottom:8px;">
   <% if (task.get('finished')) { %>
-    <span class="glyphicon glyphicon-check" style="top:0;"></span>
+    <button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-check"></span></small></button>
   <% } else { %>
-    <span class="glyphicon glyphicon-unchecked" style="top:0;"></span>
+    <button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-unchecked"></span></small></button>
   <% } %>
+  <button class="rename-task-button btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></small></button>
   </div>
-  <%= task.escape('name') %>
+
+  <!-- <div class="col-md-10"> -->
+    <span class="task-detail-name" style="cursor:pointer;"><%= task.escape('name') %></span>
+    <form style="width:250px;" class="hidden rename-task form-inline" role="form">
+      <div class="col-md-9" style="padding: 7px 9px 7px 0;">
+        <div class="form-group">
+          <textarea autofocus type="text" name="task[name]" style="width:220px;"
+                 class="input form-control"><%= task.escape('name') %></textarea>
+        </div>
+      </div>
+      <div class="col-md-1" style="padding: 7px 0 5px 0; float:right;">
+      <button type="submit" class="rename-task btn btn-primary btn-xs"
+              task-list-id="<%= task.escape('id') %>"><span class="glyphicon glyphicon-ok"></span></button>
+      <div style="height:3px;"></div>
+      <button type="button" class="cancel-rename-task btn btn-primary btn-xs"
+              task-list-id="<%= task.escape('id') %>"><span class="glyphicon glyphicon-remove"></span></button>
+      </div>
+    </form>
+  <!-- </div> -->
+
 </h4>
 
+<div style="height:10px;"></div>
 <form class="task-details">
-  <textarea class="task-description form-control" name="task[name]" rows="2" placeholder="Description"></textarea>
+  <textarea class="task-description form-control" name="task[name]" rows="2" placeholder="Description"><%= task.escape('description') %></textarea>
 </form>
+
+<hr>
+
+<textarea class="input form-control" placeholder="Write a comment.."></textarea>
 
 <script>
   $('textarea').autosize();

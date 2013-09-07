@@ -4,20 +4,28 @@ BC.Views.TaskDetail = Backbone.View.extend({
   },
 
   events: {
-    "enterKey .task-description": "test"
-  },
-
-  test: function (event) {
-    event.preventDefault();
-    console.log('ENTER!!!!');
+    "click span.task-detail-name": "putRenameTaskForm",
+    "click .cancel-rename-task": "cancelRenameTask"
   },
 
   template: JST['tasks/details'],
+
+  cancelRenameTask: function (event) {
+    $('form.rename-task').toggleClass('hidden');
+    $('form.rename-task').prev().toggleClass('hidden');
+  },
+
+  putRenameTaskForm: function (event) {
+    event.preventDefault();
+    $(event.currentTarget).toggleClass('hidden');
+    $(event.currentTarget).next().toggleClass('hidden');
+  },
 
   render: function () {
     var detailTemplate = this.template({
       task: this.task
     });
-    $('.task-details').html(detailTemplate);
+    this.$el.html(detailTemplate);
+    return this;
   }
 });

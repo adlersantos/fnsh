@@ -90,7 +90,7 @@ BC.Views.TaskList = Backbone.View.extend({
     var task = BC.tasks.get(taskID);
 
     var taskDetailView = new BC.Views.TaskDetail({model: task});
-    taskDetailView.render();
+    $('.task-details').html(taskDetailView.render().$el);
   },
 
   toggleTaskCompletion: function (event) {
