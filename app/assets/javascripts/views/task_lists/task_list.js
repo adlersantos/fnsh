@@ -1,12 +1,16 @@
 BC.Views.TaskList = Backbone.View.extend({
   initialize: function () {
     this.taskList = this.model
-
     this.tasks = this.model.get('tasks');
 
     var that = this;
     that.tasks.each(function (task) {
       that['task' + task.get('id')] = new BC.Views.Task({model: task});
+    });
+
+    var events = ["add", "change", "destroy"];
+    _(events).each(function (event) {
+      that.listenTo(that.tasks, event, that.render);
     });
   },
 
