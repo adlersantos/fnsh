@@ -17,20 +17,12 @@ BC.Views.Task = Backbone.View.extend({
   },
 
   toggleTaskCompletion: function (event) {
-    taskID = BC.getID(event.currentTarget, 'task');
-    task = BC.tasks.get(taskID);
-
-    if ($(event.currentTarget).is(":checked")) {
-      task.set({finished: true});
-      $(event.currentTarget).next().toggleClass('line-through');
-      task.save();
+    if (this.model.get('finished')) {
+      this.model.set('finished', false);
     } else {
-      task.set({finished: false});
-      $(event.currentTarget).next().toggleClass('line-through');
-      task.save();
+      this.model.set('finished', true);
     }
 
-    var taskDetailView = new BC.Views.TaskDetail({model: task});
-    taskDetailView.render();
+    this.model.save();
   }
 });
