@@ -19,7 +19,6 @@ BC.Views.TaskList = Backbone.View.extend({
     "click .put-add-task-form": "putAddTaskForm",
     "click .cancel-add-task": "cancelAddTask",
     "click button.add-task": "createTask",
-    "click .delete-task": "deleteTask",
     "click input.task-checkbox": "toggleTaskCompletion",
     "click span.task-name": "showTaskDetail"
   },
@@ -49,26 +48,6 @@ BC.Views.TaskList = Backbone.View.extend({
       }
     });
   },
-
-  // deleteTask: function (event) {
-  //   event.preventDefault();
-
-  //   var taskID = BC.getID(event.currentTarget, 'task');
-  //   var task = BC.tasks.get(taskID);
-  //   var taskListID = task.get('task_list_id');
-
-  //   var taskList = this.taskLists.get(taskListID);
-  //   var tasks = taskList.get('tasks');
-
-  //   task.url = /projects/ + this.project.get('id')
-  //               + '/task_lists/' + taskListID + '/tasks/' + task.get('id');
-
-  //   task.destroy({
-  //     wait: true
-  //   });
-
-  //   this.taskLists.fetch(function () {});
-  // },
 
   deleteTaskList: function (event) {
     event.preventDefault();
