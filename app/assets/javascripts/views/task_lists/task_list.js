@@ -1,6 +1,7 @@
 BC.Views.TaskList = Backbone.View.extend({
   initialize: function () {
     this.taskList = this.model
+
     this.tasks = this.model.get('tasks');
 
     var that = this;
@@ -110,7 +111,19 @@ BC.Views.TaskList = Backbone.View.extend({
   // },
 
   render: function () {
-    this.$el.html(this.template({taskList: this.taskList}));
+    var taskListTemplate = this.template({
+      taskList: this.taskList,
+      tasks: this.tasks
+    })
+
+    this.$el.html(taskListTemplate);
+
+    var that = this;
+    that.tasks.each(function (task) {
+      var id = task.get('id')
+      that['task' + id].setElement(that.$('.task-' + id)).render();
+    });
+
     return this;
   }
 });
