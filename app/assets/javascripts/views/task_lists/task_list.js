@@ -1,7 +1,12 @@
 BC.Views.TaskList = Backbone.View.extend({
   initialize: function () {
-    // this.project = this.model;
-    // this.taskLists = this.collection;
+    this.taskList = this.model
+    this.tasks = this.model.get('tasks');
+
+    var that = this;
+    that.tasks.each(function (task) {
+      that['task' + task.get('id')] = new BC.Views.Task({model: task});
+    });
   },
 
   events: {
@@ -66,10 +71,6 @@ BC.Views.TaskList = Backbone.View.extend({
 
   deleteTaskList: function (event) {
     event.preventDefault();
-    // var that = this;
-
-    // var taskListID = BC.getID(event.currentTarget.parentElement, 'task-list');
-    // var taskListToDelete = this.taskLists.get(taskListID);
 
     this.model.destroy();
   },
@@ -109,7 +110,7 @@ BC.Views.TaskList = Backbone.View.extend({
   // },
 
   render: function () {
-    this.$el.html(this.template({taskList: this.model}));
+    this.$el.html(this.template({taskList: this.taskList}));
     return this;
   }
 });
