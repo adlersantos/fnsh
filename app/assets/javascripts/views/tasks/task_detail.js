@@ -19,6 +19,7 @@ BC.Views.TaskDetail = Backbone.View.extend({
     event.preventDefault();
     $(event.currentTarget).toggleClass('hidden');
     $(event.currentTarget).next().toggleClass('hidden');
+    $('textarea.task-name').focus();
   },
 
   render: function () {

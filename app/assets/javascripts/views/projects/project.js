@@ -1,19 +1,20 @@
 BC.Views.Project = Backbone.View.extend({
-  initialize: function (opts) {
-    this.project = opts['model'];
+  initialize: function () {
+    this.project = this.model;
+    this.projectUsers = this.project.get('users');
+    this.taskLists = this.project.get('task_lists');
 
-    var taskLists = new BC.Collections.TaskLists();
-    taskLists.url = '/projects/' + this.project.get('id') + '/task_lists';
-    this.taskLists = taskLists;
+    this.projectUsersView = new BC.Views.Users({collection: this.projectUsers});
+    this.taskListsView = new BC.Views.TaskLists({
+      model: this.project,
+      collection: this.taskLists
+    });
   },
 
   events: {
     "click .project-name": "renameProject",
     "click a.add-user": "putAddUserForm",
-    "click a.put-task-list-form": "putCreateTaskListForm",
   },
-
-  template: JST['projects/project'],
 
   putAddUserForm: function (event) {
     event.stopPropagation();
@@ -22,16 +23,6 @@ BC.Views.Project = Backbone.View.extend({
     addUserForm = addUserForm.render().$el
     addUserForm.insertBefore('a.add-user');
     $('a.add-user').hide();
-  },
-
-  putCreateTaskListForm: function (event) {
-    var createTaskListForm = new BC.Views.CreateTaskList({
-      collection: this.taskLists
-    });
-
-    createTaskListForm = createTaskListForm.render().$el;
-    createTaskListForm.insertBefore('a.put-task-list-form');
-    $('a.put-task-list-form').hide();
   },
 
   renameProject: function (event) {
@@ -48,24 +39,27 @@ BC.Views.Project = Backbone.View.extend({
 
   render: function () {
 
-    console.log('fetching tasks lists');
-    this.taskLists.fetch({data: {project_id: this.project.get('id')}});
-
     var projectTemplate = this.template({
-      project: this.model,
-      projectUsers: this.model.get('users'),
-      taskLists: this.taskLists
+      project: this.model
     });
 
-    this.$el.append(projectTemplate);
+    this.$el.html(projectTemplate);
+    this.projectUsersView.setElement(this.$('.project-users')).render();
+    this.taskListsView.setElement(this.$('.task-lists-container')).render();
 
-    var taskListsView = new BC.Views.TaskList({
-      model: this.model,
-      collection: this.taskLists
-    });
+    // console.log('fetching tasks lists');
+    // this.taskLists.fetch({data: {project_id: this.project.get('id')}});
 
-    this.$el.append(taskListsView.render().$el);
+    // var taskListsView = new BC.Views.TaskList({
+    //   model: this.model,
+    //   collection: this.taskLists
+    // });
+
+    // this.$el.append(taskListsView.render().$el);
 
     return this;
-  }
+  },
+
+  template: JST['projects/project']
+
 });

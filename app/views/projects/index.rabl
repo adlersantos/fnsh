@@ -7,7 +7,7 @@ if current_user
   end
 
   child(:task_lists) do
-    attributes :id, :title
+    attributes :id, :title, :project_id
 
     child(:tasks) do
       attributes :id, :finished, :name, :task_list_id
