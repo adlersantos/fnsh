@@ -14,7 +14,10 @@
 
 <div class="task-lists">
   <% taskLists.each(function (taskList) { %>
+  <div class="task-list">
     <div class="task-list-<%= taskList.escape('id') %>"></div>
+    <div style="height:10px;"></div>
+  </div>
   <% }) %>
 </div>
 
