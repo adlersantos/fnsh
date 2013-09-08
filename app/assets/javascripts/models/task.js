@@ -10,6 +10,6 @@ BC.Models.Task = Backbone.Model.extend({
 
   urlRoot: function () {
     return '/projects/' + this.get('project_id') + '/task_lists/'
-             + this.get('task_list_id') + '/tasks/';
+      + this.get('task_list_id') + '/tasks/';
   }
 });

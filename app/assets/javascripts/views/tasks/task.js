@@ -8,6 +8,9 @@ BC.Views.Task = Backbone.View.extend({
   },
 
   deleteTask: function (event) {
+    event.preventDefault();
+
+    this.model.url = this.model.urlRoot() + this.model.get('id');
     this.model.destroy();
   },
 
