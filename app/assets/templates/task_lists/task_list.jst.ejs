@@ -1,4 +1,4 @@
-<div class="panel panel-primary">
+<div class="panel panel-primary" style="margin-bottom:0px;">
   <div class="panel-heading" style="padding:3px 2px 4px 10px; cursor:pointer;">
     <div class="task-list-title" task-list-id="<%= taskList.escape('id') %>">
       <span style="text-decoration: underline;"><%= taskList.escape('title') %></span>
@@ -9,11 +9,12 @@
 
   <div class="tasks" style="margin:15px 30px;">
     <% _(tasks.where({finished: false})).each(function(task) { %>
-      <div class="task-<%= task.escape('id') %>" style="height:20px; cursor:pointer;"></div>
+      <div class="task task-<%= task.escape('id') %>" style="height:20px; cursor:pointer;"></div>
     <% }) %>
 
+    <div style="height:30px; margin-top:5px;">
     <a href="#" class="put-add-task-form" style="margin-left:27px; text-decoration:underline;">Add a task</a>
-    <form style="margin: 5px 0 0 5px; width:250px;" class="add-task hidden form-inline" role="form">
+    <form style="margin: 5px 0 0 5px; width:250px;" class="create-task hidden form-inline" role="form">
       <div class="form-group">
         <input autofocus type="text" name="task[name]" style="height:20px;"
                class="task-name input-sm form-control" placeholder="Enter task name">
@@ -21,17 +22,20 @@
       <button type="submit" class="add-task btn btn-primary btn-xs">Add task</button>
       <button type="button" class="cancel-add-task btn btn-primary btn-xs">&times;</button>
     </form>
+    </div>
 
-    <hr style="margin-top: 10px; margin-bottom:5px;">
-    <% _(tasks.where({finished: true})).each(function(task) { %>
-      <div class="task-<%= task.escape('id') %>" style="height:20px; cursor:pointer;"></div>
-    <% }) %>
+    <% if (tasks.where({finished: true}).length > 0){ %>
+      <hr style="margin-top: 10px; margin-bottom:5px;">
+      <% _(tasks.where({finished: true})).each(function(task) { %>
+        <div class="task-<%= task.escape('id') %>" style="height:20px; cursor:pointer;"></div>
+      <% }) %>
+    <% } %>
   </div>
 </div><!-- task list panel -->
 
 <script>
 
-  $(".unfinished-tasks").sortable({
+  $(".tasks").sortable({
     axis: 'y',
     placeholder: "sortable-placeholder",
     opacity: 0.7,

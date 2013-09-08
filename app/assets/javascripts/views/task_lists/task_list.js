@@ -26,33 +26,29 @@ BC.Views.TaskList = Backbone.View.extend({
 
   template: JST['task_lists/task_list'],
 
-  // cancelAddTask: function (event) {
-  //   $(event.currentTarget).parent().toggleClass('hidden');
-  //   $(event.currentTarget).parent().prev().toggleClass('hidden');
-  // },
+  cancelAddTask: function (event) {
+    $(event.currentTarget).parent().toggleClass('hidden');
+    $(event.currentTarget).parent().prev().toggleClass('hidden');
+  },
 
-  // createTask: function (event) {
-  //   event.preventDefault();
-  //   var that = this;
+  createTask: function (event) {
+    event.preventDefault();
 
-  //   var taskListID = BC.getID(event.currentTarget, 'task-list');
-  //   var taskList = this.taskLists.get(taskListID);
-  //   var tasks = taskList.get('tasks');
 
-  //   tasks.url = /projects/ + this.project.get('id') + '/task_lists/' + taskListID + '/tasks'
-  //   var taskData = $(event.currentTarget.parentElement).serializeJSON();
+    var taskData = $(event.currentTarget.parentElement).serializeJSON();
+    var newTask = new BC.Models.Task(taskData);
+    taskData.url = '/projects/' + this.taskList.get('project_id')
+                     + '/task_lists/' + this.taskList.get('id') + '/tasks/';
+    newTask.url = taskData.url;
 
-  //   tasks.create(taskData, {
-  //     success: function (responseData) {
-  //       console.log('TASK CREATED!');
-  //       console.log(responseData);
-  //     },
-  //     wait: true
-  //   });
-
-  //   BC.tasks.fetch();
-  //   this.taskLists.fetch(function () {});
-  // },
+    var that = this;
+    newTask.save(taskData, {
+      success: function (responseData) {
+        that['task' + newTask.get('id')] = new BC.Views.Task({model: newTask})
+        that.tasks.add(responseData);
+      }
+    });
+  },
 
   // deleteTask: function (event) {
   //   event.preventDefault();
@@ -80,10 +76,11 @@ BC.Views.TaskList = Backbone.View.extend({
     this.model.destroy();
   },
 
-  // putAddTaskForm: function (event) {
-  //   $(event.currentTarget).toggleClass('hidden');
-  //   $(event.currentTarget).next().toggleClass('hidden');
-  // },
+  putAddTaskForm: function (event) {
+    $(event.currentTarget).toggleClass('hidden');
+    $(event.currentTarget).next().toggleClass('hidden');
+    $(event.currentTarget).children('input').focus();
+  },
 
   // showTaskDetail: function (event) {
   //   var taskID = BC.getID(event.currentTarget, 'task');
