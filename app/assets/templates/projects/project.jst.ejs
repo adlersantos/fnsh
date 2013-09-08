@@ -2,16 +2,9 @@
   <%= project.escape('name') %>
 </h1>
 
-<div class="row project-users">
-  <h5 style="color:#00B351;">Participants</h5>
-  <% projectUsers.each(function(user) { %>
-    <%= user.escape('username') %> <br>
-  <% }) %>
-  <a href="#" class="add-user"><small>Add a participant</small></a>
-</div>
+<div class="row project-users"></div>
 
-<div class="row task-lists">
-</div>
+<div class="row task-lists-container"></div>
 
 <script>
   $('.project-name').hover(

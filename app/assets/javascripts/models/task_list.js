@@ -9,6 +9,9 @@ BC.Models.TaskList = Backbone.Model.extend({
     console.log('--task list parsed--')
     console.log(data)
     return data;
-  }
+  },
 
+  urlRoot: function () {
+    return '/projects/' + this.get('project_id') + '/task_lists/';
+  }
 });

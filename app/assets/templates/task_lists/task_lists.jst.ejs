@@ -1,0 +1,31 @@
+<h4 style="color:#39B3D7;">
+  Task Lists
+  <a href="#" class="put-task-list-form pull-right"><small>Create task list</small></a>
+</h4>
+
+<form style="margin-top:10px; margin-bottom:10px;" class="create-task-list form-inline hidden" role="form">
+  <div class="form-group">
+    <input autofocus type="text" name="task_list[title]"
+           class="input-sm form-control" placeholder="Give the list a title">
+  </div>
+  <button type="submit" class="create-task-list btn btn-primary btn-xs">Create task list</button>
+  <button type="button" class="cancel-create-task-list btn btn-primary btn-xs">x</button>
+</form>
+
+<div class="task-lists">
+  <% taskLists.each(function (taskList) { %>
+    <div class="task-list-<%= taskList.escape('id') %>"></div>
+  <% }) %>
+</div>
+
+<script>
+  $( ".task-lists" ).sortable({
+    axis: 'y',
+    placeholder: "sortable-placeholder",
+    opacity: 0.7,
+    forcePlaceholderSize: true,
+    tolerance: "pointer",
+    handle: ".panel-heading"
+  });
+  $( ".task-lists" ).disableSelection();
+</script>
