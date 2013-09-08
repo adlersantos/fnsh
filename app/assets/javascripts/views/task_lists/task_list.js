@@ -1,6 +1,6 @@
 BC.Views.TaskList = Backbone.View.extend({
   initialize: function () {
-    this.taskList = this.model
+    this.taskList = this.model;
     this.tasks = this.model.get('tasks');
 
     var that = this;
@@ -19,7 +19,6 @@ BC.Views.TaskList = Backbone.View.extend({
     "click .put-add-task-form": "putAddTaskForm",
     "click .cancel-add-task": "cancelAddTask",
     "click button.add-task": "createTask",
-    "click input.task-checkbox": "toggleTaskCompletion",
     "click span.task-name": "showTaskDetail"
   },
 
@@ -36,6 +35,7 @@ BC.Views.TaskList = Backbone.View.extend({
 
     var taskData = $(event.currentTarget.parentElement).serializeJSON();
     var newTask = new BC.Models.Task(taskData);
+
     taskData.url = '/projects/' + this.taskList.get('project_id')
                      + '/task_lists/' + this.taskList.get('id') + '/tasks/';
     newTask.url = taskData.url;
@@ -43,7 +43,7 @@ BC.Views.TaskList = Backbone.View.extend({
     var that = this;
     newTask.save(taskData, {
       success: function (responseData) {
-        that['task' + newTask.get('id')] = new BC.Views.Task({model: newTask})
+        that['task' + newTask.get('id')] = new BC.Views.Task({model: newTask});
         that.tasks.add(responseData);
       }
     });
@@ -52,6 +52,7 @@ BC.Views.TaskList = Backbone.View.extend({
   deleteTaskList: function (event) {
     event.preventDefault();
 
+    this.model.url = this.model.urlRoot() + this.model.get('id');
     this.model.destroy();
   },
 
@@ -67,27 +68,6 @@ BC.Views.TaskList = Backbone.View.extend({
 
   //   var taskDetailView = new BC.Views.TaskDetail({model: task});
   //   $('.task-details').html(taskDetailView.render().$el);
-  // },
-
-  // toggleTaskCompletion: function (event) {
-  //   taskID = BC.getID(event.currentTarget, 'task');
-  //   task = BC.tasks.get(taskID);
-
-  //   if ($(event.currentTarget).is(":checked")) {
-  //     task.set({finished: true});
-  //     $(event.currentTarget).next().toggleClass('line-through');
-  //     task.save();
-  //   } else {
-  //     task.set({finished: false});
-  //     $(event.currentTarget).next().toggleClass('line-through');
-  //     task.save();
-  //   }
-
-  //   BC.tasks.fetch();
-  //   this.taskLists.fetch();
-
-  //   var taskDetailView = new BC.Views.TaskDetail({model: task});
-  //   taskDetailView.render();
   // },
 
   render: function () {

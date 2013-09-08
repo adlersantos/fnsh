@@ -32,6 +32,7 @@ BC.Views.TaskLists = Backbone.View.extend({
 
     var taskListData = $('form.create-task-list').serializeJSON();
     var newTaskList = new BC.Models.TaskList(taskListData);
+
     taskListData.url = '/projects/' + this.project.get('id') + '/task_lists';
     newTaskList.url = taskListData.url;
 
