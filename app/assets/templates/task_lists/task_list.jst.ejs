@@ -8,7 +8,22 @@
   </div>
 
   <div class="tasks" style="margin:15px 30px;">
-    <% tasks.each(function (task) { %>
+    <% _(tasks.where({finished: false})).each(function(task) { %>
+      <div class="task-<%= task.escape('id') %>" style="height:20px; cursor:pointer;"></div>
+    <% }) %>
+
+    <a href="#" class="put-add-task-form" style="margin-left:27px; text-decoration:underline;">Add a task</a>
+    <form style="margin: 5px 0 0 5px; width:250px;" class="add-task hidden form-inline" role="form">
+      <div class="form-group">
+        <input autofocus type="text" name="task[name]" style="height:20px;"
+               class="task-name input-sm form-control" placeholder="Enter task name">
+      </div>
+      <button type="submit" class="add-task btn btn-primary btn-xs">Add task</button>
+      <button type="button" class="cancel-add-task btn btn-primary btn-xs">&times;</button>
+    </form>
+
+    <hr style="margin-top: 10px; margin-bottom:5px;">
+    <% _(tasks.where({finished: true})).each(function(task) { %>
       <div class="task-<%= task.escape('id') %>" style="height:20px; cursor:pointer;"></div>
     <% }) %>
   </div>
