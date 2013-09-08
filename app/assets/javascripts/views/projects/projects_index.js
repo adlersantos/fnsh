@@ -1,11 +1,11 @@
 BC.Views.ProjectsIndex = Backbone.View.extend({
   initialize: function () {
-    var that = this;
-    that.$el = $('div.projects');
+    this.$el = $('div.projects');
 
+    var that = this;
     var events = ["add", "change", "destroy"];
     _(events).each(function (event) {
-      that.listenTo(BC.projects, event, that.render);
+      that.listenTo(that.collection, event, that.render);
     });
   },
 
@@ -50,20 +50,24 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
   },
 
   render: function () {
-    var that = this;
-    var projectsIndex = that.template({projects: that.collection});
+    var projectsView = this.template({projects: this.collection});
 
-    $('.projects').html(projectsIndex);
+    $('.projects').html(projectsView);
 
-    return that;
+    if (this.selectedProject) {
+      $('a[project-id=' + this.selectedProject + ']').parent().toggleClass('active')
+    }
+
+    return this;
   },
 
   showProject: function (event) {
     event.preventDefault();
 
     var projectID = BC.getID(event.currentTarget, 'project');
-    var projectModel = BC.projects.get(projectID);
+    this.selectedProject = projectID;
 
+    var projectModel = BC.projects.get(projectID);
     var projectView = new BC.Views.Project({
       model: projectModel
     });

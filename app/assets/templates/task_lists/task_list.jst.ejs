@@ -6,7 +6,13 @@
            style="cursor:pointer;"><span class="glyphicon glyphicon-remove"></span></button>
     </div>
   </div>
-</div>
+
+  <div class="tasks" style="margin:15px 30px;">
+    <% tasks.each(function (task) { %>
+      <div class="task-<%= task.escape('id') %>"></div>
+    <% }) %>
+  </div>
+</div><!-- task list panel -->
 
 <script>
 
