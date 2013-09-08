@@ -38,7 +38,6 @@ BC.Views.TaskLists = Backbone.View.extend({
     var that = this;
     newTaskList.save(taskListData, {
       success: function (responseData) {
-        console.log('adding tasklist to collection');
         that['taskList' + newTaskList.get('id')] = new BC.Views.TaskList({model: newTaskList})
         that.taskLists.add(responseData);
       }
@@ -48,6 +47,7 @@ BC.Views.TaskLists = Backbone.View.extend({
   putCreateTaskListForm: function (event) {
     $('a.put-task-list-form').toggleClass('hidden');
     $('form.create-task-list').toggleClass('hidden');
+    $('form.create-task-list input').focus();
   },
 
   render: function () {
