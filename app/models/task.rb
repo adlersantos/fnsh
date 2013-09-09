@@ -8,4 +8,8 @@ class Task < ActiveRecord::Base
   delegate :project,
     to: :task_list,
     allow_nil: true
+
+  has_many :comments,
+    class_name: "Comment",
+    foreign_key: :task_id
 end

@@ -1,6 +1,11 @@
 BC.Views.TaskDetail = Backbone.View.extend({
   initialize: function () {
     this.task = this.model;
+    this.comments = this.task.get('comments');
+    this.commentsView = new BC.Views.Comments({
+      model: this.task,
+      collection: this.comments
+    });
 
     var that = this;
     var events = ["add", "change", "destroy"];
@@ -61,7 +66,9 @@ BC.Views.TaskDetail = Backbone.View.extend({
     var detailTemplate = this.template({
       task: this.model
     });
+
     this.$el.html(detailTemplate);
+    this.commentsView.setElement(this.$('.comments')).render();
     return this;
   },
 

@@ -11,6 +11,14 @@ if current_user
 
     child(:tasks) do
       attributes :id, :finished, :name, :task_list_id, :description
+
+      child(:comments) do
+        attributes :id, :body, :task_id
+
+        child(:author) do
+          attributes :username
+        end
+      end
     end
   end
 end
