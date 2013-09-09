@@ -17,6 +17,7 @@ BC.Views.TaskList = Backbone.View.extend({
   events: {
     "click .put-rename-task-list-form": "putRenameTaskListForm",
     "click .cancel-rename-task-list": "cancelRenameTaskList",
+    "click button.rename-task-list": "renameTaskList",
     "click .delete-task-list": "deleteTaskList",
     "click .put-add-task-form": "putAddTaskForm",
     "click .cancel-add-task": "cancelAddTask",
@@ -72,6 +73,15 @@ BC.Views.TaskList = Backbone.View.extend({
     $(event.currentTarget).parent().prev().toggleClass('hidden');
     $(event.currentTarget).parent().toggleClass('hidden');
     $(event.currentTarget).parent().prev().find('input').focus();
+  },
+
+  renameTaskList: function (event) {
+    event.preventDefault();
+
+    var taskListData = $(event.currentTarget).parent().serializeJSON();
+    debugger
+    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.save(taskListData, {wait: true});
   },
 
   render: function () {
