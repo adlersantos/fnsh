@@ -1,7 +1,9 @@
-  <h5 style="color:#39B3D7;">Participants</h5>
+<h5 style="color:#39B3D7;">
+  Participants
+  <a href="#" class="add-user pull-right">Add a participant</a>
+</h5>
 
-  <% projectUsers.each(function(user) { %>
-    <%= user.escape('display_name') %> <br>
-  <% }) %>
+<% projectUsers.each(function(user) { %>
+  <%= user.escape('display_name') %> <br>
+<% }) %>
 
-  <a href="#" class="add-user"><small>Add a participant</small></a>
