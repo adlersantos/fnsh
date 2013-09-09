@@ -1,44 +1,68 @@
-<h4>
-  <div class="row" style="display:block; margin-left:0; margin-bottom:8px;">
-  <% if (task.get('finished')) { %>
-    <button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-check"></span></small></button>
-  <% } else { %>
-    <button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-unchecked"></span></small></button>
-  <% } %>
-  <button class="rename-task-button btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></small></button>
-  <button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-calendar"></span></small></button>
-  </div>
+<div class="row">
+  <h4>
+    <div class="row" style="display:block; margin-left:0; margin-bottom:8px;">
+    <% if (task.get('finished')) { %>
+      <button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-check"></span></small></button>
+    <% } else { %>
+      <button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-unchecked"></span></small></button>
+    <% } %>
+    <button class="rename-task-button btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></small></button>
+    <button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-calendar"></span></small></button>
+    </div>
 
-  <!-- <div class="col-md-10"> -->
-    <span class="task-detail-name" style="cursor:pointer;"><%= task.escape('name') %></span>
-    <form style="width:250px;" class="rename-task hidden form-inline" role="form">
-      <div class="col-md-9" style="padding: 7px 9px 7px 0;">
-        <div class="form-group">
-          <textarea autofocus type="text" name="task[name]" style="width:220px;"
-                 class="task-name input form-control"><%= task.escape('name') %></textarea>
+    <!-- <div class="col-md-10"> -->
+      <span class="task-detail-name" style="cursor:pointer;"><%= task.escape('name') %></span>
+      <form style="width:250px;" class="rename-task hidden form-inline" role="form">
+        <div class="col-md-11" style="padding: 7px 9px 7px 0;">
+          <div class="form-group">
+            <textarea autofocus type="text" name="task[name]" style="width:220px;"
+                   class="task-name input form-control"><%= task.escape('name') %></textarea>
+          </div>
         </div>
-      </div>
-      <div class="col-md-1" style="padding: 7px 0 5px 0; float:right;">
-      <button type="submit" class="rename-task btn btn-primary btn-xs"
-              task-list-id="<%= task.escape('id') %>"><span class="glyphicon glyphicon-ok"></span></button>
-      <div style="height:3px;"></div>
-      <button type="button" class="cancel-rename-task btn btn-primary btn-xs"
-              task-list-id="<%= task.escape('id') %>"><span class="glyphicon glyphicon-remove"></span></button>
-      </div>
-    </form>
-  <!-- </div> -->
+        <div class="col-md-1" style="padding: 7px 0 5px 0; float:right;">
+        <button type="submit" class="rename-task btn btn-primary btn-xs"
+                task-list-id="<%= task.escape('id') %>"><span class="glyphicon glyphicon-ok"></span></button>
+        <div style="height:3px;"></div>
+        <button type="button" class="cancel-rename-task btn btn-primary btn-xs"
+                task-list-id="<%= task.escape('id') %>"><span class="glyphicon glyphicon-remove"></span></button>
+        </div>
+      </form>
+    <!-- </div> -->
 
-</h4>
+  </h4>
+</div>
 
-<div style="height:10px;"></div>
-<form class="task-details">
-  <textarea class="task-description form-control" name="task[name]" rows="2" placeholder="Description"><%= task.escape('description') %></textarea>
-</form>
+<div class="row">
+  <% if (task.get('description')) { %>
+    <p class="task-description" style="cursor:pointer;"><%= task.escape('description') %></p>
+  <% } else { %>
+    <a href="#" class="put-task-description-form">Add a description</a>
+  <% } %>
+  <form class="task-description hidden">
+    <textarea class="task-description form-control" name="task[description]"
+              rows="3" placeholder="Description" style="margin-bottom:5px;"><%= task.escape('description') %></textarea>
+    <button class="set-task-description btn btn-primary btn-xs" type="submit">Submit</button>
+    <button class="cancel-task-description btn btn-primary btn-xs" type="submit">Cancel</button>
+  </form>
+</div>
 
-<hr>
+<hr style="margin-top:10px; margin-bottom:15px;">
 
-<textarea class="input form-control" placeholder="Write a comment.."></textarea>
+<div class="row">
+  <form class="task-comment">
+    <textarea class="input form-control" placeholder="Write a comment.." style="margin-bottom:5px;"></textarea>
+    <button class="task-comment btn btn-primary btn-xs" type="submit">Comment</button>
+  </form>
+</div>
 
 <script>
   $('textarea').autosize();
+  $('p.task-description').hover(
+    function () {
+      $(this).toggleClass('task-description-hover');
+    },
+    function () {
+      $(this).toggleClass('task-description-hover');
+    }
+  );
 </script>
