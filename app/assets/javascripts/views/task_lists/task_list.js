@@ -15,11 +15,12 @@ BC.Views.TaskList = Backbone.View.extend({
   },
 
   events: {
+    "click .put-rename-task-list-form": "putRenameTaskListForm",
+    "click .cancel-rename-task-list": "cancelRenameTaskList",
     "click .delete-task-list": "deleteTaskList",
     "click .put-add-task-form": "putAddTaskForm",
     "click .cancel-add-task": "cancelAddTask",
-    "click button.add-task": "createTask",
-    "click span.task-name": "showTaskDetail"
+    "click button.add-task": "createTask"
   },
 
   template: JST['task_lists/task_list'],
@@ -27,6 +28,11 @@ BC.Views.TaskList = Backbone.View.extend({
   cancelAddTask: function (event) {
     $(event.currentTarget).parent().toggleClass('hidden');
     $(event.currentTarget).parent().prev().toggleClass('hidden');
+  },
+
+  cancelRenameTaskList: function (event) {
+    $(event.currentTarget).parent().parent().toggleClass('hidden');
+    $(event.currentTarget).parent().parent().next().toggleClass('hidden');
   },
 
   createTask: function (event) {
@@ -62,13 +68,11 @@ BC.Views.TaskList = Backbone.View.extend({
     $(event.currentTarget).next().find('input').focus();
   },
 
-  // showTaskDetail: function (event) {
-  //   var taskID = BC.getID(event.currentTarget, 'task');
-  //   var task = BC.tasks.get(taskID);
-
-  //   var taskDetailView = new BC.Views.TaskDetail({model: task});
-  //   $('.task-details').html(taskDetailView.render().$el);
-  // },
+  putRenameTaskListForm: function (event) {
+    $(event.currentTarget).parent().prev().toggleClass('hidden');
+    $(event.currentTarget).parent().toggleClass('hidden');
+    $(event.currentTarget).parent().prev().find('input').focus();
+  },
 
   render: function () {
     var taskListTemplate = this.template({

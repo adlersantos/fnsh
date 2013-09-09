@@ -4,7 +4,6 @@ BC.Models.Task = Backbone.Model.extend({
     data.task_list = taskList;
 
     data.project_id = data.project.id
-
     return data;
   },
 

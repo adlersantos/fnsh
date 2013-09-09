@@ -4,7 +4,8 @@ BC.Views.Task = Backbone.View.extend({
 
   events: {
     "click .delete-task": "deleteTask",
-    "click input.task-checkbox": "toggleTaskCompletion"
+    "click input.task-checkbox": "toggleTaskCompletion",
+    "click span.task-name": "showTaskDetail"
   },
 
   deleteTask: function (event) {
@@ -20,12 +21,18 @@ BC.Views.Task = Backbone.View.extend({
   },
 
   toggleTaskCompletion: function (event) {
-    if (this.model.get('finished')) {
-      this.model.set('finished', false);
-    } else {
-      this.model.set('finished', true);
-    }
+    this.model.url = this.model.urlRoot() + this.model.get('id');
 
-    this.model.save();
+    if (this.model.get('finished')) {
+      this.model.save(
+        {task: {finished: false}},
+        {wait: true}
+      );
+    } else {
+      this.model.save(
+        {task: {finished: true}},
+        {wait: true}
+      );
+    }
   }
 });
