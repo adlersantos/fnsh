@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  attr_accessible :finished, :name, :description, :task_list_id
+  attr_accessible :finished, :name, :description, :task_list_id, :assignee_id
 
   belongs_to :task_list,
     class_name: "TaskList",
@@ -8,6 +8,10 @@ class Task < ActiveRecord::Base
   delegate :project,
     to: :task_list,
     allow_nil: true
+
+  belongs_to :assignee,
+    class_name: "User",
+    foreign_key: :assignee_id
 
   has_many :comments,
     class_name: "Comment",

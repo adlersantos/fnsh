@@ -2,6 +2,7 @@ BC.Views.Project = Backbone.View.extend({
   initialize: function () {
     this.project = this.model;
     this.projectUsers = this.project.get('users');
+    BC.ProjectUsers = this.projectUsers;
     this.taskLists = this.project.get('task_lists');
 
     this.projectUsersView = new BC.Views.Users({collection: this.projectUsers});
@@ -20,7 +21,9 @@ BC.Views.Project = Backbone.View.extend({
   template: JST['projects/project'],
 
   events: {
-    "click .project-name": "renameProject",
+    "click h1.project-name": "putRenameProjectForm",
+    "click input.cancel-rename-project": "cancelRenameProject",
+    "click input.rename-project": "renameProject",
     "click a.add-user": "putAddUserForm",
     "click .put-project-description-form": "putProjectDescriptionForm",
     "click .cancel-project-description": "cancelProjectDescription",
@@ -38,6 +41,11 @@ BC.Views.Project = Backbone.View.extend({
       $('.put-project-description-form').toggleClass('hidden');
       $('form.project-description').toggleClass('hidden');
     }
+  },
+
+  cancelRenameProject: function (event) {
+    $('h1.project-name').toggleClass('hidden');
+    $('form.edit-project').toggleClass('hidden');
   },
 
   editProjectDescription: function (event) {
@@ -61,22 +69,24 @@ BC.Views.Project = Backbone.View.extend({
     $('form.project-description textarea').focus();
   },
 
+  putRenameProjectForm: function (event) {
+    $('h1.project-name').toggleClass('hidden');
+    $('form.edit-project').toggleClass('hidden');
+    $('form.edit-project input.project-name').selectRange(100, 100);
+  },
+
   renameProject: function (event) {
-    event.stopPropagation();
+    event.preventDefault();
 
-    var projectID = BC.getID(event.currentTarget, 'project');
-    var projectModel = BC.projects.get(projectID);
-
-    var editNameForm = new BC.Views.EditProject({model: projectModel});
-
-    $('.project-name').hide()
-    $('.project').prepend(editNameForm.render().$el)
+    var projectData = $('form.edit-project').serializeJSON();
+    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.save(projectData, {wait: true});
+    this.cancelRenameProject();
   },
 
   render: function () {
-
     var projectTemplate = this.template({
-      project: this.model
+      project: this.project
     });
 
     this.$el.html(projectTemplate);
@@ -89,7 +99,7 @@ BC.Views.Project = Backbone.View.extend({
   setProjectDescription: function (event) {
     event.preventDefault();
     var projectData = $('form.project-description').serializeJSON();
-    this.model.url = this.model.urlRoot() + this.model.get('id');
-    this.model.save(projectData, {wait: true});
+    this.project.url = this.project.urlRoot() + this.project.get('id');
+    this.project.save(projectData, {wait: true});
   }
 });

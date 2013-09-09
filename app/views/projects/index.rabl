@@ -3,14 +3,14 @@ if current_user
   attributes :id, :name, :description
 
   child(:users) do
-    attributes :id, :username
+    attributes :id, :username, :display_name
   end
 
   child(:task_lists) do
     attributes :id, :title, :project_id
 
     child(:tasks) do
-      attributes :id, :finished, :name, :task_list_id, :description
+      attributes :id, :finished, :name, :task_list_id, :description, :assignee_id
 
       child(:comments) do
         attributes :id, :body, :task_id

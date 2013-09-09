@@ -21,10 +21,22 @@ BC.Views.TaskDetail = Backbone.View.extend({
     "click .cancel-task-description": "cancelTaskDescription",
     "click .set-task-description": "setTaskDescription",
     "click p.task-description": "editTaskDescription",
-    "click button.rename-task": "renameTask"
+    "click button.rename-task": "renameTask",
+    "click li.assignee": "assignTask",
+    "click .unassign-task": "unassignTask"
   },
 
   template: JST['tasks/details'],
+
+  assignTask: function (event) {
+    var assigneeID = BC.getID(event.currentTarget, 'user');
+
+    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.save(
+      {task: {assignee_id: assigneeID}},
+      {wait: true}
+    );
+  },
 
   cancelRenameTask: function (event) {
     $('form.rename-task').toggleClass('hidden');
@@ -70,7 +82,8 @@ BC.Views.TaskDetail = Backbone.View.extend({
 
   render: function () {
     var detailTemplate = this.template({
-      task: this.model
+      task: this.model,
+      assignee: BC.ProjectUsers.get(this.model.get('assignee_id'))
     });
 
     this.$el.html(detailTemplate);
@@ -83,5 +96,14 @@ BC.Views.TaskDetail = Backbone.View.extend({
     var taskData = $('form.task-description').serializeJSON();
     this.model.url = this.model.urlRoot() + this.model.get('id');
     this.model.save(taskData, {wait: true});
+  },
+
+  unassignTask: function (event) {
+    event.preventDefault();
+    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.save(
+      {task: {assignee_id: null}},
+      {wait: true}
+    );
   }
 });
