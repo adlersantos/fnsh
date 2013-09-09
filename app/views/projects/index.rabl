@@ -1,6 +1,6 @@
 if current_user
   collection current_user.projects
-  attributes :id, :name
+  attributes :id, :name, :description
 
   child(:users) do
     attributes :id, :username
