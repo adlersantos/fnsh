@@ -1,8 +1,10 @@
-<% comments.each(function(comment) { %>
-  <p><strong><%= comment.get('user').username %></strong> <%= comment.escape('body') %></p>
-<% }) %>
+<% if (comments.length > 0){ %>
+  <% comments.each(function(comment) { %>
+    <p><strong><%= comment.get('user').username %></strong> <%= comment.escape('body') %></p>
+  <% }) %>
 
-<hr style="margin-top:10px; margin-bottom:15px;">
+  <hr style="margin-top:10px; margin-bottom:15px;">
+<% } %>
 
 <form class="create-comment">
   <textarea class="input form-control" name="comment[body]"

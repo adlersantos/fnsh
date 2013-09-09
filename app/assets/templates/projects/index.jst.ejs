@@ -1,4 +1,8 @@
-<h4>Projects</h4>
+<h4>
+  <span style="vertical-align:middle;">Projects &nbsp;</span>
+  <button class="create-project btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
+</h4>
+
 <hr>
 
 <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
@@ -6,9 +10,6 @@
     <li><a class="project-link" project-id="<%= project.escape('id') %>" href="#"><%= project.escape('name') %></a></li>
   <% }) %>
 </ul>
-
-<br>
-<a href="#" class="create-project">Create project</a>
 
 <script>
   $('.project-link').hover(

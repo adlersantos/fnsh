@@ -47,6 +47,7 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
 
     var projectForm = new BC.Views.CreateProject({model: project});
     $('.project').html(projectForm.render().$el);
+    $('.task-detail').empty();
   },
 
   render: function () {

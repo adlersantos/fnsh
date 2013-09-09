@@ -33,8 +33,14 @@ BC.Views.TaskDetail = Backbone.View.extend({
 
   cancelTaskDescription: function (event) {
     event.preventDefault();
-    $('.put-task-description-form').toggleClass('hidden');
-    $('form.task-description').toggleClass('hidden');
+
+    if (this.model.get('description')) {
+      $('p.task-description').toggleClass('hidden');
+      $('form.task-description').toggleClass('hidden');
+    } else {
+      $('.put-task-description-form').toggleClass('hidden');
+      $('form.task-description').toggleClass('hidden');
+    }
   },
 
   editTaskDescription: function (event) {
