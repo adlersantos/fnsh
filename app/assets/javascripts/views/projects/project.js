@@ -9,11 +9,41 @@ BC.Views.Project = Backbone.View.extend({
       model: this.project,
       collection: this.taskLists
     });
+
+    var that = this;
+    var events = ["add", "change", "destroy"];
+    _(events).each(function (event) {
+      that.listenTo(that.model, event, that.render);
+    });
   },
+
+  template: JST['projects/project'],
 
   events: {
     "click .project-name": "renameProject",
     "click a.add-user": "putAddUserForm",
+    "click .put-project-description-form": "putProjectDescriptionForm",
+    "click .cancel-project-description": "cancelProjectDescription",
+    "click .set-project-description": "setProjectDescription",
+    "click p.project-description": "editProjectDescription"
+  },
+
+  cancelProjectDescription: function (event) {
+    event.preventDefault();
+
+    if (this.model.get('description')) {
+      $('p.project-description').toggleClass('hidden');
+      $('form.project-description').toggleClass('hidden');
+    } else {
+      $('.put-project-description-form').toggleClass('hidden');
+      $('form.project-description').toggleClass('hidden');
+    }
+  },
+
+  editProjectDescription: function (event) {
+    $('p.project-description').toggleClass('hidden');
+    $('form.project-description').toggleClass('hidden');
+    $('form.project-description textarea').focus();
   },
 
   putAddUserForm: function (event) {
@@ -23,6 +53,12 @@ BC.Views.Project = Backbone.View.extend({
     addUserForm = addUserForm.render().$el
     addUserForm.insertBefore('a.add-user');
     $('a.add-user').hide();
+  },
+
+  putProjectDescriptionForm: function (event) {
+    $('.put-project-description-form').toggleClass('hidden');
+    $('form.project-description').toggleClass('hidden');
+    $('form.project-description textarea').focus();
   },
 
   renameProject: function (event) {
@@ -47,19 +83,13 @@ BC.Views.Project = Backbone.View.extend({
     this.projectUsersView.setElement(this.$('.project-users')).render();
     this.taskListsView.setElement(this.$('.task-lists-container')).render();
 
-    // console.log('fetching tasks lists');
-    // this.taskLists.fetch({data: {project_id: this.project.get('id')}});
-
-    // var taskListsView = new BC.Views.TaskList({
-    //   model: this.model,
-    //   collection: this.taskLists
-    // });
-
-    // this.$el.append(taskListsView.render().$el);
-
     return this;
   },
 
-  template: JST['projects/project']
-
+  setProjectDescription: function (event) {
+    event.preventDefault();
+    var projectData = $('form.project-description').serializeJSON();
+    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.save(projectData, {wait: true});
+  }
 });

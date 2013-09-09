@@ -76,7 +76,7 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
     $('ul.nav .active').toggleClass('active');
     $(event.currentTarget.parentElement).toggleClass('active');
 
-    $('.task-detail').html('<h4>Select a task to view its details.</h4>');
+    $('.task-detail').html('<h4 style="color: #999999;">Select a task to view its details.</h4>');
     $('.project').html(projectView.render().$el);
   }
 });

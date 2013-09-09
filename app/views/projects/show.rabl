@@ -1,5 +1,5 @@
 object @project
-attributes :id, :name, :owner_id
+attributes :id, :name, :owner_id, :description
 
 child :users do
   attributes :id, :username

@@ -2,6 +2,20 @@
   <%= project.escape('name') %>
 </h1>
 
+<div class="row">
+  <% if (project.get('description')) { %>
+    <p class="project-description" style="cursor:pointer;"><%= project.escape('description') %></p>
+  <% } else { %>
+    <a href="#" class="put-project-description-form">Add a description</a>
+  <% } %>
+  <form class="project-description hidden">
+    <textarea class="project-description form-control" name="project[description]"
+              rows="2" placeholder="Description" style="margin-bottom:5px;"><%= project.escape('description') %></textarea>
+    <button class="set-project-description btn btn-primary btn-xs" type="submit">Submit</button>
+    <button class="cancel-project-description btn btn-primary btn-xs" type="submit">Cancel</button>
+  </form>
+</div>
+
 <div class="row project-users"></div>
 
 <div class="row task-lists-container"></div>
