@@ -3,6 +3,9 @@ BC.Models.Task = Backbone.Model.extend({
     var taskList = new BC.Models.TaskList(data.task_list);
     data.task_list = taskList;
 
+    var comments = new BC.Collections.Comments(data.comments);
+    data.comments = comments;
+
     data.project_id = data.project.id
     return data;
   },

@@ -2,7 +2,7 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
 
-  attr_accessible :password, :username
+  attr_accessible :password, :username, :display_name
   attr_reader :password
 
   validates :username, :uniqueness => true
@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
   has_many :projects,
     through: :user_projects,
     source: :project
+
+  has_many :assigned_tasks,
+    class_name: "Task",
+    foreign_key: :assignee_id
 
   def password
     @password || self.password_digest
