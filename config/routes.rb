@@ -8,6 +8,7 @@ Basecamp::Application.routes.draw do
     end
   end
 
+  resources :comments
   resources :task_lists, :only => [:index]
   resources :tasks, :only => [:index, :update]
   resource :session, :only => [:new, :create, :destroy]
