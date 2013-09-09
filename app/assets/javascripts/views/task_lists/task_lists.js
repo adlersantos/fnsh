@@ -39,9 +39,10 @@ BC.Views.TaskLists = Backbone.View.extend({
     var that = this;
     newTaskList.save(taskListData, {
       success: function (responseData) {
-        that['taskList' + newTaskList.get('id')] = new BC.Views.TaskList({model: newTaskList})
+        that['taskList' + newTaskList.get('id')] = new BC.Views.TaskList({model: newTaskList});
         that.taskLists.add(responseData);
-      }
+      },
+      wait: true
     });
   },
 

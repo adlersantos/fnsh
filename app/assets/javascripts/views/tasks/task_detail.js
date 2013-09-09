@@ -23,7 +23,8 @@ BC.Views.TaskDetail = Backbone.View.extend({
     "click p.task-description": "editTaskDescription",
     "click button.rename-task": "renameTask",
     "click li.assignee": "assignTask",
-    "click .unassign-task": "unassignTask"
+    "click .unassign-task": "unassignTask",
+    "click button.task-detail-finished": "toggleTaskCompletion"
   },
 
   template: JST['tasks/details'],
@@ -96,6 +97,12 @@ BC.Views.TaskDetail = Backbone.View.extend({
     var taskData = $('form.task-description').serializeJSON();
     this.model.url = this.model.urlRoot() + this.model.get('id');
     this.model.save(taskData, {wait: true});
+  },
+
+  toggleTaskCompletion: function (event) {
+    var taskStatus = !this.model.get('finished');
+    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.save({task: {finished: taskStatus}}, {wait: true});
   },
 
   unassignTask: function (event) {
