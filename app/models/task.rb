@@ -4,4 +4,8 @@ class Task < ActiveRecord::Base
   belongs_to :task_list,
     class_name: "TaskList",
     foreign_key: :task_list_id
+
+  delegate :project,
+    to: :task_list,
+    allow_nil: true
 end
