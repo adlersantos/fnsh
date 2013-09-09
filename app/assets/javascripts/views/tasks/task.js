@@ -20,6 +20,11 @@ BC.Views.Task = Backbone.View.extend({
     return this;
   },
 
+  showTaskDetail: function (event) {
+    var taskDetailView = new BC.Views.TaskDetail({model: this.model});
+    $('.task-detail').html(taskDetailView.render().$el);
+  },
+
   toggleTaskCompletion: function (event) {
     this.model.url = this.model.urlRoot() + this.model.get('id');
 
