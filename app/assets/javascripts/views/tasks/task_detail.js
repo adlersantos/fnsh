@@ -15,7 +15,7 @@ BC.Views.TaskDetail = Backbone.View.extend({
   },
 
   events: {
-    "click span.task-detail-name": "putRenameTaskForm",
+    "click h3.task-detail-name": "putRenameTaskForm",
     "click .cancel-rename-task": "cancelRenameTask",
     "click .put-task-description-form": "putTaskDescriptionForm",
     "click .cancel-task-description": "cancelTaskDescription",
@@ -39,8 +39,8 @@ BC.Views.TaskDetail = Backbone.View.extend({
   },
 
   cancelRenameTask: function (event) {
+    $('span.task-detail-name').toggleClass('hidden');
     $('form.rename-task').toggleClass('hidden');
-    $('form.rename-task').prev().toggleClass('hidden');
   },
 
   cancelTaskDescription: function (event) {
@@ -62,8 +62,8 @@ BC.Views.TaskDetail = Backbone.View.extend({
   },
 
   putRenameTaskForm: function (event) {
-    $(event.currentTarget).toggleClass('hidden');
-    $(event.currentTarget).next().toggleClass('hidden');
+    $('span.task-detail-name').toggleClass('hidden');
+    $('form.rename-task').toggleClass('hidden');
     $('textarea.task-name').focus();
   },
 
