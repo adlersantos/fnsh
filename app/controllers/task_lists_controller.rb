@@ -36,4 +36,14 @@ class TaskListsController < ApplicationController
       format.json { render 'index.rabl' }
     end
   end
+
+  def update
+    @task_list = TaskList.find(params[:id])
+    @task_list.update_attributes(params[:task_list])
+
+    respond_to do |format|
+      format.html { render 'show.rabl' }
+      format.json { render 'show.rabl' }
+    end
+  end
 end

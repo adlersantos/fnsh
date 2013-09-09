@@ -29,7 +29,7 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.all
+    @tasks = Task.all.select{ |task| task.project != nil }
     respond_to do |format|
       format.html { render 'index.rabl' }
       format.json { render 'index.rabl' }

@@ -12,6 +12,10 @@ BC.Views.TaskDetail = Backbone.View.extend({
   events: {
     "click span.task-detail-name": "putRenameTaskForm",
     "click .cancel-rename-task": "cancelRenameTask",
+    "click .put-task-description-form": "putTaskDescriptionForm",
+    "click .cancel-task-description": "cancelTaskDescription",
+    "click .set-task-description": "setTaskDescription",
+    "click p.task-description": "editTaskDescription",
     "click button.rename-task": "renameTask"
   },
 
@@ -22,16 +26,33 @@ BC.Views.TaskDetail = Backbone.View.extend({
     $('form.rename-task').prev().toggleClass('hidden');
   },
 
+  cancelTaskDescription: function (event) {
+    event.preventDefault();
+    $('.put-task-description-form').toggleClass('hidden');
+    $('form.task-description').toggleClass('hidden');
+  },
+
+  editTaskDescription: function (event) {
+    $('p.task-description').toggleClass('hidden');
+    $('form.task-description').toggleClass('hidden');
+    $('form.task-description textarea').focus();
+  },
+
   putRenameTaskForm: function (event) {
     $(event.currentTarget).toggleClass('hidden');
     $(event.currentTarget).next().toggleClass('hidden');
     $('textarea.task-name').focus();
   },
 
+  putTaskDescriptionForm: function (event) {
+    $('.put-task-description-form').toggleClass('hidden');
+    $('form.task-description').toggleClass('hidden');
+    $('form.task-description textarea').focus();
+  },
+
   renameTask: function (event) {
     event.preventDefault();
     var taskData = $('form.rename-task').serializeJSON();
-
     this.model.url = this.model.urlRoot() + this.model.get('id');
     this.model.save(taskData, {wait: true});
   },
@@ -42,5 +63,12 @@ BC.Views.TaskDetail = Backbone.View.extend({
     });
     this.$el.html(detailTemplate);
     return this;
+  },
+
+  setTaskDescription: function (event) {
+    event.preventDefault();
+    var taskData = $('form.task-description').serializeJSON();
+    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.save(taskData, {wait: true});
   }
 });
