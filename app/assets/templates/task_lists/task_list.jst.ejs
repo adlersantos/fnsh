@@ -5,7 +5,7 @@
     <div class="hidden task-list-rename">
       <form style="margin-left: 0px; width:350px;" class="rename-task-list form-inline" role="form">
         <div class="form-group">
-          <input autofocus type="text" name="task[name]" style="height:20px; padding-left:0px; color: white;"
+          <input autofocus type="text" name="task_list[title]" style="height:20px; padding-left:1px; color: white;"
                  class="task-name open-text-input form-control" placeholder="" value="<%= taskList.escape('title') %>">
         </div>
         <button type="submit" class="rename-task-list btn btn-primary btn-xs">rename</button>
@@ -18,7 +18,7 @@
 
       <button class="delete-task-list pull-right btn btn-primary btn-xs"
            style="cursor:pointer;"><span class="glyphicon glyphicon-remove"></span></button>
-      <button class="put-rename-task-list-form pull-right btn btn-primary btn-xs"
+      <button class="put-rename-task-list-form btn btn-primary btn-xs"
            style="cursor:pointer;"><span class="glyphicon glyphicon-pencil"></span></button>
     </div>
 
