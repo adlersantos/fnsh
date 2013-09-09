@@ -1,19 +1,27 @@
 <div class="panel panel-primary" style="margin-bottom:0px;">
+
   <div class="panel-heading" style="padding:3px 2px 4px 10px; cursor:pointer;">
-    <div class="task-list-title" task-list-id="<%= taskList.escape('id') %>">
-      <span style="text-decoration: underline;"><%= taskList.escape('title') %></span>
-      <button class="delete-task-list pull-right btn btn-primary btn-xs"
-           style="cursor:pointer;"><span class="glyphicon glyphicon-remove"></span></button>
+
+    <div class="hidden task-list-rename">
+      <form style="margin-left: 0px; width:350px;" class="rename-task-list form-inline" role="form">
+        <div class="form-group">
+          <input autofocus type="text" name="task[name]" style="height:20px; padding-left:0px; color: white;"
+                 class="task-name open-text-input form-control" placeholder="" value="<%= taskList.escape('title') %>">
+        </div>
+        <button type="submit" class="rename-task-list btn btn-primary btn-xs">rename</button>
+        <button type="button" class="cancel-rename-task-list btn btn-primary btn-xs">&times;</button>
+      </form>
     </div>
 
-    <form style="margin: 5px 0 0 25px; width:350px;" class="create-task hidden form-inline" role="form">
-      <div class="form-group">
-        <input autofocus type="text" name="task[name]" style="height:20px; padding-left:0px;"
-               class="task-name open-text-input form-control" placeholder="Enter task name">
-      </div>
-      <button type="submit" class="add-task btn btn-primary btn-xs">Add task</button>
-      <button type="button" class="cancel-add-task btn btn-primary btn-xs">&times;</button>
-    </form>
+    <div class="task-list-title">
+      <span style="text-decoration: underline;"><%= taskList.escape('title') %></span>
+
+      <button class="delete-task-list pull-right btn btn-primary btn-xs"
+           style="cursor:pointer;"><span class="glyphicon glyphicon-remove"></span></button>
+      <button class="put-rename-task-list-form pull-right btn btn-primary btn-xs"
+           style="cursor:pointer;"><span class="glyphicon glyphicon-pencil"></span></button>
+    </div>
+
   </div>
 
   <div class="tasks" style="margin:15px 30px;">
