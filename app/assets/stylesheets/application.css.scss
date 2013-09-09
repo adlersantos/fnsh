@@ -14,6 +14,10 @@
 
 @import "twitter/bootstrap";
 
+.container {
+  max-width: 1250px;
+}
+
 .line-through {
   text-decoration: line-through;
 }
