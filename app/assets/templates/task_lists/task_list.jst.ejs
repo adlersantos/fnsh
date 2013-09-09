@@ -37,7 +37,7 @@
                class="task-name open-text-input form-control" placeholder="Enter task name">
       </div>
       <button type="submit" class="add-task btn btn-primary btn-xs">Add task</button>
-      <button type="button" class="cancel-add-task btn btn-primary btn-xs">&times;</button>
+      <button type="button" class="cancel-add-task btn btn-primary btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
     </form>
     </div>
 
@@ -51,7 +51,6 @@
 </div><!-- task list panel -->
 
 <script>
-
   $(".tasks").sortable({
     axis: 'y',
     placeholder: "sortable-placeholder",

@@ -13,7 +13,12 @@
  */
 
 body {
+  background-color: #FBFBFB;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
+
+.button_to {
+  display: inline-block;
 }
 
 @import "twitter/bootstrap";

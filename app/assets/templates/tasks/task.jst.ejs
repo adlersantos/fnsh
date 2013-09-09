@@ -3,11 +3,11 @@
          value="task" class="task-checkbox"
          style="margin: 0 5px 0;" checked>
   <span class="task-name line-through" style="padding-bottom:6px; vertical-align:middle;" task-id="<%= task.escape('id') %>"><%= task.escape('name') %></span>
-  <span class="delete-task pull-right" task-id="<%= task.escape('id') %>">&times;</span>
+  <span class="delete-task pull-right" style="color:grey;" task-id="<%= task.escape('id') %>">&times;</span>
 <% } else { %>
   <input type="checkbox" task-id="<%= task.escape('id') %>"
          value="task" class="task-checkbox"
          style="margin: 0 5px 0;">
   <span class="task-name" style="padding-bottom:6px; vertical-align:middle;" task-id="<%= task.escape('id') %>"><%= task.escape('name') %></span>
-  <span class="delete-task pull-right" task-id="<%= task.escape('id') %>">&times;</span>
+  <span class="delete-task pull-right" style="color:grey;" task-id="<%= task.escape('id') %>">&times;</span>
 <% } %>

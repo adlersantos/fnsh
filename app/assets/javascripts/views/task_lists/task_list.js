@@ -39,7 +39,6 @@ BC.Views.TaskList = Backbone.View.extend({
   createTask: function (event) {
     event.preventDefault();
 
-
     var taskData = $(event.currentTarget.parentElement).serializeJSON();
     var newTask = new BC.Models.Task(taskData);
 
@@ -48,10 +47,12 @@ BC.Views.TaskList = Backbone.View.extend({
     newTask.url = taskData.url;
 
     var that = this;
+    var prevEvent = event;
     newTask.save(taskData, {
       success: function (responseData) {
         that['task' + newTask.get('id')] = new BC.Views.Task({model: newTask});
         that.tasks.add(responseData);
+        that.$el.find('.put-add-task-form').trigger('click');
       }
     });
   },
