@@ -96,14 +96,28 @@ BC.Views.TaskDetail = Backbone.View.extend({
 
   render: function () {
     if (this.model.get('due_date')) {
-      var dateObject = new Date(this.model.get('due_date') * 1000);
-      var dateString = dateObject.toString().split(' ').slice(1, 4).join(' ');
+      var dateToday = new Date();
+      dateToday.setHours(0, 0, 0, 0);
+      var taskDueDate = new Date(this.model.get('due_date') * 1000);
+      var dateString = taskDueDate.toString().split(' ').slice(1, 4).join(' ');
+
+      var dueDate = {dateString: dateString};
+
+      if (dateToday < taskDueDate) {
+        dueDate['color'] = 'label-info';
+      } else if (dateToday > taskDueDate) {
+        dueDate['color'] = 'label-danger';
+      } else {
+        dueDate['color'] = 'label-success';
+        dueDate['dateString'] = 'Today';
+      }
+
     }
 
     var detailTemplate = this.template({
       task: this.model,
       assignee: BC.ProjectUsers.get(this.model.get('assignee_id')),
-      dueDate: dateString
+      dueDate: dueDate
     });
 
     this.$el.html(detailTemplate);

@@ -42,3 +42,8 @@
   <br><br>
 </body>
 </html>
+
+<script>
+  var currentUserJson = <%= current_user.to_json.html_safe %>
+  BC.initialize(currentUserJson);
+</script>

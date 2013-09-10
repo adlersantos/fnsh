@@ -30,8 +30,8 @@
     <% } %>
 
     <% if (dueDate) { %>
-      <span class="label label-info pull-right" style="padding-bottom:5px;">
-        <%= dueDate %>&nbsp; &#124;
+      <span class="label <%= dueDate.color %> pull-right" style="padding-bottom:5px;">
+        <%= dueDate.dateString %>&nbsp; &#124;
         <a class="clear-due-date" href="#"><span class="glyphicon glyphicon-remove" style="color:white;"></span></a>
       </span>
     <% } %>
