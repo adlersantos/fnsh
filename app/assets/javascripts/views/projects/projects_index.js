@@ -2,6 +2,12 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
   initialize: function () {
     this.$el = $('div.projects');
 
+    this.once('renderEvent', function () {
+      if (BC.current_user.get('project_view')) {
+       $('a[project-id=' + BC.current_user.get('project_view') + ']').trigger('click')
+      }
+    });
+
     var that = this;
     var events = ["add", "change", "destroy"];
     _(events).each(function (event) {
@@ -59,6 +65,7 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
       $('a[project-id=' + this.selectedProject + ']').parent().toggleClass('active')
     }
 
+    this.trigger('renderEvent');
     return this;
   },
 
@@ -66,6 +73,9 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
     event.preventDefault();
 
     var projectID = BC.getID(event.currentTarget, 'project');
+    BC.current_user.save(
+      {user: {project_view: projectID}}
+    );
     this.selectedProject = projectID;
 
     var projectModel = BC.projects.get(projectID);

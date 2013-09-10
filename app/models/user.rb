@@ -2,7 +2,7 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
 
-  attr_accessible :password, :username, :display_name
+  attr_accessible :password, :username, :display_name, :project_view
   attr_reader :password
 
   validates :username, :uniqueness => true
