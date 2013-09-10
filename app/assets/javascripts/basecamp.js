@@ -5,7 +5,7 @@ window.BC = {
   Routers: {},
 
   initialize: function(current_user) {
-    BC.current_user = current_user;
+    BC.current_user = new BC.Models.User(current_user);
     BC.projects = new BC.Collections.Projects();
     BC.tasks = new BC.Collections.Tasks();
     BC.tasks.url = '/tasks/';
