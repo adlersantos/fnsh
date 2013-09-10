@@ -4,7 +4,8 @@ window.BC = {
   Views: {},
   Routers: {},
 
-  initialize: function() {
+  initialize: function(current_user) {
+    BC.current_user = current_user;
     BC.projects = new BC.Collections.Projects();
     BC.tasks = new BC.Collections.Tasks();
     BC.tasks.url = '/tasks/';
@@ -15,7 +16,8 @@ window.BC = {
       success: function () {
         var projectsRouter = new BC.Routers.Projects();
         Backbone.history.start();
-      }
+      },
+      wait: true
     });
   },
 
@@ -66,5 +68,5 @@ $(document).ready(function(){
     });
   };
 
-  BC.initialize();
+  // BC.initialize();
 });
