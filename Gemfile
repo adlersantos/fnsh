@@ -5,6 +5,8 @@ gem 'rails', '3.2.13'
 
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :github => 'anjlab/bootstrap-rails'
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
+                                  :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 gem 'backbone-on-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'ejs'

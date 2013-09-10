@@ -10,7 +10,7 @@ if current_user
     attributes :id, :title, :project_id
 
     child(:tasks) do
-      attributes :id, :finished, :name, :task_list_id, :description, :assignee_id
+      attributes :id, :finished, :name, :task_list_id, :description, :assignee_id, :due_date
 
       child(:comments) do
         attributes :id, :body, :task_id

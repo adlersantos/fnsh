@@ -20,8 +20,19 @@
       </ul>
     </div>
   </button>
-  <button class="rename-task-button btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
-  <button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-calendar"></span></button>
+
+  <% if (dueDate) { %>
+    <button class="btn btn-primary btn-xs">
+      <span class="task-due-date">
+        <span class="glyphicon glyphicon-calendar"></span> &nbsp;<%= dueDate %>
+      </span>
+      <span style="z-index:100;" class=".clear-due-date glyphicon glyphicon-remove"></span>
+    </button>
+  <% } else { %>
+    <button class="task-due-date btn btn-primary btn-xs">
+      <span class="glyphicon glyphicon-calendar"></span>
+    </button>
+  <% } %>
 
   <% if (assignee) { %>
     <span class="label label-info pull-right" style="padding-bottom:5px;">
@@ -72,6 +83,10 @@
 <div class="comments row"></div>
 
 <script>
+  $('.task-due-date').datepicker({
+    autoclose: true,
+    clearBtn: true
+  });
   $('textarea').autosize();
   $('p.task-description').hover(
     function () {

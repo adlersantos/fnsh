@@ -40,6 +40,13 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.update_attributes(params[:task])
 
+    # if @task.due_date
+    #   time_object = Time.at(@task.due_date)
+    #   @due_date = time_object.strftime('%b %d %Y')
+    # else
+    #   @due_date = nil
+    # end
+
     respond_to do |format|
       format.html { render 'show.rabl' }
       format.json { render 'show.rabl' }

@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  attr_accessible :finished, :name, :description, :task_list_id, :assignee_id
+  attr_accessible :finished, :name, :description, :task_list_id, :assignee_id, :due_date
 
   belongs_to :task_list,
     class_name: "TaskList",
