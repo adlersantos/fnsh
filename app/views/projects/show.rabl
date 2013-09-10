@@ -9,7 +9,7 @@ child :task_lists do
   attributes :id, :title
 
   child :tasks do
-    attributes :id, :finished, :name, :task_list_id, :assignee_id
+    attributes :id, :finished, :name, :task_list_id, :assignee_id, :due_date
 
     child :comments do
       attributes :id, :body, :author_id, :task_id

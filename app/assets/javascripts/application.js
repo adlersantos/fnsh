@@ -16,6 +16,7 @@
 //= require jquery.serializeJSON.min
 //= require jquery.autosize.min
 //= require twitter/bootstrap
+//= require bootstrap-datepicker
 //= require underscore
 //= require backbone
 //= require basecamp

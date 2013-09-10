@@ -24,7 +24,9 @@ BC.Views.TaskDetail = Backbone.View.extend({
     "click button.rename-task": "renameTask",
     "click li.assignee": "assignTask",
     "click .unassign-task": "unassignTask",
-    "click button.task-detail-finished": "toggleTaskCompletion"
+    "click button.task-detail-finished": "toggleTaskCompletion",
+    "changeDate .task-due-date": "setDueDate",
+    "click .clear-due-date": "clearDueDate"
   },
 
   template: JST['tasks/details'],
@@ -56,6 +58,10 @@ BC.Views.TaskDetail = Backbone.View.extend({
     }
   },
 
+  clearDueDate: function (event) {
+    console.log('CLEARRRRED DUEEEE')
+  },
+
   editTaskDescription: function (event) {
     $('p.task-description').toggleClass('hidden');
     $('form.task-description').toggleClass('hidden');
@@ -82,14 +88,32 @@ BC.Views.TaskDetail = Backbone.View.extend({
   },
 
   render: function () {
+    if (this.model.get('due_date')) {
+      var dateObject = new Date(this.model.get('due_date') * 1000);
+      var dateString = dateObject.toString().split(' ').slice(1, 4).join(' ');
+    }
+
     var detailTemplate = this.template({
       task: this.model,
-      assignee: BC.ProjectUsers.get(this.model.get('assignee_id'))
+      assignee: BC.ProjectUsers.get(this.model.get('assignee_id')),
+      dueDate: dateString
     });
 
     this.$el.html(detailTemplate);
     this.commentsView.setElement(this.$('.comments')).render();
     return this;
+  },
+
+  setDueDate: function (event) {
+    var dueDate = event.date / 1000;
+
+    debugger
+
+    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.save(
+      {task: {due_date: dueDate}},
+      {wait: true}
+    );
   },
 
   setTaskDescription: function (event) {
