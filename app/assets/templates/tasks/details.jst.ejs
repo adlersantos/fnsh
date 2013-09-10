@@ -1,45 +1,40 @@
 <div class="row">
   <div class="row" style="display:block; margin-left:0; margin-bottom:8px;">
-  <% if (task.get('finished')) { %>
-    <button class="task-detail-finished btn btn-success btn-xs"><span class="glyphicon glyphicon-check"></span></button>
-  <% } else { %>
-    <button class="task-detail-finished btn btn-success btn-xs"><span class="glyphicon glyphicon-unchecked"></span></button>
-  <% } %>
+    <% if (task.get('finished')) { %>
+      <button class="task-detail-finished btn btn-success btn-xs"><span class="glyphicon glyphicon-check"></span></button>
+    <% } else { %>
+      <button class="task-detail-finished btn btn-success btn-xs"><span class="glyphicon glyphicon-unchecked"></span></button>
+    <% } %>
 
-  <button class="assign-task-button btn btn-primary btn-xs">
-    <div class="dropdown" style="display:inline-block;">
-      <a id="drop4" role="button" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" style="color: white;">&nbsp;</span><b class="caret"></b></a>
-      <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
-        <% BC.ProjectUsers.each(function (user) { %>
-          <li class="assignee" user-id="<%= user.get('id') %>">
-            <a style="text-align:left; padding:1px 10px;" role="menuitem" tabindex="-1">
-              <%= user.escape('display_name') %>
-            </a>
-          </li>
-        <% }) %>
-      </ul>
-    </div>
-  </button>
+    <button class="assign-task-button btn btn-primary btn-xs">
+      <div class="dropdown" style="display:inline-block;">
+        <a id="drop4" role="button" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" style="color: white;">&nbsp;</span><b class="caret"></b></a>
+        <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+          <% BC.ProjectUsers.each(function (user) { %>
+            <li class="assignee" user-id="<%= user.get('id') %>">
+              <a style="text-align:left; padding:1px 10px;" role="menuitem" tabindex="-1">
+                <%= user.escape('display_name') %>
+              </a>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+    </button>
+    <button class="task-due-date btn btn-primary btn-xs"><span class="glyphicon glyphicon-calendar"></span></button>
 
-  <% if (dueDate) { %>
-    <button class="btn btn-primary btn-xs">
-      <span class="task-due-date">
-        <span class="glyphicon glyphicon-calendar"></span> &nbsp;<%= dueDate %>
+    <% if (assignee) { %>
+      <span class="label label-info pull-right" style="padding-bottom:5px; margin-left:2px;">
+        <%= assignee.escape('display_name') %>&nbsp; &#124;
+        <a class="unassign-task" href="#"><span class="glyphicon glyphicon-remove" style="color:white;"></span></a>
+      </span> &nbsp;
+    <% } %>
+
+    <% if (dueDate) { %>
+      <span class="label label-info pull-right" style="padding-bottom:5px;">
+        <%= dueDate %>&nbsp; &#124;
+        <a class="clear-due-date" href="#"><span class="glyphicon glyphicon-remove" style="color:white;"></span></a>
       </span>
-      <span style="z-index:100;" class=".clear-due-date glyphicon glyphicon-remove"></span>
-    </button>
-  <% } else { %>
-    <button class="task-due-date btn btn-primary btn-xs">
-      <span class="glyphicon glyphicon-calendar"></span>
-    </button>
-  <% } %>
-
-  <% if (assignee) { %>
-    <span class="label label-info pull-right" style="padding-bottom:5px;">
-      <%= assignee.escape('display_name') %>&nbsp; &#124;
-      <a class="unassign-task" href="#"><span class="glyphicon glyphicon-remove" style="color:white;"></span></a>
-    </span>
-  <% } %>
+    <% } %>
   </div>
 
   <h3 class="task-detail-name" style="cursor:pointer;">
@@ -85,7 +80,8 @@
 <script>
   $('.task-due-date').datepicker({
     autoclose: true,
-    clearBtn: true
+    clearBtn: true,
+    orientation: 'top'
   });
   $('textarea').autosize();
   $('p.task-description').hover(

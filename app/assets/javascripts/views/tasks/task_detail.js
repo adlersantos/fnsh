@@ -59,7 +59,14 @@ BC.Views.TaskDetail = Backbone.View.extend({
   },
 
   clearDueDate: function (event) {
-    console.log('CLEARRRRED DUEEEE')
+    event.preventDefault();
+    console.log('CLEARRRRED DUEEEE');
+
+    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.save(
+      {task: {due_date: null}},
+      {wait: true}
+    );
   },
 
   editTaskDescription: function (event) {
@@ -106,8 +113,6 @@ BC.Views.TaskDetail = Backbone.View.extend({
 
   setDueDate: function (event) {
     var dueDate = event.date / 1000;
-
-    debugger
 
     this.model.url = this.model.urlRoot() + this.model.get('id');
     this.model.save(
