@@ -12,13 +12,18 @@
   <button type="button" class="cancel-create-task-list btn btn-primary btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
 </form>
 
-<div class="task-lists" >
-  <% taskLists.each(function (taskList) { %>
-  <div class="task-list">
-    <div class="task-list-<%= taskList.escape('id') %>"></div>
-    <div style="height:10px;"></div>
-  </div>
-  <% }) %>
+<div class="task-lists well">
+
+  <% if (taskLists.length > 0) { %>
+    <% taskLists.each(function (taskList) { %>
+    <div class="task-list" task-list-id="<%= taskList.get('id') %>">
+      <div class="task-list-<%= taskList.escape('id') %>"></div>
+      <div style="height:10px;"></div>
+    </div>
+    <% }) %>
+  <% } else { %>
+    <h4 class="text-muted">You have no task lists.</h4>
+  <% } %>
 </div>
 
 <script>

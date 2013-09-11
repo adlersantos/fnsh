@@ -19,7 +19,60 @@ BC.Views.TaskLists = Backbone.View.extend({
   events: {
     "click a.put-task-list-form": "putCreateTaskListForm",
     "click button.cancel-create-task-list": "cancelCreateTaskList",
-    "click button.create-task-list": "createTaskList"
+    "click button.create-task-list": "createTaskList",
+    "sortupdate .task-lists": "updateSortable"
+  },
+
+  updateSortable: function (event, ui) {
+    var that = this;
+    var taskListID = BC.getID(ui.item, 'task-list');
+    var taskList = this['taskList' + taskListID].model;
+    taskList.url = taskList.urlRoot() + taskList.get('id');
+
+    var prevTaskListID = BC.getID(ui.item.prev(), 'task-list');
+    var nextTaskListID = BC.getID(ui.item.next(), 'task-list');
+
+    if (prevTaskListID && nextTaskListID) {
+
+      var prevTaskList = this['taskList' + prevTaskListID].model;
+      var nextTaskList = this['taskList' + nextTaskListID].model;
+      var diff = nextTaskList.get('position') - prevTaskList.get('position');
+      var newPosition = prevTaskList.get('position') + (diff / 2);
+
+      taskList.save({position: newPosition}, {
+        success: function (responseData) {
+          that.taskLists.sort();
+        },
+        wait: true,
+        silent: true
+      });
+
+    } else if (prevTaskListID) {
+
+      var prevTaskList = this['taskList' + prevTaskListID].model;
+      var newPosition = prevTaskList.get('position') + 1
+
+      taskList.save({position: newPosition}, {
+        success: function (responseData) {
+          that.taskLists.sort();
+        },
+        wait: true,
+        silent: true
+      });
+
+    } else if (nextTaskListID) {
+
+      var nextTaskList = this['taskList' + nextTaskListID].model;
+      var newPosition = nextTaskList.get('position') / 2;
+
+      taskList.save({position: newPosition}, {
+        success: function (responseData) {
+          that.taskLists.sort();
+        },
+        wait: true,
+        silent: true
+      });
+    }
   },
 
   cancelCreateTaskList: function (event) {
@@ -53,7 +106,7 @@ BC.Views.TaskLists = Backbone.View.extend({
   },
 
   render: function () {
-    this.$el.html(this.template({taskLists: this.taskLists}))
+    this.$el.html(this.template({taskLists: this.taskLists}));
 
     var that = this;
     that.taskLists.each(function (taskList) {

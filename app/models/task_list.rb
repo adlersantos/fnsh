@@ -1,5 +1,5 @@
 class TaskList < ActiveRecord::Base
-  attr_accessible :project_id, :title
+  attr_accessible :project_id, :title, :position
 
   validates :project_id, :presence => true
 

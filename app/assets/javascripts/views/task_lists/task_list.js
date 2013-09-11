@@ -81,7 +81,6 @@ BC.Views.TaskList = Backbone.View.extend({
     event.preventDefault();
 
     var taskListData = $(event.currentTarget).parent().serializeJSON();
-    debugger
     this.model.url = this.model.urlRoot() + this.model.get('id');
     this.model.save(taskListData, {wait: true});
   },
