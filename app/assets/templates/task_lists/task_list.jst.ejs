@@ -24,7 +24,7 @@
 
   </div>
 
-  <div class="tasks" style="margin:15px 30px;">
+  <div class="tasks" style="margin:15px 20px;">
     <% _(tasks.where({finished: false})).each(function(task) { %>
       <div class="task task-<%= task.escape('id') %>" style="height:20px; cursor:pointer;"></div>
     <% }) %>
