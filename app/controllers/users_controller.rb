@@ -28,4 +28,8 @@ class UsersController < ApplicationController
     @user.update_attributes(params[:user])
     render nothing: true
   end
+
+  def add_to_project
+
+  end
 end

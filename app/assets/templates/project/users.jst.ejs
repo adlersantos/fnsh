@@ -1,9 +1,19 @@
 <h5 style="color:#39B3D7;">
   Participants
-  <a href="#" class="add-user pull-right">Add a participant</a>
+  <a href="#" class="put-add-user-form pull-right">Add a participant</a>
 </h5>
 
 <% projectUsers.each(function(user) { %>
   <%= user.escape('display_name') %> <br>
 <% }) %>
 
+<form style="margin-top:5px;" class="add-user hidden form-inline" role="form">
+  <div class="form-group">
+    <input autofocus type="text" name="username"
+           class="input-sm form-control" placeholder="Enter username">
+  </div>
+  <button type="submit" class="add-user btn btn-primary btn-xs">Add person</button>
+  <button type="button" class="cancel-add-user btn btn-primary btn-xs">
+    <span class="glyphicon glyphicon-remove"></span>
+  </button>
+</form>

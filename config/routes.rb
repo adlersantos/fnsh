@@ -3,6 +3,7 @@ Basecamp::Application.routes.draw do
 
   resources :users
   resources :projects do
+    resources :user_projects
     resources :task_lists, :except => [:index] do
       resources :tasks, :except => [:index]
     end
