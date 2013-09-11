@@ -5,7 +5,11 @@ BC.Views.Project = Backbone.View.extend({
     BC.ProjectUsers = this.projectUsers;
     this.taskLists = this.project.get('task_lists');
 
-    this.projectUsersView = new BC.Views.Users({collection: this.projectUsers});
+    this.projectUsersView = new BC.Views.Users({
+      model: this.project,
+      collection: this.projectUsers
+    });
+
     this.taskListsView = new BC.Views.TaskLists({
       model: this.project,
       collection: this.taskLists
@@ -24,7 +28,6 @@ BC.Views.Project = Backbone.View.extend({
     "click h1.project-name": "putRenameProjectForm",
     "click input.cancel-rename-project": "cancelRenameProject",
     "click input.rename-project": "renameProject",
-    "click a.add-user": "putAddUserForm",
     "click .put-project-description-form": "putProjectDescriptionForm",
     "click .cancel-project-description": "cancelProjectDescription",
     "click .set-project-description": "setProjectDescription",
@@ -52,15 +55,6 @@ BC.Views.Project = Backbone.View.extend({
     $('p.project-description').toggleClass('hidden');
     $('form.project-description').toggleClass('hidden');
     $('form.project-description textarea').focus();
-  },
-
-  putAddUserForm: function (event) {
-    event.stopPropagation();
-
-    var addUserForm = new BC.Views.AddUser();
-    addUserForm = addUserForm.render().$el
-    addUserForm.insertBefore('a.add-user');
-    $('a.add-user').hide();
   },
 
   putProjectDescriptionForm: function (event) {

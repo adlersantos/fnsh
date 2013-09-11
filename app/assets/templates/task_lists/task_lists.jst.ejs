@@ -12,7 +12,7 @@
   <button type="button" class="cancel-create-task-list btn btn-primary btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
 </form>
 
-<div class="task-lists" style="height:600px; overflow: auto">
+<div class="task-lists" style="height:550px; overflow: auto">
   <% taskLists.each(function (taskList) { %>
   <div class="task-list">
     <div class="task-list-<%= taskList.escape('id') %>"></div>
@@ -28,7 +28,7 @@
     opacity: 0.7,
     forcePlaceholderSize: true,
     tolerance: "pointer",
-    handle: ".panel-heading"
+    handle: ".panel-heading",
   });
   $( ".task-lists" ).disableSelection();
 </script>
