@@ -56,8 +56,6 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    10.times {p '-----------'}
-    10.times { p params }
 
     unless params[:added_username].blank?
       ActiveRecord::Base.transaction do

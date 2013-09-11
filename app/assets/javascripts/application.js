@@ -15,7 +15,8 @@
 //= require jquery_ujs
 //= require jquery.serializeJSON.min
 //= require jquery.autosize.min
-//= require twitter/bootstrap
+//= require twitter/bootstrap/button
+//= require twitter/bootstrap/dropdown
 //= require bootstrap-datepicker
 //= require underscore
 //= require backbone
