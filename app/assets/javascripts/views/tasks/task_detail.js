@@ -60,7 +60,6 @@ BC.Views.TaskDetail = Backbone.View.extend({
 
   clearDueDate: function (event) {
     event.preventDefault();
-    console.log('CLEARRRRED DUEEEE');
 
     this.model.url = this.model.urlRoot() + this.model.get('id');
     this.model.save(
