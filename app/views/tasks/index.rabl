@@ -2,7 +2,7 @@ collection @tasks
 attributes :id, :name, :finished, :task_list_id, :description, :assignee_id, :due_date
 
 child :task_list do
-  attributes :id, :title
+  attributes :id, :title, :position
 end
 
 child :project do

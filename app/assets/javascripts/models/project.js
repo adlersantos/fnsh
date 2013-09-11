@@ -16,8 +16,6 @@ BC.Models.Project = Backbone.Model.extend({
       })
     });
 
-    console.log('---parsed project data---');
-    console.log(data)
     return data;
   },
 

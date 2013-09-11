@@ -6,8 +6,6 @@ BC.Models.TaskList = Backbone.Model.extend({
     var project = new BC.Models.Project(data.project);
     data.project = project;
 
-    console.log('--task list parsed--')
-    console.log(data)
     return data;
   },
 

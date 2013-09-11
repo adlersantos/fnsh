@@ -18,7 +18,7 @@ BC.Views.Project = Backbone.View.extend({
     var that = this;
     var events = ["add", "change", "destroy"];
     _(events).each(function (event) {
-      that.listenTo(that.model, event, that.render);
+      that.listenTo(that.project, event, that.render);
     });
   },
 

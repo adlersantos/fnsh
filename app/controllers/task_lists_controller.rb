@@ -3,6 +3,15 @@ class TaskListsController < ApplicationController
     @task_list = TaskList.new(params[:task_list])
     @task_list.project_id = params[:project_id]
 
+    first_task_list = TaskList.where("project_id = ?", params[:project_id])
+                              .order('position').first
+
+    if first_task_list
+      @task_list.position = first_task_list.position / 2.0
+    else
+      @task_list.position = 1
+    end
+
     if @task_list.save
       respond_to do |format|
         format.html { render 'show.rabl' }
