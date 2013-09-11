@@ -12,7 +12,7 @@
   <button type="button" class="cancel-create-task-list btn btn-primary btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
 </form>
 
-<div class="task-lists" style="height:550px; overflow: auto">
+<div class="task-lists" >
   <% taskLists.each(function (taskList) { %>
   <div class="task-list">
     <div class="task-list-<%= taskList.escape('id') %>"></div>

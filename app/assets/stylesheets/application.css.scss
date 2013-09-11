@@ -13,6 +13,11 @@
  *= require_tree .
  */
 
+.row {
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+
 body {
   background-color: #FBFBFB;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -53,3 +58,22 @@ body {
   box-shadow:none !important;
   border-radius: 0;
 }
+
+.sidebar-nav-fixed {
+     position:fixed;
+     top:65px;
+     width:25%;
+ }
+
+ @media (max-width: 767px) {
+     .sidebar-nav-fixed {
+         width:auto;
+     }
+ }
+
+ @media (max-width: 979px) {
+     .sidebar-nav-fixed {
+         position:static;
+        width: auto;
+     }
+ }
