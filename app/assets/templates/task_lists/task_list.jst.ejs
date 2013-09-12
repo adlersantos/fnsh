@@ -44,7 +44,7 @@
     <% if (tasks.where({finished: true}).length > 0){ %>
       <hr style="margin-top: 10px; margin-bottom:5px;">
       <% _(tasks.where({finished: true})).each(function(task) { %>
-        <div class="task-<%= task.escape('id') %>" style="height:20px; cursor:pointer;"></div>
+        <div class="task task-<%= task.escape('id') %>" task-id="<%= task.escape('id') %>" style="height:20px; cursor:pointer;"></div>
       <% }) %>
     <% } %>
   </div>
@@ -59,7 +59,7 @@
     tolerance: "pointer",
     items: ".task",
     handle: ".glyphicon-th",
-    connectWith: ".tasks"
+    // connectWith: ".tasks"
   });
   $(".tasks").disableSelection();
 </script>
