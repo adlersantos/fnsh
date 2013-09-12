@@ -35,4 +35,14 @@ class SubtasksController < ApplicationController
       format.json { render 'index.rabl' }
     end
   end
+
+  def update
+    @subtask = Subtask.find(params[:id])
+    @subtask.update_attributes(params[:subtask])
+
+    respond_to do |format|
+      format.html { render 'show.rabl' }
+      format.json { render 'show.rabl' }
+    end
+  end
 end

@@ -30,7 +30,6 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
     var projectID = BC.getID(event.currentTarget, 'project');
 
     var projectToDelete = this.collection.get(projectID);
-    debugger
     projectToDelete.url = projectToDelete.urlRoot() + projectToDelete.get('id');
     projectToDelete.destroy();
 

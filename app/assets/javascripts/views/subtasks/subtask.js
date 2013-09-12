@@ -20,16 +20,16 @@ BC.Views.Subtask = Backbone.View.extend({
   },
 
   toggleSubtaskCompletion: function (event) {
-    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.url = '/subtasks/' + this.model.get('id');
 
     if (this.model.get('finished')) {
       this.model.save(
-        {task: {finished: false}},
+        {subtask: {finished: false}},
         {wait: true}
       );
     } else {
       this.model.save(
-        {task: {finished: true}},
+        {subtask: {finished: true}},
         {wait: true}
       );
     }
