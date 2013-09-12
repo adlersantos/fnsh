@@ -10,6 +10,17 @@
   <input type="checkbox" task-id="<%= task.escape('id') %>"
          value="task" class="task-checkbox"
          style="margin: 0 5px 0;">
+
   <span class="task-name" style="padding-bottom:6px; vertical-align:middle;" task-id="<%= task.escape('id') %>"><%= task.escape('name') %></span>
+  <form style="display:inline" class="rename-task hidden form-inline" role="form">
+    <div class="form-group" style="margin-bottom:1px; width:250px;">
+      <input autofocus type="text" name="task[name]" style="height:20px; padding-left:0px;"
+             class="task-name open-text-input form-control" placeholder="Enter task name"
+             value="<%= task.escape('name') %>">
+    </div>
+    <button type="submit" class="rename-inline-task btn btn-primary btn-xs">rename</button>
+    <button type="button" class="cancel-inline-rename-task btn btn-primary btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+  </form>
+
   <span class="delete-task pull-right" style="color:grey;" task-id="<%= task.escape('id') %>">&times;</span>
 <% } %>
