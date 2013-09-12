@@ -21,7 +21,8 @@ BC.Views.TaskList = Backbone.View.extend({
     "click .delete-task-list": "deleteTaskList",
     "click .put-add-task-form": "putAddTaskForm",
     "click .cancel-add-task": "cancelAddTask",
-    "click button.add-task": "createTask"
+    "click button.add-task": "createTask",
+    "sortUpdate .tasks": "updateSortableTask"
   },
 
   template: JST['task_lists/task_list'],
@@ -100,5 +101,57 @@ BC.Views.TaskList = Backbone.View.extend({
     });
 
     return this;
+  },
+
+  updateSortableTask: function (event, ui) {
+    var that = this;
+    var taskID = BC.getID(ui.item, 'task');
+    var task = this['task' + taskID].model;
+    task.url = task.urlRoot() + task.get('id');
+
+    var prevTaskID = BC.getID(ui.item.prev(), 'task-list');
+    var nextTaskID = BC.getID(ui.item.next(), 'task-list');
+
+    if (prevTaskID && nextTaskID) {
+
+      var prevTask = this['task' + prevTaskID].model;
+      var nextTask = this['task' + nextTaskID].model;
+      var diff = nextTask.get('position') - prevTask.get('position');
+      var newPosition = prevTask.get('position') + (diff / 2);
+
+      task.save({position: newPosition}, {
+        success: function (responseData) {
+          that.tasks.sort();
+        },
+        wait: true,
+        silent: true
+      });
+
+    } else if (prevTaskID) {
+
+      var prevTask = this['task' + prevTaskID].model;
+      var newPosition = prevTask.get('position') + 1
+
+      task.save({position: newPosition}, {
+        success: function (responseData) {
+          that.tasks.sort();
+        },
+        wait: true,
+        silent: true
+      });
+
+    } else if (nextTaskID) {
+
+      var nextTask = this['task' + nextTaskID].model;
+      var newPosition = nextTask.get('position') / 2;
+
+      task.save({position: newPosition}, {
+        success: function (responseData) {
+          that.tasks.sort();
+        },
+        wait: true,
+        silent: true
+      });
+    }
   }
 });
