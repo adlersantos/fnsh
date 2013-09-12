@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
     user_project.destroy
 
     user_projects = UserProject.where("project_id = ?", @project.id)
-    @project.destroy if user_projects.size == 0
+    @project.destroy if (user_projects.size == 0)
 
     respond_to do |format|
       format.html { render 'index.rabl' }

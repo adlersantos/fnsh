@@ -26,7 +26,9 @@ BC.Views.TaskDetail = Backbone.View.extend({
     "click .unassign-task": "unassignTask",
     "click button.task-detail-finished": "toggleTaskCompletion",
     "changeDate .task-due-date": "setDueDate",
-    "click .clear-due-date": "clearDueDate"
+    "click .clear-due-date": "clearDueDate",
+    "click .put-add-subtask-form": "putAddSubTaskForm",
+    "click .cancel-add-subtask": "cancelAddSubTask"
   },
 
   template: JST['tasks/details'],
@@ -39,6 +41,11 @@ BC.Views.TaskDetail = Backbone.View.extend({
       {task: {assignee_id: assigneeID}},
       {wait: true}
     );
+  },
+
+  cancelAddSubTask: function (event) {
+    $('.put-add-subtask-form').toggleClass('hidden');
+    $('form.create-subtask').toggleClass('hidden');
   },
 
   cancelRenameTask: function (event) {
@@ -72,6 +79,11 @@ BC.Views.TaskDetail = Backbone.View.extend({
     $('p.task-description').toggleClass('hidden');
     $('form.task-description').toggleClass('hidden');
     $('form.task-description textarea').focus();
+  },
+
+  putAddSubTaskForm: function (event) {
+    $('.put-add-subtask-form').toggleClass('hidden');
+    $('form.create-subtask').toggleClass('hidden');
   },
 
   putRenameTaskForm: function (event) {
