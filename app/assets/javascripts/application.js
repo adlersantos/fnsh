@@ -17,6 +17,7 @@
 //= require jquery.autosize.min
 //= require twitter/bootstrap/button
 //= require twitter/bootstrap/dropdown
+//= require twitter/bootstrap/tooltip
 //= require bootstrap-datepicker
 //= require underscore
 //= require backbone
