@@ -3,9 +3,9 @@
 
   <div class="row" style="display:block; margin-left:0; margin-right:0; margin-bottom:8px;">
     <% if (task.get('finished')) { %>
-      <button class="task-detail-finished btn btn-success btn-xs"><span class="glyphicon glyphicon-check"></span></button>
+      <button class="task-detail-finished finished-task btn btn-success btn-xs"><span class="glyphicon glyphicon-check"></span></button>
     <% } else { %>
-      <button class="task-detail-finished btn btn-success btn-xs"><span class="glyphicon glyphicon-unchecked"></span></button>
+      <button class="task-detail-finished unfinished-task btn btn-success btn-xs"><span class="glyphicon glyphicon-unchecked"></span></button>
     <% } %>
 
     <button class="assign-task-button btn btn-primary btn-xs">
@@ -84,7 +84,9 @@
   $('.task-due-date').datepicker({
     autoclose: true
   });
+
   $('textarea').autosize();
+
   $('p.task-description').hover(
     function () {
       $(this).toggleClass('task-description-hover');
@@ -93,4 +95,34 @@
       $(this).toggleClass('task-description-hover');
     }
   );
+
+  $('.finished-task').tooltip({
+    placement: 'top',
+    delay: 300,
+    title: "Click to mark this task incomplete"
+  });
+
+  $('.unfinished-task').tooltip({
+    placement: 'top',
+    delay: 300,
+    title: "Click to mark this task complete"
+  });
+
+  $('.assign-task-button').tooltip({
+    placement: 'top',
+    delay: 300,
+    title: "Click to assign a person responsible for this task"
+  });
+
+  $('.task-due-date').tooltip({
+    placement: 'top',
+    delay: 300,
+    title: "Set a due date to this task"
+  });
+
+  $('h3.task-detail-name').tooltip({
+    placement: 'bottom',
+    delay: 300,
+    title: "Click to rename task"
+  });
 </script>
