@@ -13,7 +13,10 @@ BC.Models.Project = Backbone.Model.extend({
       taskList.get('tasks').each(function (task) {
         var comments = new BC.Collections.Comments(task.get('comments'));
         task.set('comments', comments);
-      })
+
+        var subtasks = new BC.Collections.Subtasks(task.get('subtasks'));
+        task.set('subtasks', subtasks);
+      });
     });
 
     return data;

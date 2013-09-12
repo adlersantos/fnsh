@@ -1,0 +1,19 @@
+<% if (subtasks.length > 0) { %>
+  <% subtasks.each(function (subtask) { %>
+    <div class="subtask subtask-<%= subtask.escape('id') %>" style="height:20px; cursor:pointer;"></div>
+  <% }) %>
+  <div style="height:10px;"></div>
+<% } %>
+
+<button class="put-add-subtask-form btn btn-primary btn-xs">
+  <span class="glyphicon glyphicon-list"></span>&nbsp;
+  <span style="vertical-align:middle;">Add a subtask</span>
+</button>
+<form style="margin: 5px 0; width:350px;" class="create-subtask hidden form-inline" role="form">
+  <div class="form-group">
+    <input autofocus type="text" name="subtask[name]" style="height:20px; padding-left:0px;"
+           class="subtask-name open-text-input form-control" placeholder="Enter subtask name">
+  </div>
+  <button type="submit" class="add-subtask btn btn-primary btn-xs">Add subtask</button>
+  <button type="button" class="cancel-add-subtask btn btn-primary btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+</form>

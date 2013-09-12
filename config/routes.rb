@@ -11,6 +11,9 @@ Basecamp::Application.routes.draw do
 
   resources :comments
   resources :task_lists, :only => [:index]
-  resources :tasks, :only => [:index, :update]
+  resources :subtasks, :only => [:index, :destroy]
+  resources :tasks, :only => [:index, :update] do
+    resources :subtasks, :except => [:index]
+  end
   resource :session, :only => [:new, :create, :destroy]
 end
