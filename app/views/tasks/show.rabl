@@ -1,5 +1,5 @@
 object @task
-attributes :id, :name, :finished, :task_list_id, :description, :assignee_id, :due_date
+attributes :id, :name, :finished, :task_list_id, :description, :assignee_id, :due_date, :position
 
 child :project do
   attributes :id

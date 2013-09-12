@@ -22,7 +22,7 @@ BC.Views.TaskList = Backbone.View.extend({
     "click .put-add-task-form": "putAddTaskForm",
     "click .cancel-add-task": "cancelAddTask",
     "click button.add-task": "createTask",
-    "sortUpdate .tasks": "updateSortableTask"
+    "sortupdate .tasks": "updateSortableTask"
   },
 
   template: JST['task_lists/task_list'],
@@ -107,10 +107,10 @@ BC.Views.TaskList = Backbone.View.extend({
     var that = this;
     var taskID = BC.getID(ui.item, 'task');
     var task = this['task' + taskID].model;
-    task.url = task.urlRoot() + task.get('id');
+    task.url = '/tasks/' + task.get('id');
 
-    var prevTaskID = BC.getID(ui.item.prev(), 'task-list');
-    var nextTaskID = BC.getID(ui.item.next(), 'task-list');
+    var prevTaskID = BC.getID(ui.item.prev(), 'task');
+    var nextTaskID = BC.getID(ui.item.next(), 'task');
 
     if (prevTaskID && nextTaskID) {
 
@@ -119,9 +119,17 @@ BC.Views.TaskList = Backbone.View.extend({
       var diff = nextTask.get('position') - prevTask.get('position');
       var newPosition = prevTask.get('position') + (diff / 2);
 
-      task.save({position: newPosition}, {
+      console.log('new position')
+      console.log(newPosition);
+
+      console.log('---PREVIOUS POSITIONS---');
+      this.tasks.each(function(task) {console.log(task.get('position'))});
+
+      task.save({task: {position: newPosition}}, {
         success: function (responseData) {
           that.tasks.sort();
+          console.log('---NEW POSITIONS---');
+          that.tasks.each(function(task) {console.log(task.get('position'))});
         },
         wait: true,
         silent: true
@@ -153,5 +161,6 @@ BC.Views.TaskList = Backbone.View.extend({
         silent: true
       });
     }
+    event.stopPropagation();
   }
 });
