@@ -24,8 +24,6 @@ BC.Views.Subtasks = Backbone.View.extend({
     var newSubtask = new BC.Models.Subtask(subtaskData);
     newSubtask.url = newSubtask.url(this.task.get('id'));
 
-    debugger
-
     var that = this;
     newSubtask.save(subtaskData, {
       success: function (responseData) {

@@ -4,6 +4,15 @@ class TasksController < ApplicationController
     @task.finished = false
     @task.task_list_id = params[:task_list_id]
 
+    last_task_list = Task.where("task_list_id = ?", params[:task_list_id])
+                              .order('position').last
+
+    if last_task_list
+      @task.position = last_task_list.position + 1.0
+    else
+      @task.position = 1.0
+    end
+
     if @task.save
       respond_to do |format|
         format.html { render 'show.rabl' }

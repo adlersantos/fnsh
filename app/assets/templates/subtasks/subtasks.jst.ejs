@@ -1,7 +1,14 @@
 <% if (subtasks.length > 0) { %>
-  <% subtasks.each(function (subtask) { %>
+  <h4 style="margin-top:0px;">Subtasks</h4>
+
+  <% _(subtasks.where({finished: false})).each(function(subtask) { %>
     <div class="subtask subtask-<%= subtask.escape('id') %>" style="height:20px; cursor:pointer;"></div>
   <% }) %>
+
+  <% _(subtasks.where({finished: true})).each(function(subtask) { %>
+    <div class="subtask subtask-<%= subtask.escape('id') %>" style="height:20px; cursor:pointer;"></div>
+  <% }) %>
+
   <div style="height:10px;"></div>
 <% } %>
 

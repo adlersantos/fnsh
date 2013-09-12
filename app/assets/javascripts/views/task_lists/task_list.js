@@ -119,17 +119,9 @@ BC.Views.TaskList = Backbone.View.extend({
       var diff = nextTask.get('position') - prevTask.get('position');
       var newPosition = prevTask.get('position') + (diff / 2);
 
-      console.log('new position')
-      console.log(newPosition);
-
-      console.log('---PREVIOUS POSITIONS---');
-      this.tasks.each(function(task) {console.log(task.get('position'))});
-
       task.save({task: {position: newPosition}}, {
         success: function (responseData) {
           that.tasks.sort();
-          console.log('---NEW POSITIONS---');
-          that.tasks.each(function(task) {console.log(task.get('position'))});
         },
         wait: true,
         silent: true
@@ -140,7 +132,7 @@ BC.Views.TaskList = Backbone.View.extend({
       var prevTask = this['task' + prevTaskID].model;
       var newPosition = prevTask.get('position') + 1
 
-      task.save({position: newPosition}, {
+      task.save({task: {position: newPosition}}, {
         success: function (responseData) {
           that.tasks.sort();
         },
@@ -153,7 +145,7 @@ BC.Views.TaskList = Backbone.View.extend({
       var nextTask = this['task' + nextTaskID].model;
       var newPosition = nextTask.get('position') / 2;
 
-      task.save({position: newPosition}, {
+      task.save({task: {position: newPosition}}, {
         success: function (responseData) {
           that.tasks.sort();
         },
