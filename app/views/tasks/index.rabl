@@ -1,5 +1,5 @@
 collection @tasks
-attributes :id, :name, :finished, :task_list_id, :description, :assignee_id, :due_date
+attributes :id, :name, :finished, :task_list_id, :description, :assignee_id, :due_date, :position
 
 child :task_list do
   attributes :id, :title, :position
