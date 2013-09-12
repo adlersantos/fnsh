@@ -6,6 +6,9 @@ BC.Models.Task = Backbone.Model.extend({
     var comments = new BC.Collections.Comments(data.comments);
     data.comments = comments;
 
+    var subtasks = new BC.Collections.Subtasks(data.subtasks);
+    data.subtasks = subtasks;
+
     data.project_id = data.project.id
     return data;
   },

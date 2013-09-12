@@ -1,0 +1,13 @@
+<% if (subtask.get('finished') === true) { %>
+  <input type="checkbox" subtask-id="<%= subtask.escape('id') %>"
+         value="subtask" class="subtask-checkbox"
+         style="margin: 0 5px 0;" checked>
+  <span class="subtask-name line-through text-muted" style="padding-bottom:6px; vertical-align:middle;" subtask-id="<%= subtask.escape('id') %>"><%= subtask.escape('name') %></span>
+  <span class="delete-subtask pull-right" style="color:grey;" subtask-id="<%= subtask.escape('id') %>">&times;</span>
+<% } else { %>
+  <input type="checkbox" subtask-id="<%= subtask.escape('id') %>"
+         value="subtask" class="subtask-checkbox"
+         style="margin: 0 5px 0;">
+  <span class="subtask-name" style="padding-bottom:6px; vertical-align:middle;" subtask-id="<%= subtask.escape('id') %>"><%= subtask.escape('name') %></span>
+  <span class="delete-subtask pull-right" style="color:grey;" subtask-id="<%= subtask.escape('id') %>">&times;</span>
+<% } %>

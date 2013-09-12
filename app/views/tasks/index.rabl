@@ -12,3 +12,7 @@ end
 child :comments do
   attributes :id, :body, :author_id, :task_id
 end
+
+child(:subtasks) do
+  attributes :id, :finished, :name, :task_id
+end

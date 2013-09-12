@@ -2,13 +2,20 @@ BC.Views.TaskDetail = Backbone.View.extend({
   initialize: function () {
     this.task = this.model;
     this.comments = this.task.get('comments');
+    this.subtasks = this.task.get('subtasks');
+
     this.commentsView = new BC.Views.Comments({
       model: this.task,
       collection: this.comments
     });
 
+    this.subtasksView = new BC.Views.Subtasks({
+      model: this.task,
+      collection: this.subtasks
+    });
+
     var that = this;
-    var events = ["add", "change", "destroy"];
+    var events = ["change"];
     _(events).each(function (event) {
       that.listenTo(that.task, event, that.render);
     });
@@ -75,6 +82,27 @@ BC.Views.TaskDetail = Backbone.View.extend({
     );
   },
 
+  createTask: function (event) {
+    event.preventDefault();
+
+    var subtaskData = $('form.create-subtask').serializeJSON();
+    var newSubtask = new BC.Models.Task(subtaskData);
+
+    subtaskData.url = '/tasks/' + this.task.get('id') + '/subtasks/';
+    newSubtask.url = subtaskData.url;
+
+    var that = this;
+    var prevEvent = event;
+    newTask.save(taskData, {
+      success: function (responseData) {
+        that['task' + newTask.get('id')] = new BC.Views.Task({model: newTask});
+        that['task' + newTask.get('id')].setElement(that.$('.task-' + newTask.get('id')));
+        that.tasks.add(responseData);
+        that.$el.find('.put-add-task-form').trigger('click');
+      }
+    });
+  },
+
   editTaskDescription: function (event) {
     $('p.task-description').toggleClass('hidden');
     $('form.task-description').toggleClass('hidden');
@@ -133,6 +161,8 @@ BC.Views.TaskDetail = Backbone.View.extend({
 
     this.$el.html(detailTemplate);
     this.commentsView.setElement(this.$('.comments')).render();
+    this.subtasksView.setElement(this.$('.subtasks')).render();
+
     return this;
   },
 

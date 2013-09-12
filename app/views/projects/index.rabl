@@ -19,6 +19,10 @@ if current_user
           attributes :username
         end
       end
+
+      child(:subtasks) do
+        attributes :id, :finished, :name, :task_id
+      end
     end
   end
 end
