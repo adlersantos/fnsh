@@ -16,4 +16,8 @@ class Task < ActiveRecord::Base
   has_many :comments,
     class_name: "Comment",
     foreign_key: :task_id
+
+  has_many :subtasks,
+    class_name: "Subtask",
+    foreign_key: :task_id
 end
