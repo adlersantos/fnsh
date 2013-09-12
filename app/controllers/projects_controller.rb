@@ -27,7 +27,13 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:id])
-    @project.destroy
+    user_project = UserProject.where("project_id = ? AND user_id = ?",
+                                      @project.id,
+                                      current_user.id).first
+    user_project.destroy
+
+    user_projects = UserProject.where("project_id = ?", @project.id)
+    @project.destroy if user_projects.size == 0
 
     respond_to do |format|
       format.html { render 'index.rabl' }

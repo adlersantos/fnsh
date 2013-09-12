@@ -30,6 +30,7 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
     var projectID = BC.getID(event.currentTarget, 'project');
 
     var projectToDelete = this.collection.get(projectID);
+    debugger
     projectToDelete.url = projectToDelete.urlRoot() + projectToDelete.get('id');
     projectToDelete.destroy();
 
@@ -87,7 +88,7 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
     $('ul.nav .active').toggleClass('active');
     $(event.currentTarget.parentElement).toggleClass('active');
 
-    $('.task-detail').html("<div class='well sidebar-nav sidebar-nav-fixed' style='text-align:center;'><h4 class='text-muted'>Select a task to view its details.</h4></div>");
+    $('.task-detail').html("<div class='well sidebar-nav sidebar-nav-fixed' style='text-align:center; width:357px;'><h4 class='text-muted'>Select a task to view its details.</h4></div>");
     $('.project').html(projectView.render().$el);
   }
 });
