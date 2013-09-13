@@ -4,7 +4,7 @@ BC.Views.CreateProject = Backbone.View.extend({
   },
 
   events: {
-    "click input.create-project": "createProjectHandler",
+    "click input.create-project": "createProject",
     "click input.cancel-create-project": "cancelCreateProject"
   },
 
@@ -18,16 +18,16 @@ BC.Views.CreateProject = Backbone.View.extend({
   },
 
   cancelCreateProject: function (event) {
-    BC.regenerateProjectView(this.model);
+    $('.project').empty();
   },
 
-  createProjectHandler: function (event) {
+  createProject: function (event) {
     event.preventDefault();
 
     var projectData = $('form.create-project').serializeJSON();
     $('.project').empty();
 
     BC.projects.create(projectData, {wait: true});
-    BC.projects.fetch(function () {});
+    BC.projects.fetch();
   }
 });

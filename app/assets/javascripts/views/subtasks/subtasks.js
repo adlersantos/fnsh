@@ -22,7 +22,7 @@ BC.Views.Subtasks = Backbone.View.extend({
     event.preventDefault();
     var subtaskData = $('form.create-subtask').serializeJSON();
     var newSubtask = new BC.Models.Subtask(subtaskData);
-    newSubtask.url = newSubtask.url(this.task.get('id'));
+    newSubtask.url = newSubtask.urlRoot(this.task.get('id'));
 
     var that = this;
     newSubtask.save(subtaskData, {
