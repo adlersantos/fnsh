@@ -1,15 +1,15 @@
 BC.Views.Project = Backbone.View.extend({
   initialize: function () {
     this.project = this.model;
+
     this.projectUsers = this.project.get('users');
     BC.ProjectUsers = this.projectUsers;
-    this.taskLists = this.project.get('task_lists');
-
     this.projectUsersView = new BC.Views.Users({
       model: this.project,
       collection: this.projectUsers
     });
 
+    this.taskLists = this.project.get('task_lists');
     this.taskListsView = new BC.Views.TaskLists({
       model: this.project,
       collection: this.taskLists
@@ -73,7 +73,7 @@ BC.Views.Project = Backbone.View.extend({
     event.preventDefault();
 
     var projectData = $('form.edit-project').serializeJSON();
-    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.url = '/projects/' + this.model.get('id');
     this.model.save(projectData, {wait: true});
     this.cancelRenameProject();
   },
@@ -93,7 +93,7 @@ BC.Views.Project = Backbone.View.extend({
   setProjectDescription: function (event) {
     event.preventDefault();
     var projectData = $('form.project-description').serializeJSON();
-    this.project.url = this.project.urlRoot() + this.project.get('id');
+    this.project.url = '/projects/' + this.project.get('id');
     this.project.save(projectData, {wait: true});
   }
 });

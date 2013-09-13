@@ -1,5 +1,7 @@
 BC.Models.Subtask = Backbone.Model.extend({
-  url: function (taskID) {
+  url: '/subtasks/',
+
+  urlRoot: function (taskID) {
     return '/tasks/' + taskID + '/subtasks/'
   }
 });

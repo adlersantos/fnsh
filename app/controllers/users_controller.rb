@@ -19,17 +19,9 @@ class UsersController < ApplicationController
     render :new
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
-
   def update
     @user = current_user
     @user.update_attributes(params[:user])
     render nothing: true
-  end
-
-  def add_to_project
-
   end
 end

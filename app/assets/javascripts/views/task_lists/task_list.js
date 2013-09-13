@@ -43,9 +43,7 @@ BC.Views.TaskList = Backbone.View.extend({
     var taskData = $(event.currentTarget.parentElement).serializeJSON();
     var newTask = new BC.Models.Task(taskData);
 
-    taskData.url = '/projects/' + this.taskList.get('project_id')
-                     + '/task_lists/' + this.taskList.get('id') + '/tasks/';
-    newTask.url = taskData.url;
+    newTask.url = '/task_lists/' + this.model.get('id') + '/tasks';
 
     var that = this;
     var prevEvent = event;
@@ -62,7 +60,7 @@ BC.Views.TaskList = Backbone.View.extend({
   deleteTaskList: function (event) {
     event.preventDefault();
 
-    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.url = '/task_lists/' + this.model.get('id');
     this.model.destroy();
   },
 
@@ -82,7 +80,7 @@ BC.Views.TaskList = Backbone.View.extend({
     event.preventDefault();
 
     var taskListData = $(event.currentTarget).parent().serializeJSON();
-    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.url = '/task_lists/' + this.model.get('id');
     this.model.save(taskListData, {wait: true});
   },
 
@@ -104,7 +102,6 @@ BC.Views.TaskList = Backbone.View.extend({
   },
 
   updateSortableTask: function (event, ui) {
-    var that = this;
     var taskID = BC.getID(ui.item, 'task');
     var task = this['task' + taskID].model;
     task.url = '/tasks/' + task.get('id');
@@ -112,6 +109,7 @@ BC.Views.TaskList = Backbone.View.extend({
     var prevTaskID = BC.getID(ui.item.prev(), 'task');
     var nextTaskID = BC.getID(ui.item.next(), 'task');
 
+    var that = this;
     if (prevTaskID && nextTaskID) {
 
       var prevTask = this['task' + prevTaskID].model;

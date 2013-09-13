@@ -22,7 +22,5 @@ BC.Models.Project = Backbone.Model.extend({
     return data;
   },
 
-  urlRoot: function () {
-    return /projects/;
-  }
+  urlRoot: '/projects/'
 });

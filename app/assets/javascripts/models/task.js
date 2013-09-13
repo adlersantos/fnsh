@@ -9,12 +9,12 @@ BC.Models.Task = Backbone.Model.extend({
     var subtasks = new BC.Collections.Subtasks(data.subtasks);
     data.subtasks = subtasks;
 
-    data.project_id = data.project.id
     return data;
   },
 
-  urlRoot: function () {
-    return '/projects/' + this.get('project_id') + '/task_lists/'
-      + this.get('task_list_id') + '/tasks/';
+  url: '/tasks/',
+
+  urlRoot: function (taskListID) {
+    return '/task_lists/' + taskListID + '/tasks';
   }
 });

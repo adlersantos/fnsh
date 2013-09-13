@@ -2,7 +2,7 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
   initialize: function () {
     this.$el = $('div.projects');
 
-    this.once('renderEvent', function () {
+    this.once('clickProject', function () {
       if (BC.current_user.get('project_view')) {
        $('a[project-id=' + BC.current_user.get('project_view') + ']').trigger('click')
       }
@@ -18,7 +18,6 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
   events: {
     "click .project-link": "showProject",
     "click .create-project": "putCreateProjectForm",
-    "click .edit-project": "putEditProjectForm",
     "click .delete-project": "deleteProject",
   },
 
@@ -30,20 +29,10 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
     var projectID = BC.getID(event.currentTarget, 'project');
 
     var projectToDelete = this.collection.get(projectID);
-    projectToDelete.url = projectToDelete.urlRoot() + projectToDelete.get('id');
+    projectToDelete.url = '/projects/' + projectToDelete.get('id');
     projectToDelete.destroy();
 
     $('.project').empty();
-  },
-
-  putEditProjectForm: function (event) {
-    event.preventDefault();
-
-    var projectID = BC.getID(event.currentTarget, 'project');
-    var projectModel = BC.projects.get(projectID);
-
-    var projectView = new BC.Views.EditProject({model: projectModel});
-    $('.project').html(projectView.render().$el)
   },
 
   putCreateProjectForm: function (event) {
@@ -66,7 +55,7 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
       $('a[project-id=' + this.selectedProject + ']').parent().toggleClass('active')
     }
 
-    this.trigger('renderEvent');
+    this.trigger('clickProject');
     return this;
   },
 

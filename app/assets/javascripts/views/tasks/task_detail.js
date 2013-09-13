@@ -43,7 +43,7 @@ BC.Views.TaskDetail = Backbone.View.extend({
   assignTask: function (event) {
     var assigneeID = BC.getID(event.currentTarget, 'user');
 
-    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.url += this.model.get('id');
     this.model.save(
       {task: {assignee_id: assigneeID}},
       {wait: true}
@@ -75,32 +75,11 @@ BC.Views.TaskDetail = Backbone.View.extend({
   clearDueDate: function (event) {
     event.preventDefault();
 
-    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.url += this.model.get('id');
     this.model.save(
       {task: {due_date: null}},
       {wait: true}
     );
-  },
-
-  createTask: function (event) {
-    event.preventDefault();
-
-    var subtaskData = $('form.create-subtask').serializeJSON();
-    var newSubtask = new BC.Models.Task(subtaskData);
-
-    subtaskData.url = '/tasks/' + this.task.get('id') + '/subtasks/';
-    newSubtask.url = subtaskData.url;
-
-    var that = this;
-    var prevEvent = event;
-    newTask.save(taskData, {
-      success: function (responseData) {
-        that['task' + newTask.get('id')] = new BC.Views.Task({model: newTask});
-        that['task' + newTask.get('id')].setElement(that.$('.task-' + newTask.get('id')));
-        that.tasks.add(responseData);
-        that.$el.find('.put-add-task-form').trigger('click');
-      }
-    });
   },
 
   editTaskDescription: function (event) {
@@ -129,7 +108,7 @@ BC.Views.TaskDetail = Backbone.View.extend({
   renameTask: function (event) {
     event.preventDefault();
     var taskData = $('form.rename-task').serializeJSON();
-    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.url = '/tasks/' + this.model.get('id');
     this.model.save(taskData, {wait: true});
   },
 
@@ -169,7 +148,7 @@ BC.Views.TaskDetail = Backbone.View.extend({
   setDueDate: function (event) {
     var dueDate = event.date / 1000;
 
-    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.url += this.model.get('id');
     this.model.save(
       {task: {due_date: dueDate}},
       {wait: true}
@@ -179,19 +158,19 @@ BC.Views.TaskDetail = Backbone.View.extend({
   setTaskDescription: function (event) {
     event.preventDefault();
     var taskData = $('form.task-description').serializeJSON();
-    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.url = '/tasks/' + this.model.get('id');
     this.model.save(taskData, {wait: true});
   },
 
   toggleTaskCompletion: function (event) {
     var taskStatus = !this.model.get('finished');
-    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.url = '/tasks/' + this.model.get('id');
     this.model.save({task: {finished: taskStatus}}, {wait: true});
   },
 
   unassignTask: function (event) {
     event.preventDefault();
-    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.url = '/tasks/' + this.model.get('id');
     this.model.save(
       {task: {assignee_id: null}},
       {wait: true}

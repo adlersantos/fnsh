@@ -17,6 +17,7 @@ BC.Views.Comments = Backbone.View.extend({
     event.preventDefault();
     var commentData = $('form.create-comment').serializeJSON();
     var newComment = new BC.Models.Comment(commentData);
+    newComment.url = newComment.urlRoot(this.model.get('id'));
 
     var that = this;
     newComment.save(commentData, {
