@@ -67,6 +67,4 @@ $(document).ready(function(){
       }
     });
   };
-
-  // BC.initialize();
 });
