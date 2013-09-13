@@ -43,7 +43,7 @@ BC.Views.TaskDetail = Backbone.View.extend({
   assignTask: function (event) {
     var assigneeID = BC.getID(event.currentTarget, 'user');
 
-    this.model.url += this.model.get('id');
+    this.model.url = '/tasks/' + this.model.get('id');
     this.model.save(
       {task: {assignee_id: assigneeID}},
       {wait: true}
@@ -75,7 +75,7 @@ BC.Views.TaskDetail = Backbone.View.extend({
   clearDueDate: function (event) {
     event.preventDefault();
 
-    this.model.url += this.model.get('id');
+    this.model.url = '/tasks/' + this.model.get('id');
     this.model.save(
       {task: {due_date: null}},
       {wait: true}
@@ -148,7 +148,7 @@ BC.Views.TaskDetail = Backbone.View.extend({
   setDueDate: function (event) {
     var dueDate = event.date / 1000;
 
-    this.model.url += this.model.get('id');
+    this.model.url = '/tasks/' + this.model.get('id');
     this.model.save(
       {task: {due_date: dueDate}},
       {wait: true}
