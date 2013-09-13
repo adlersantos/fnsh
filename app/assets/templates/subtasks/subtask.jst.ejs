@@ -1,13 +1,39 @@
 <% if (subtask.get('finished') === true) { %>
+
   <input type="checkbox" subtask-id="<%= subtask.escape('id') %>"
          value="subtask" class="subtask-checkbox"
          style="margin: 0 5px 0;" checked>
+
   <span class="subtask-name line-through text-muted" style="padding-bottom:6px; vertical-align:middle;" subtask-id="<%= subtask.escape('id') %>"><%= subtask.escape('name') %></span>
+  <form style="display:inline" class="rename-subtask hidden form-inline" role="form">
+    <div class="form-group" style="margin-bottom:1px; width:190px;">
+      <input autofocus type="text" name="subtask[name]" style="height:20px; padding-left:0px;"
+             class="subtask-name open-text-input form-control" placeholder="Enter subtask name"
+             value="<%= subtask.escape('name') %>">
+    </div>
+    <button type="submit" class="rename-subtask btn btn-primary btn-xs">rename</button>
+    <button type="button" class="cancel-rename-subtask btn btn-primary btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+  </form>
+
   <span class="delete-subtask pull-right" style="color:grey;" subtask-id="<%= subtask.escape('id') %>">&times;</span>
+
 <% } else { %>
+
   <input type="checkbox" subtask-id="<%= subtask.escape('id') %>"
          value="subtask" class="subtask-checkbox"
          style="margin: 0 5px 0;">
+
   <span class="subtask-name" style="padding-bottom:6px; vertical-align:middle;" subtask-id="<%= subtask.escape('id') %>"><%= subtask.escape('name') %></span>
+  <form style="display:inline" class="rename-subtask hidden form-inline" role="form">
+    <div class="form-group" style="margin-bottom:1px; width:190px;">
+      <input autofocus type="text" name="subtask[name]" style="height:20px; padding-left:0px;"
+             class="subtask-name open-text-input form-control" placeholder="Enter subtask name"
+             value="<%= subtask.escape('name') %>">
+    </div>
+    <button type="submit" class="rename-subtask btn btn-primary btn-xs">rename</button>
+    <button type="button" class="cancel-rename-subtask btn btn-primary btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+  </form>
+
   <span class="delete-subtask pull-right" style="color:grey;" subtask-id="<%= subtask.escape('id') %>">&times;</span>
+
 <% } %>
