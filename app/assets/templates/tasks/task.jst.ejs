@@ -3,13 +3,13 @@
   <span class="col-md-1 text-muted glyphicon glyphicon-th" style="margin-left: 0;"></span>
   <input type="checkbox" task-id="<%= task.escape('id') %>"
          value="task" class="task-checkbox col-md-1"
-         style="margin-left:5px;" checked>
+         style="margin-left:5px; width:30px;" checked>
 
   <span class="task-name line-through text-muted col-md-9" style="vertical-align:middle; padding:0 0 0 0;"
         task-id="<%= task.escape('id') %>"><%= task.escape('name') %></span>
   <form style="display:inline" class="rename-inline-task hidden form-inline" role="form">
-    <div class="form-group" style="margin-bottom:1px; width:250px;">
-      <input autofocus type="text" name="task[name]" style="height:20px; padding-left:0px;"
+    <div class="form-group" style="margin-bottom:1px; width:230px;">
+      <input autofocus type="text" name="task[name]" style="height:20px; padding-left:0px; padding-bottom:7px;"
              class="task-name open-text-input form-control" placeholder="Enter task name"
              value="<%= task.escape('name') %>">
     </div>
@@ -24,13 +24,13 @@
   <span class="col-md-1 text-muted glyphicon glyphicon-th" style="margin-left;0;"></span>
   <input type="checkbox" task-id="<%= task.escape('id') %>"
          value="task" class="task-checkbox col-md-1"
-         style="margin-left:5px;">
+         style="margin-left:5px; width:30px;">
 
   <span class="task-name col-md-9" style="vertical-align:middle; padding:0 0 0 0;"
         task-id="<%= task.escape('id') %>"><%= task.escape('name') %></span>
   <form style="display:inline" class="rename-inline-task hidden form-inline" role="form">
-    <div class="form-group" style="margin-bottom:1px; width:250px;">
-      <input autofocus type="text" name="task[name]" style="height:20px; padding-left:0px;"
+    <div class="form-group" style="margin-bottom:1px; width:230px;">
+      <input autofocus type="text" name="task[name]" style="height:20px; padding-left:0px; padding-bottom:7px;"
              class="task-name open-text-input form-control" placeholder="Enter task name"
              value="<%= task.escape('name') %>">
     </div>
