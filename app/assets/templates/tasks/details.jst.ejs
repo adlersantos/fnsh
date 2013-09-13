@@ -42,20 +42,22 @@
   <h3 class="task-detail-name" style="cursor:pointer;">
     <span class="task-detail-name"><%= task.escape('name') %></span>
   </h3>
-  <form style="width:250px;" class="rename-task hidden form-inline" role="form">
-    <div class="col-md-11" style="padding: 7px 9px 7px 0;">
-      <div class="form-group">
-        <textarea autofocus type="text" name="task[name]" style="width:220px;"
+<!--   <form class="rename-task hidden">
+    <textarea class="task-description form-control" name="task[description]"
+              rows="3" placeholder="Description" style="margin-bottom:5px;"><%= task.escape('description') %></textarea>
+    <button class="set-task-description btn btn-primary btn-xs" type="submit">Submit</button>
+    <button class="cancel-task-description btn btn-primary btn-xs" type="submit">Cancel</button>
+  </form>
+ -->
+  <form class="rename-task hidden" role="form" style="margin-bottom:15px;">
+      <div class="form-group" style="margin-bottom:5px;">
+        <textarea type="text" name="task[name]"
                class="task-name input form-control"><%= task.escape('name') %></textarea>
       </div>
-    </div>
-    <div class="col-md-1" style="padding: 3px 0 5px 0; float:right;">
     <button type="submit" class="rename-task btn btn-primary btn-xs"
             task-list-id="<%= task.escape('id') %>"><span class="glyphicon glyphicon-ok"></span></button>
-    <div style="height:3px;"></div>
     <button type="button" class="cancel-rename-task btn btn-primary btn-xs"
             task-list-id="<%= task.escape('id') %>"><span class="glyphicon glyphicon-remove"></span></button>
-    </div>
   </form>
 </div>
 
@@ -67,9 +69,10 @@
   <% } %>
   <form class="task-description hidden">
     <textarea class="task-description form-control" name="task[description]"
-              rows="3" placeholder="Description" style="margin-bottom:5px;"><%= task.escape('description') %></textarea>
-    <button class="set-task-description btn btn-primary btn-xs" type="submit">Submit</button>
-    <button class="cancel-task-description btn btn-primary btn-xs" type="submit">Cancel</button>
+              rows="3" placeholder="Description"
+              style="margin-bottom:5px;"><%= task.escape('description') %></textarea>
+    <button class="set-task-description btn btn-primary btn-xs" type="submit"><span class="glyphicon glyphicon-ok"></span></button>
+    <button class="cancel-task-description btn btn-primary btn-xs" type="submit"><span class="glyphicon glyphicon-remove"></span></button>
   </form>
 </div>
 

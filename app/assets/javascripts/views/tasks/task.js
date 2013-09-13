@@ -16,6 +16,7 @@ BC.Views.Task = Backbone.View.extend({
   cancelRenameTask: function (event) {
     $(event.currentTarget).parent().toggleClass('hidden');
     $(event.currentTarget).parent().prev().toggleClass('hidden');
+    $(event.currentTarget).parent().next().toggleClass('hidden');
   },
 
   deleteTask: function (event) {
@@ -30,6 +31,7 @@ BC.Views.Task = Backbone.View.extend({
     $('span.task-name.hidden').toggleClass('hidden');
     $(event.currentTarget).toggleClass('hidden');
     $(event.currentTarget).next().toggleClass('hidden');
+    $(event.currentTarget).next().next().toggleClass('hidden');
     $(event.currentTarget).next().find('input').focus();
   },
 
