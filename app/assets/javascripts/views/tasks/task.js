@@ -21,7 +21,7 @@ BC.Views.Task = Backbone.View.extend({
   deleteTask: function (event) {
     event.preventDefault();
 
-    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.url = '/tasks/' + this.model.get('id');
     this.model.destroy();
   },
 
@@ -37,7 +37,7 @@ BC.Views.Task = Backbone.View.extend({
     event.preventDefault();
 
     var taskData = $(event.currentTarget).parent().serializeJSON();
-    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.url = '/tasks/' + this.model.get('id');
     this.model.save(taskData, {wait: true});
   },
 
@@ -52,7 +52,7 @@ BC.Views.Task = Backbone.View.extend({
   },
 
   toggleTaskCompletion: function (event) {
-    this.model.url = this.model.urlRoot() + this.model.get('id');
+    this.model.url = '/tasks/' + this.model.get('id');
 
     if (this.model.get('finished')) {
       this.model.save(
