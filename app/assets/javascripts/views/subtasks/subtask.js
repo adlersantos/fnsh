@@ -18,7 +18,7 @@ BC.Views.Subtask = Backbone.View.extend({
   deleteSubtask: function (event) {
     event.preventDefault();
 
-    this.model.url += this.model.get('id');
+    this.model.url = '/subtasks/' + this.model.get('id');
     this.model.destroy();
   },
 
@@ -26,7 +26,7 @@ BC.Views.Subtask = Backbone.View.extend({
     event.preventDefault();
 
     var subtaskData = $(event.currentTarget).parent().serializeJSON();
-    this.model.url += this.model.get('id');
+    this.model.url = '/subtasks/' + this.model.get('id');
     this.model.save(subtaskData, {wait: true});
   },
 
@@ -44,7 +44,7 @@ BC.Views.Subtask = Backbone.View.extend({
   },
 
   toggleSubtaskCompletion: function (event) {
-    this.model.url += this.model.get('id');
+    this.model.url = '/subtasks/' + this.model.get('id');
 
     if (this.model.get('finished')) {
       this.model.save(
