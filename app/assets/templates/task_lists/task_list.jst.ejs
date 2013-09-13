@@ -26,7 +26,7 @@
 
   <div class="tasks" style="margin:15px 20px;">
     <% _(tasks.where({finished: false})).each(function(task) { %>
-      <div class="task task-<%= task.escape('id') %> row" task-id="<%= task.escape('id') %>"
+      <div class="unfinished-task task-<%= task.escape('id') %> row" task-id="<%= task.escape('id') %>"
            style="cursor:pointer;"></div>
     <% }) %>
 
@@ -59,7 +59,7 @@
     opacity: 0.7,
     forcePlaceholderSize: true,
     tolerance: "pointer",
-    items: ".task",
+    items: ".unfinished-task",
     handle: ".glyphicon-th",
     // connectWith: ".tasks"
   });
