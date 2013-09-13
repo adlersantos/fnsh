@@ -1,11 +1,12 @@
 <% if (task.get('finished') === true) { %>
 
-  <span class="text-muted glyphicon glyphicon-th"></span>
+  <span class="col-md-1 text-muted glyphicon glyphicon-th" style="margin-left: 0;"></span>
   <input type="checkbox" task-id="<%= task.escape('id') %>"
-         value="task" class="task-checkbox"
-         style="margin: 0 5px 0;" checked>
+         value="task" class="task-checkbox col-md-1"
+         style="margin-left:5px;" checked>
 
-  <span class="task-name line-through text-muted" style="padding-bottom:6px; vertical-align:middle;" task-id="<%= task.escape('id') %>"><%= task.escape('name') %></span>
+  <span class="task-name line-through text-muted col-md-9" style="vertical-align:middle; padding:0 0 0 0;"
+        task-id="<%= task.escape('id') %>"><%= task.escape('name') %></span>
   <form style="display:inline" class="rename-inline-task hidden form-inline" role="form">
     <div class="form-group" style="margin-bottom:1px; width:250px;">
       <input autofocus type="text" name="task[name]" style="height:20px; padding-left:0px;"
@@ -20,12 +21,13 @@
 
 <% } else { %>
 
-  <span class="text-muted glyphicon glyphicon-th"></span>
+  <span class="col-md-1 text-muted glyphicon glyphicon-th" style="margin-left;0;"></span>
   <input type="checkbox" task-id="<%= task.escape('id') %>"
-         value="task" class="task-checkbox"
-         style="margin: 0 5px 0;">
+         value="task" class="task-checkbox col-md-1"
+         style="margin-left:5px;">
 
-  <span class="task-name" style="padding-bottom:6px; vertical-align:middle;" task-id="<%= task.escape('id') %>"><%= task.escape('name') %></span>
+  <span class="task-name col-md-9" style="vertical-align:middle; padding:0 0 0 0;"
+        task-id="<%= task.escape('id') %>"><%= task.escape('name') %></span>
   <form style="display:inline" class="rename-inline-task hidden form-inline" role="form">
     <div class="form-group" style="margin-bottom:1px; width:250px;">
       <input autofocus type="text" name="task[name]" style="height:20px; padding-left:0px;"
