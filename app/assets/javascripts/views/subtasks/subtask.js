@@ -3,9 +3,17 @@ BC.Views.Subtask = Backbone.View.extend({
   events: {
     "click .delete-subtask": "deleteSubtask",
     "click input.subtask-checkbox": "toggleSubtaskCompletion",
+    "click span.subtask-name": "putRenameSubtaskForm",
+    "click .cancel-rename-subtask": "cancelRenameSubtask",
+    "click button.rename-subtask": "renameSubtask"
   },
 
   template: JST['subtasks/subtask'],
+
+  cancelRenameSubtask: function (event) {
+    $(event.currentTarget).parent().toggleClass('hidden');
+    $(event.currentTarget).parent().prev().toggleClass('hidden');
+  },
 
   deleteSubtask: function (event) {
     event.preventDefault();
@@ -14,9 +22,23 @@ BC.Views.Subtask = Backbone.View.extend({
     this.model.destroy();
   },
 
+  renameSubtask: function (event) {
+    event.preventDefault();
+
+    var subtaskData = $(event.currentTarget).parent().serializeJSON();
+    this.model.url = '/subtasks/' + this.model.get('id');
+    this.model.save(subtaskData, {wait: true});
+  },
+
   render: function () {
     this.$el.html(this.template({subtask: this.model}));
     return this;
+  },
+
+  putRenameSubtaskForm: function (event) {
+    $(event.currentTarget).toggleClass('hidden');
+    $(event.currentTarget).next().toggleClass('hidden');
+    $(event.currentTarget).next().find('input').focus();
   },
 
   toggleSubtaskCompletion: function (event) {
