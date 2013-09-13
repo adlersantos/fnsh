@@ -1,7 +1,7 @@
 Basecamp::Application.routes.draw do
   root :to => "projects#index"
 
-  resources :users, :only => [:index, :create, :update]
+  resources :users, :only => [:index, :create, :new, :update]
 
   resources :projects, :only => [:index, :create, :destroy, :update] do
     resources :user_projects, :only => [:create]
