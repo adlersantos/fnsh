@@ -36,6 +36,8 @@ BC.Views.Subtask = Backbone.View.extend({
   },
 
   putRenameSubtaskForm: function (event) {
+    $('form.rename-subtask').not('.hidden').toggleClass('hidden');
+    $('span.subtask-name.hidden').toggleClass('hidden');
     $(event.currentTarget).toggleClass('hidden');
     $(event.currentTarget).next().toggleClass('hidden');
     $(event.currentTarget).next().find('input').focus();
