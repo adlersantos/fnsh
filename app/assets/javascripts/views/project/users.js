@@ -19,7 +19,7 @@ BC.Views.Users = Backbone.View.extend({
     event.preventDefault();
 
     var userProjectData = {};
-    userProjectData.username = $('form.add-user input').val();
+    userProjectData.email = $('form.add-user input').val();
     userProjectData.project_id = this.model.get('id');
 
     var that = this;

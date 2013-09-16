@@ -2,11 +2,11 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
 
-  attr_accessible :password, :username, :display_name, :project_view
+  attr_accessible :password, :username, :display_name, :project_view, :email
   attr_reader :password
 
-  validates :username, :uniqueness => true
-  validates :username, :password_digest, :presence => true
+  validates :email, :uniqueness => true
+  validates :email, :password_digest, :presence => true
   validates :password, :length => { :minimum => 3 }
 
   has_many :user_projects,
