@@ -18,6 +18,7 @@
 //= require twitter/bootstrap/button
 //= require twitter/bootstrap/dropdown
 //= require twitter/bootstrap/tooltip
+//= require twitter/bootstrap/modal
 //= require bootstrap-datepicker
 //= require underscore
 //= require backbone
