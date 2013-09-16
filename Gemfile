@@ -11,6 +11,7 @@ gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
 gem 'backbone-on-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'ejs'
+gem 'figaro'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'paperclip'
@@ -21,6 +22,7 @@ gem 'rabl'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'letter_opener'
 end
 
 # Gems used only for assets and not required

@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
     if @user.save
       login_user(@user)
+      AuthMailer.signup_email(@user).deliver!
       redirect_to root_url
     else
       flash.now[:errors] ||= []
