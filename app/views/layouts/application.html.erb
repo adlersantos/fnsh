@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Basecamp</title>
+  <title>Fnsh</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -15,6 +15,8 @@
           <%= button_to "Logout", session_path, :method => "delete",
                                                 :class => "btn btn-primary btn-xs" %>
         </div> <br>
+
+        <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-xs">Account Settings</a>
 
         <div class="errors">
           <% flash[:errors].try(:each) do |error| %>
@@ -42,6 +44,26 @@
       </div>
     <% end %>
   </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
 
 </body>
 </html>
