@@ -1,10 +1,10 @@
 class AuthMailer < ActionMailer::Base
-  default :from => 'adler@fnsh.it'
+  default :from => 'Adler Santos <adler@fnsh.it>'
 
   def signup_email(user)
     mail(
       :to => user.email,
-      :subject => 'Thanks for signing up to Fnsh!'
+      :subject => 'You just signed up to Fnsh!'
     )
   end
 end
