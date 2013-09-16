@@ -53,7 +53,8 @@ BC.Views.TaskList = Backbone.View.extend({
         that['task' + newTask.get('id')].setElement(that.$('.task-' + newTask.get('id')));
         that.tasks.add(responseData);
         that.$el.find('.put-add-task-form').trigger('click');
-      }
+      },
+      wait: true
     });
   },
 
