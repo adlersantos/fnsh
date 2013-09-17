@@ -27,12 +27,18 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
     event.preventDefault();
 
     var projectID = BC.getID(event.currentTarget, 'project');
-
     var projectToDelete = this.collection.get(projectID);
-    projectToDelete.url = '/projects/' + projectToDelete.get('id');
-    projectToDelete.destroy();
 
-    $('.project').empty();
+    var confirmPrompt = "Are you sure you want to delete <strong>" + projectToDelete.get('name') + "</strong>?";
+
+    bootbox.confirm(confirmPrompt, function (result) {
+      if (result === true) {
+        projectToDelete.url = '/projects/' + projectToDelete.get('id');
+        projectToDelete.destroy();
+
+        $('.project').empty();
+      }
+    })
   },
 
   putCreateProjectForm: function (event) {
