@@ -31,12 +31,16 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
 
     var confirmPrompt = "Are you sure you want to delete <strong>" + projectToDelete.get('name') + "</strong>?";
 
+    var that = this;
     bootbox.confirm(confirmPrompt, function (result) {
       if (result === true) {
         projectToDelete.url = '/projects/' + projectToDelete.get('id');
         projectToDelete.destroy();
 
-        $('.project').empty();
+        if (that.selectedProject === projectID) {
+          $('.task-detail').empty();
+          $('.project').empty();
+        }
       }
     })
   },
@@ -68,21 +72,24 @@ BC.Views.ProjectsIndex = Backbone.View.extend({
   showProject: function (event) {
     event.preventDefault();
 
-    var projectID = BC.getID(event.currentTarget, 'project');
-    BC.current_user.save(
-      {user: {project_view: projectID}}
-    );
-    this.selectedProject = projectID;
+    if (!$(event.target).hasClass('glyphicon-remove')) {
+      var projectID = BC.getID(event.currentTarget, 'project');
+      BC.current_user.save(
+        {user: {project_view: projectID}}
+      );
 
-    var projectModel = BC.projects.get(projectID);
-    var projectView = new BC.Views.Project({
-      model: projectModel
-    });
+      this.selectedProject = projectID;
 
-    $('ul.nav .active').toggleClass('active');
-    $(event.currentTarget.parentElement).toggleClass('active');
+      var projectModel = BC.projects.get(projectID);
+      var projectView = new BC.Views.Project({
+        model: projectModel
+      });
 
-    $('.task-detail').html("<div class='well sidebar-nav sidebar-nav-fixed' style='text-align:center; width:357px;'><h4 class='text-muted'>Select a task to view its details.</h4></div>");
-    $('.project').html(projectView.render().$el);
+      $('ul.nav .active').toggleClass('active');
+      $(event.currentTarget.parentElement).toggleClass('active');
+
+      $('.task-detail').html("<div class='well sidebar-nav sidebar-nav-fixed' style='text-align:center; width:357px;'><h4 class='text-muted'>Select a task to view its details.</h4></div>");
+      $('.project').html(projectView.render().$el);
+    }
   }
 });

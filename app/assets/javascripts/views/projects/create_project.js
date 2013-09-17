@@ -27,7 +27,11 @@ BC.Views.CreateProject = Backbone.View.extend({
     var projectData = $('form.create-project').serializeJSON();
     $('.project').empty();
 
-    BC.projects.create(projectData, {wait: true});
-    BC.projects.fetch();
+    BC.projects.create(projectData, {
+      success: function (responseData) {
+        BC.projects.fetch({wait: true});
+      },
+      wait: true
+    });
   }
 });
