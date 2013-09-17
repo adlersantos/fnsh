@@ -23,6 +23,6 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     @user.update_attributes(params[:user])
-    render nothing: true
+    redirect_to root_url
   end
 end

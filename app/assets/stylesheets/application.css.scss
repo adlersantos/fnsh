@@ -25,6 +25,7 @@ body {
 
 .button_to {
   display: inline-block;
+  vertical-align:middle;
 }
 
 @import "twitter/bootstrap";
@@ -77,3 +78,7 @@ body {
         width: auto;
      }
  }
+
+.bootbox .modal-dialog {
+  width:450px;
+}
