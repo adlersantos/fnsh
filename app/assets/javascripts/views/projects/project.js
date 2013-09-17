@@ -38,34 +38,28 @@ BC.Views.Project = Backbone.View.extend({
     event.preventDefault();
 
     if (this.model.get('description')) {
-      $('p.project-description').toggleClass('hidden');
-      $('form.project-description').toggleClass('hidden');
+      $('p.project-description, form.project-description').toggleClass('hidden');
     } else {
-      $('.put-project-description-form').toggleClass('hidden');
-      $('form.project-description').toggleClass('hidden');
+      $('.put-project-description-form, form.project-description').toggleClass('hidden');
     }
   },
 
   cancelRenameProject: function (event) {
-    $('h1.project-name').toggleClass('hidden');
-    $('form.edit-project').toggleClass('hidden');
+    $('h1.project-name, form.edit-project').toggleClass('hidden');
   },
 
   editProjectDescription: function (event) {
-    $('p.project-description').toggleClass('hidden');
-    $('form.project-description').toggleClass('hidden');
+    $('p.project-description, form.project-description').toggleClass('hidden');
     $('form.project-description textarea').focus();
   },
 
   putProjectDescriptionForm: function (event) {
-    $('.put-project-description-form').toggleClass('hidden');
-    $('form.project-description').toggleClass('hidden');
+    $('.put-project-description-form, form.project-description').toggleClass('hidden');
     $('form.project-description textarea').focus();
   },
 
   putRenameProjectForm: function (event) {
-    $('h1.project-name').toggleClass('hidden');
-    $('form.edit-project').toggleClass('hidden');
+    $('h1.project-name, form.edit-project').toggleClass('hidden');
     $('form.edit-project input.project-name').selectRange(100, 100);
   },
 

@@ -24,7 +24,7 @@ window.BC = {
   getID: function (target, objectString) {
     var id = $(target).attr(objectString + '-id');
     return id;
-  }
+  },
 };
 
 $(document).ready(function(){
