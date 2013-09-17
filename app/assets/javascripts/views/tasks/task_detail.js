@@ -51,24 +51,20 @@ BC.Views.TaskDetail = Backbone.View.extend({
   },
 
   cancelAddSubTask: function (event) {
-    $('.put-add-subtask-form').toggleClass('hidden');
-    $('form.create-subtask').toggleClass('hidden');
+    $('.put-add-subtask-form, form.create-subtask').toggleClass('hidden');
   },
 
   cancelRenameTask: function (event) {
-    $('span.task-detail-name').toggleClass('hidden');
-    $('form.rename-task').toggleClass('hidden');
+    $('span.task-detail-name, form.rename-task').toggleClass('hidden');
   },
 
   cancelTaskDescription: function (event) {
     event.preventDefault();
 
     if (this.model.get('description')) {
-      $('p.task-description').toggleClass('hidden');
-      $('form.task-description').toggleClass('hidden');
+      $('p.task-description, form.task-description').toggleClass('hidden');
     } else {
-      $('.put-task-description-form').toggleClass('hidden');
-      $('form.task-description').toggleClass('hidden');
+      $('.put-task-description-form, form.task-description').toggleClass('hidden');
     }
   },
 
@@ -83,25 +79,21 @@ BC.Views.TaskDetail = Backbone.View.extend({
   },
 
   editTaskDescription: function (event) {
-    $('p.task-description').toggleClass('hidden');
-    $('form.task-description').toggleClass('hidden');
+    $('p.task-description, form.task-description').toggleClass('hidden');
     $('form.task-description textarea').focus();
   },
 
   putAddSubTaskForm: function (event) {
-    $('.put-add-subtask-form').toggleClass('hidden');
-    $('form.create-subtask').toggleClass('hidden');
+    $('.put-add-subtask-form, form.create-subtask').toggleClass('hidden');
   },
 
   putRenameTaskForm: function (event) {
-    $('span.task-detail-name').toggleClass('hidden');
-    $('form.rename-task').toggleClass('hidden');
+    $('span.task-detail-name, form.rename-task').toggleClass('hidden');
     $('textarea.task-name').focus();
   },
 
   putTaskDescriptionForm: function (event) {
-    $('.put-task-description-form').toggleClass('hidden');
-    $('form.task-description').toggleClass('hidden');
+    $('.put-task-description-form, form.task-description').toggleClass('hidden');
     $('form.task-description textarea').focus();
   },
 

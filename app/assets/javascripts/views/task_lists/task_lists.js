@@ -24,8 +24,7 @@ BC.Views.TaskLists = Backbone.View.extend({
   },
 
   cancelCreateTaskList: function (event) {
-    $('a.put-task-list-form').toggleClass('hidden');
-    $('form.create-task-list').toggleClass('hidden');
+    $('a.put-task-list-form, form.create-task-list').toggleClass('hidden');
   },
 
   createTaskList: function (event) {
@@ -48,8 +47,7 @@ BC.Views.TaskLists = Backbone.View.extend({
   },
 
   putCreateTaskListForm: function (event) {
-    $('a.put-task-list-form').toggleClass('hidden');
-    $('form.create-task-list').toggleClass('hidden');
+    $('a.put-task-list-form, form.create-task-list').toggleClass('hidden');
     $('form.create-task-list input').focus();
   },
 
