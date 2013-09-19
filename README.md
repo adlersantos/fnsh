@@ -16,7 +16,7 @@ Fnsh is a productivity app that's based on [Asana](http://asana.com). It's writt
 
 ### Demo
 
-Check out the live demo [here](http://fnsh.herokuapp.com), or you can run the app locally by cloning the repo and running the following (with Ruby, Rails, and Postgres set up):
+Check out the live demo [here](http://fnsh.herokuapp.com), or you can run the app locally by cloning the repo and running the following in the command line (with Ruby, Rails, and Postgres set up):
 
 ```sh
 $ git clone https://github.com/adlersantos/fnsh.git
@@ -26,7 +26,7 @@ $ rake db:migrate
 $ rails s
 ```
 
-Navigate to localhost:3000 and enjoy! :)
+Navigate to `localhost:3000` and enjoy! :)
 
 ### Projects
 
