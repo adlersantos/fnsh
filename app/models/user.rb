@@ -2,7 +2,8 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
 
-  attr_accessible :password, :username, :display_name, :project_view, :email
+  attr_accessible :password, :username, :display_name,
+                  :project_view, :email, :avatar
   attr_reader :password
 
   validates :email, :uniqueness => true
@@ -20,6 +21,11 @@ class User < ActiveRecord::Base
   has_many :assigned_tasks,
     class_name: "Task",
     foreign_key: :assignee_id
+
+  has_attached_file :avatar, :style => {
+    :big => "75x75>",
+    :small => "25x25#"
+  }
 
   def password
     @password || self.password_digest
