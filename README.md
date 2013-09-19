@@ -7,7 +7,7 @@ Fnsh is a productivity app that's based on [Asana](http://asana.com). It's writt
 
 * [Ruby on Rails](rubyonrails.org)
 * [Backbone.js](backbonejs.org)
-* Postgres
+* [Postgres](postgresapp.com)
 * [RABL](https://github.com/nesquena/rabl)
 * [jQuery UI](jqueryui.com)
 * [Bootstrap Datepicker](https://github.com/eternicode/bootstrap-datepicker)
