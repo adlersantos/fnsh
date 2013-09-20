@@ -2,9 +2,9 @@ Basecamp::Application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => "Fnsh-Avatars",
-      :access_key_id => Figaro.env.aws_access_key_id,
-      :secret_access_key => Figaro.env.aws_secret_access_key,
+      :bucket => ENV["AWS_S3_AVATARS_BUCKET"],
+      :access_key_id => ENV["AWS_ACCESS_KEY_ID"],
+      :secret_access_key => ENV["AWS_SECRET_ACCESS_KEY"],
       :s3_host_name => 's3.amazonaws.com'
     }
   }
