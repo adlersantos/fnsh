@@ -67,6 +67,11 @@ BC.Views.Project = Backbone.View.extend({
     event.preventDefault();
 
     var projectData = $('form.edit-project').serializeJSON();
+
+    if (projectData['project'].name == "") {
+      return;
+    };
+
     this.model.url = '/projects/' + this.model.get('id');
     this.model.save(projectData, {wait: true});
     this.cancelRenameProject();

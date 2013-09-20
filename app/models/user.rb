@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
     class_name: "Task",
     foreign_key: :assignee_id
 
-  has_attached_file :avatar, :style => {
+  has_attached_file :avatar, :styles => {
     :big => "75x75>",
     :small => "25x25#"
   }

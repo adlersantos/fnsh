@@ -1,11 +1,8 @@
-# Load the rails application
 require File.expand_path('../application', __FILE__)
 
-# Initialize the rails application
 Basecamp::Application.initialize!
 
 if Rails.env.production?
-  # only send real emails in production; use Sengrid
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
@@ -26,6 +23,9 @@ if Rails.env.production?
   }
 
   ActionMailer::Base.delivery_method ||= :smtp
+
 elsif Rails.env.development?
+
   ActionMailer::Base.delivery_method = :letter_opener
+
 end
