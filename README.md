@@ -17,7 +17,7 @@ Fnsh is a productivity app that's based on [Asana](http://asana.com). It's writt
 
 ### Demo
 
-Check out the live demo [here](http://fnsh.herokuapp.com). Login with the following email and password:
+Check out the live demo [here](http://fnsh.herokuapp.com). Login with the following credentials:
 
 ```sh
 email: fnsh@adlersantos.com
