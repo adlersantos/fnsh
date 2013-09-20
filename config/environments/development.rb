@@ -9,8 +9,6 @@ Basecamp::Application.configure do
     }
   }
 
-  Paperclip.options[:command_path] = "/usr/local/bin/"
-
   config.cache_classes = false
 
   config.whiny_nils = true
