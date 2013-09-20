@@ -22,7 +22,14 @@ class User < ActiveRecord::Base
     class_name: "Task",
     foreign_key: :assignee_id
 
+<<<<<<< HEAD
   has_attached_file :avatar
+=======
+  has_attached_file :avatar, :styles => {
+    :big => "75x75>",
+    :small => "25x25#"
+  }
+>>>>>>> 62d994357c7c9cc98705eb6d8f24d37a18932485
 
   def password
     @password || self.password_digest
