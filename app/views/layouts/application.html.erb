@@ -48,11 +48,19 @@
             </div>
             <div class="modal-body">
 
-              <form action="<%= user_url(current_user) %>" method="post" role="form">
+              <form action="<%= user_url(current_user) %>" method="post" role="form" enctype="multipart/form-data">
               <div class="row">
                 <div class="col-md-6">
                     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
                     <input type="hidden" name="_method" value="put">
+                    <div class="form-group">
+                      <% if current_user.avatar %>
+                        <%= image_tag current_user.avatar.url, size: "50x50" %>
+                      <% else %>
+                        <span class="glyphicon glyphicon-user"></span>
+                      <% end %>
+                      <input type="file" name="user[avatar]" multiple onchange="handle_files(this.files)">
+                    </div>
                     <div class="form-group">
                       <label for="email">Email:</label> <br>
                       <input type="text" name="user[email]" id="email" class="form-control" value="<%= current_user.email %>" disabled>
@@ -86,4 +94,14 @@
 <script>
   var currentUserJson = <%= current_user.to_json.html_safe %>
   BC.initialize(currentUserJson);
+
+  function handle_files(files) {
+    var file = files[0];
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      // you need to send e.target.result in your $.ajax request
+      console.log(this.result);
+    }
+    reader.readAsDataURL(file);
+  }
 </script>

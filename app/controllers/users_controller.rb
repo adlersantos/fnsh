@@ -22,6 +22,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
+    p params
     @user.update_attributes(params[:user])
     redirect_to root_url
   end
