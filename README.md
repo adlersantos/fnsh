@@ -13,6 +13,7 @@ Fnsh is a productivity app that's based on [Asana](http://asana.com). It's writt
 * [Bootstrap Datepicker](https://github.com/eternicode/bootstrap-datepicker)
 * [Heroku](heroku.com)
 * [Sendgrid](sendgrid.com)
+* [Paperclip](https://github.com/thoughtbot/paperclip)
 
 ### Demo
 
