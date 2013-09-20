@@ -6,7 +6,9 @@
          style="margin-left:5px; width:30px;" checked>
 
   <span class="task-name line-through text-muted col-md-9" style="vertical-align:middle; padding:0 0 0 0;"
-        task-id="<%= task.escape('id') %>"><%= task.escape('name') %></span>
+        task-id="<%= task.escape('id') %>">
+    <img src="<%= BC.current_user.escape('avatarURL') %>" class="task-avatar"/><%= task.escape('name') %>
+  </span>
   <form style="display:inline" class="rename-inline-task hidden form-inline" role="form">
     <div class="form-group" style="margin-bottom:1px; width:230px;">
       <input autofocus type="text" name="task[name]" style="height:20px; padding-left:0px; padding-bottom:7px;"
@@ -21,13 +23,20 @@
 
 <% } else { %>
 
-  <span class="col-md-1 text-muted glyphicon glyphicon-th" style="margin-left;0;"></span>
+  <span class="col-md-1 text-muted glyphicon glyphicon-th" style="margin-left;0; padding-left:0;"></span>
   <input type="checkbox" task-id="<%= task.escape('id') %>"
          value="task" class="task-checkbox col-md-1"
-         style="margin-left:5px; width:30px;">
+         style="margin-left:5px; width:25px;">
+  <span class="col-md-1" style="margin-left;0px; padding-left:0px;">
+    <% if (assignee) { %>
+      <img src="<%= assignee %>" class="task-avatar"/>
+    <% } %>
+  </span>
 
   <span class="task-name col-md-9" style="vertical-align:middle; padding:0 0 0 0;"
-        task-id="<%= task.escape('id') %>"><%= task.escape('name') %></span>
+        task-id="<%= task.escape('id') %>">
+    <%= task.escape('name') %>
+  </span>
   <form style="display:inline" class="rename-inline-task hidden form-inline" role="form">
     <div class="form-group" style="margin-bottom:1px; width:230px;">
       <input autofocus type="text" name="task[name]" style="height:20px; padding-left:0px; padding-bottom:7px;"

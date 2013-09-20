@@ -57,11 +57,10 @@
                       <label for="avatar">Display Image:</label> <br>
                       <% if current_user.avatar %>
                         <%= image_tag current_user.avatar.url, size: "50x50" %>
-                        <br>
                       <% else %>
                         <span class="glyphicon glyphicon-user"></span>
                       <% end %>
-                      <input type="file" name="user[avatar]" onchange="handle_files(this.files)" style="margin-top:10px;">
+                      <input type="file" name="user[avatar]" id="avatar" onchange="handle_files(this.files)" style="margin-top:10px;">
                     </div>
                     <div class="form-group">
                       <label for="email">Email:</label> <br>
@@ -94,16 +93,18 @@
 </html>
 
 <script>
-  var currentUserJson = <%= current_user.to_json.html_safe %>
-  BC.initialize(currentUserJson);
+  $(document).ready(function () {
+    var currentUserJson = <%= current_user.to_json.html_safe %>;
 
-  function handle_files(files) {
-    var file = files[0];
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      // you need to send e.target.result in your $.ajax request
-      console.log(this.result);
+    BC.initialize(currentUserJson);
+
+    function handle_files(files) {
+      var file = files[0];
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        console.log(this.result);
+      }
+      reader.readAsDataURL(file);
     }
-    reader.readAsDataURL(file);
-  }
+  });
 </script>

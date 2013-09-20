@@ -34,9 +34,22 @@ body {
   max-width: 1250px;
 }
 
+.task-avatar {
+  width:18px;
+  height:18px;
+  margin-right:10px;
+  border: 1px solid black;
+}
+
 .task-description-hover {
   background-color: #DEDEDE;
   border-radius: 3px;
+}
+
+.task-no-assignee {
+  width:18px;
+  height:18px;
+  margin-right:10px;
 }
 
 .line-through {

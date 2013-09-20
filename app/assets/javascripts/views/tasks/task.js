@@ -44,7 +44,15 @@ BC.Views.Task = Backbone.View.extend({
   },
 
   render: function () {
-    this.$el.html(this.template({task: this.model}));
+    var assigneeID = this.model.get('assignee_id');
+    if (assigneeID) {
+      var assigneeAvatar = BC.ProjectUsers.get(assigneeID).get('avatar');
+    }
+
+    this.$el.html(this.template({
+      task: this.model,
+      assignee: assigneeAvatar
+    }));
     return this;
   },
 

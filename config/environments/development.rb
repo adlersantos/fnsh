@@ -3,7 +3,6 @@ Basecamp::Application.configure do
     :storage => :s3,
     :s3_credentials => {
       :bucket => "Fnsh-Avatars",
-<<<<<<< HEAD
       :access_key_id => Figaro.env.aws_access_key_id,
       :secret_access_key => Figaro.env.aws_secret_access_key,
       :s3_host_name => 's3.amazonaws.com'

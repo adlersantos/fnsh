@@ -3,7 +3,7 @@ if current_user
   attributes :id, :name, :description
 
   child(:users) do
-    attributes :id, :username, :display_name
+    attributes :id, :username, :display_name, :avatar
   end
 
   child(:task_lists) do
