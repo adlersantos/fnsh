@@ -13,10 +13,18 @@ Fnsh is a productivity app that's based on [Asana](http://asana.com). It's writt
 * [Bootstrap Datepicker](https://github.com/eternicode/bootstrap-datepicker)
 * [Heroku](heroku.com)
 * [Sendgrid](sendgrid.com)
+* [Paperclip](https://github.com/thoughtbot/paperclip)
 
 ### Demo
 
-Check out the live demo [here](http://fnsh.herokuapp.com), or you can run the app locally by cloning the repo and running the following in the command line (with Ruby, Rails, and Postgres set up):
+Check out the live demo [here](http://fnsh.herokuapp.com). Login with the following credentials:
+
+```sh
+email: fnsh@adlersantos.com
+password: demo
+```
+
+Alternatively, you can run the app locally by cloning the repo and running the following in the command line (with Ruby, Rails, and Postgres set up):
 
 ```sh
 $ git clone https://github.com/adlersantos/fnsh.git
