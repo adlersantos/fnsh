@@ -3,12 +3,12 @@
     <p><strong><%= comment.get('user').display_name %></strong> &nbsp;<%= comment.escape('body') %></p>
   <% }) %>
 
-  <hr style="margin-top:10px; margin-bottom:15px;">
+  <hr class="mt-10 mb-15">
 <% } %>
 
 <form class="create-comment">
-  <textarea class="input form-control" name="comment[body]"
-            placeholder="Write a comment.." style="margin-bottom:5px;"></textarea>
+  <textarea class="input form-control mb-5" name="comment[body]"
+            placeholder="Write a comment.."></textarea>
   <input type="hidden" name="comment[task_id]" value="<%= task.get('id') %>">
   <button class="create-comment btn btn-primary btn-xs" type="submit">Comment</button>
 </form>

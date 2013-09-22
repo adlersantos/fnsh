@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <% if current_user %>
-      <div class="row" style="margin-top:10px;">
+      <div class="row mt-10">
         <div class="col-md-5">
           <div class="row">
             You are logged in as <strong><%= current_user.display_name %></strong>
@@ -29,19 +29,19 @@
         </div> <br>
       </div>
 
-      <hr style="margin: 10px 0;">
+      <hr id="first-hr">
 
       <div class="row">
         <div class="projects col-md-3"></div>
-        <div class="col-md-1" style="width:15px;"></div>
+        <div class="col-md-1 col-divider"></div>
 
         <div class="project col-md-5"></div>
 
-        <div class="task-detail col-md-3" style="padding-left:20px; padding-right:0;">
+        <div class="task-detail col-md-3">
         </div>
 
       </div>
-      <!-- Modal -->
+
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -82,9 +82,9 @@
             </div>
             </form>
 
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
+          </div>
+        </div>
+      </div>
 
     <% else %>
       <div class="row">

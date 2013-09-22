@@ -1,11 +1,13 @@
 <h4>
-  <span class="vertical-mid">Projects &nbsp;</span>
-  <button class="create-project btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
+  <span class="va-middle">Projects &nbsp;</span>
+  <button class="create-project btn btn-primary btn-xs">
+    <span class="glyphicon glyphicon-plus"></span>
+  </button>
 </h4>
 
 <hr>
 
-<ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+<ul class="nav nav-pills nav-stacked" id="projects-nav">
   <% projects.each(function (project) { %>
     <li><a class="project-link" project-id="<%= project.escape('id') %>" href="#"><%= project.escape('name') %></a></li>
   <% }) %>

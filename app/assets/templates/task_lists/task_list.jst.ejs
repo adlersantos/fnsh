@@ -1,12 +1,12 @@
-<div class="panel panel-primary" style="margin-bottom:0px;">
+<div class="panel panel-primary mb-0">
 
-  <div class="panel-heading" style="padding:3px 2px 4px 10px; cursor:pointer;">
+  <div class="panel-heading task-list-heading cursor-pointer">
 
     <div class="hidden task-list-rename">
-      <form style="margin-left: 0px; width:350px;" class="rename-task-list form-inline" role="form">
+      <form class="rename-task-list form-inline wd-350 ml-0" role="form">
         <div class="form-group">
-          <input autofocus type="text" name="task_list[title]" style="height:20px; padding-left:1px; color: white;"
-                 class="task-name open-text-input form-control" placeholder="" value="<%= taskList.escape('title') %>">
+          <input autofocus type="text" class="task-name open-text-input form-control"
+                 placeholder="" name="task_list[title]" value="<%= taskList.escape('title') %>">
         </div>
         <button type="submit" class="rename-task-list btn btn-primary btn-xs">rename</button>
         <button type="button" class="cancel-rename-task-list btn btn-primary btn-xs">&times;</button>
@@ -14,43 +14,47 @@
     </div>
 
     <div class="task-list-title">
-      <span style="text-decoration: underline; vertical-align:bottom;"><%= taskList.escape('title') %></span>
+      <span class="va-bottom underline"><%= taskList.escape('title') %></span>
 
-      <button class="delete-task-list pull-right btn btn-primary btn-xs"
-           style="cursor:pointer;"><span class="glyphicon glyphicon-remove"></span></button>
-      <button class="put-rename-task-list-form btn btn-primary btn-xs"
-           style="cursor:pointer;"><span class="glyphicon glyphicon-pencil"></span></button>
+      <button class="delete-task-list pull-right btn btn-primary btn-xs cursor-pointer">
+        <span class="glyphicon glyphicon-remove"></span>
+      </button>
+      <button class="put-rename-task-list-form btn btn-primary btn-xs cursor-pointer">
+        <span class="glyphicon glyphicon-pencil"></span>
+      </button>
     </div>
 
   </div>
 
-  <div class="tasks" style="margin:15px 20px;">
+  <div class="tasks">
     <% _(tasks.where({finished: false})).each(function(task) { %>
       <div class="unfinished-task task-<%= task.escape('id') %> row" task-id="<%= task.escape('id') %>"
            style="cursor:pointer;"></div>
     <% }) %>
 
-    <div style="height:30px; margin-top:5px;">
-    <a href="#" class="put-add-task-form" style="margin-left:37px; text-decoration:underline;">Add a task</a>
-    <form style="margin: 5px 0 0 37px; width:350px;" class="create-task hidden form-inline" role="form">
+    <div class="mt-5 ht-30">
+    <a href="#" class="put-add-task-form underline">Add a task</a>
+    <form class="create-task hidden form-inline" role="form">
       <div class="form-group">
-        <input autofocus type="text" name="task[name]" style="height:20px; padding-left:0px;"
-               class="task-name open-text-input form-control" placeholder="Enter task name">
+        <input autofocus type="text" class="task-name open-text-input form-control"
+               placeholder="Enter task name" name="task[name]">
       </div>
       <button type="submit" class="add-task btn btn-primary btn-xs">Add task</button>
-      <button type="button" class="cancel-add-task btn btn-primary btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+      <button type="button" class="cancel-add-task btn btn-primary btn-xs">
+        <span class="glyphicon glyphicon-remove"></span>
+      </button>
     </form>
     </div>
 
     <% if (tasks.where({finished: true}).length > 0){ %>
-      <hr style="margin-top: 10px; margin-bottom:5px;">
+      <hr class="mt-10 mb-5">
       <% _(tasks.where({finished: true})).each(function(task) { %>
         <div class="task task-<%= task.escape('id') %> row" task-id="<%= task.escape('id') %>"
              style="cursor:pointer;"></div>
       <% }) %>
     <% } %>
   </div>
-</div><!-- task list panel -->
+</div>
 
 <script>
   $(".tasks").sortable({
@@ -61,7 +65,6 @@
     tolerance: "pointer",
     items: ".unfinished-task",
     handle: ".glyphicon-th",
-    // connectWith: ".tasks"
   });
   $(".tasks").disableSelection();
 </script>

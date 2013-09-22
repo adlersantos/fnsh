@@ -1,15 +1,17 @@
-<h3 style="color:#39B3D7;">
+<h3 class="light-blue">
   Task Lists
   <a href="#" class="put-task-list-form pull-right"><small>Create task list</small></a>
 </h3>
 
 <form style="margin-top:10px; margin-bottom:10px;" class="create-task-list form-inline hidden" role="form">
   <div class="form-group">
-    <input type="text" name="task_list[title]" style="width:250px;"
-           class="input-sm form-control" placeholder="Give the list a title">
+    <input type="text" name="task_list[title]"
+           class="input-sm form-control wd-250" placeholder="Give the list a title">
   </div>
   <button type="submit" class="create-task-list btn btn-primary btn-sm">Create task list</button>
-  <button type="button" class="cancel-create-task-list btn btn-primary btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
+  <button type="button" class="cancel-create-task-list btn btn-primary btn-sm">
+    <span class="glyphicon glyphicon-remove"></span>
+  </button>
 </form>
 
 <div class="task-lists well">
@@ -18,11 +20,11 @@
     <% taskLists.each(function (taskList) { %>
     <div class="task-list" task-list-id="<%= taskList.get('id') %>">
       <div class="task-list-<%= taskList.escape('id') %>"></div>
-      <div style="height:10px;"></div>
+      <div class="ht-10"></div>
     </div>
     <% }) %>
   <% } else { %>
-    <h4 class="text-muted" style="text-align:center;">You have no task lists.</h4>
+    <h4 class="text-muted text-center">You have no task lists.</h4>
   <% } %>
 </div>
 

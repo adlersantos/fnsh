@@ -1,10 +1,9 @@
 <% if (task.get('finished') === true) { %>
 
-  <span class="col-md-1 text-muted glyphicon glyphicon-th" style="margin-left:0; padding-left:0px;"></span>
+  <span class="col-md-1 text-muted glyphicon glyphicon-th ml-0 pl-0"></span>
   <input type="checkbox" task-id="<%= task.escape('id') %>"
-         value="task" class="task-checkbox col-md-1"
-         style="margin-left:5px; width:30px;" checked>
-  <span class="col-md-1" style="margin-left;0px; padding-left:0px;">
+         value="task" class="task-checkbox col-md-1" checked>
+  <span class="col-md-1 ml-0 pl-0">
     <% if (assignee) { %>
       <img src="<%= assignee %>" class="task-avatar"/>
     <% } else { %>
@@ -12,29 +11,30 @@
     <% } %>
   </span>
 
-  <span class="task-name line-through text-muted col-md-9" style="vertical-align:middle; padding:0 0 0 0;"
+  <span class="task-name line-through text-muted col-md-9 va-middle no-padding"
         task-id="<%= task.escape('id') %>">
     <%= task.escape('name') %>
   </span>
   <form style="display:inline" class="rename-inline-task hidden form-inline" role="form">
-    <div class="form-group" style="margin-bottom:1px; width:230px;">
-      <input autofocus type="text" name="task[name]" style="height:20px; padding-left:0px; padding-bottom:7px;"
-             class="task-name open-text-input form-control" placeholder="Enter task name"
+    <div class="form-group">
+      <input autofocus type="text" class="task-name open-text-input form-control"
+             name="task[name]" placeholder="Enter task name"
              value="<%= task.escape('name') %>">
     </div>
     <button type="submit" class="rename-inline-task btn btn-primary btn-xs">rename</button>
-    <button type="button" class="cancel-inline-rename-task btn btn-primary btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+    <button type="button" class="cancel-inline-rename-task btn btn-primary btn-xs">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
   </form>
 
-  <span class="delete-task pull-right" style="color:grey;" task-id="<%= task.escape('id') %>">&times;</span>
+  <span class="delete-task pull-right" task-id="<%= task.escape('id') %>">&times;</span>
 
 <% } else { %>
 
-  <span class="col-md-1 text-muted glyphicon glyphicon-th" style="margin-left;0; padding-left:0;"></span>
+  <span class="col-md-1 text-muted glyphicon glyphicon-th ml-0 pl-0"></span>
   <input type="checkbox" task-id="<%= task.escape('id') %>"
-         value="task" class="task-checkbox col-md-1"
-         style="margin-left:5px; width:25px;">
-  <span class="col-md-1" style="margin-left;0px; padding-left:0px;">
+         value="task" class="task-checkbox col-md-1">
+  <span class="col-md-1 ml-0 pl-0">
     <% if (assignee) { %>
       <img src="<%= assignee %>" class="task-avatar"/>
     <% } else { %>
@@ -42,20 +42,20 @@
     <% } %>
   </span>
 
-  <span class="task-name col-md-9" style="vertical-align:middle; padding:0 0 0 0;"
-        task-id="<%= task.escape('id') %>">
+  <span class="task-name col-md-9 va-middle no-padding" task-id="<%= task.escape('id') %>">
     <%= task.escape('name') %>
   </span>
   <form style="display:inline" class="rename-inline-task hidden form-inline" role="form">
-    <div class="form-group" style="margin-bottom:1px; width:230px;">
-      <input autofocus type="text" name="task[name]" style="height:20px; padding-left:0px; padding-bottom:7px;"
-             class="task-name open-text-input form-control" placeholder="Enter task name"
-             value="<%= task.escape('name') %>">
+    <div class="form-group">
+      <input autofocus type="text" name="task[name]" value="<%= task.escape('name') %>"
+             class="task-name open-text-input form-control" placeholder="Enter task name">
     </div>
     <button type="submit" class="rename-inline-task btn btn-primary btn-xs">rename</button>
-    <button type="button" class="cancel-inline-rename-task btn btn-primary btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+    <button type="button" class="cancel-inline-rename-task btn btn-primary btn-xs">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
   </form>
 
-  <span class="delete-task pull-right" style="color:grey;" task-id="<%= task.escape('id') %>">&times;</span>
+  <span class="delete-task pull-right" task-id="<%= task.escape('id') %>">&times;</span>
 
 <% } %>

@@ -28,6 +28,11 @@
      }
  }
 
+.assignee-label {
+  padding-bottom: 5px;
+  margin-left: 2px;
+}
+
 body {
   background-color: #FBFBFB;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -46,16 +51,129 @@ h1, h2, h3, h4, h5 {
   vertical-align:middle;
 }
 
+.col-divider {
+  width: 15px;
+}
+
 .container {
   max-width: 1250px;
+}
+
+.create-subtask {
+  margin: 5px 0;
+}
+
+.create-subtask .subtask-name {
+  height: 20px;
+  padding-left: 0px;
+}
+
+.create-task {
+  margin: 5px 0 0 37px;
+  width: 350px;
+}
+
+.create-task .task-name {
+  height: 20px;
+  padding-left: 0px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.delete-task, .delete-subtask {
+  color: grey;
+}
+
+.detail-buttons {
+  margin-bottom: 8px;
+  display: block;
+}
+
+.detail-well {
+  width: 357px;
+}
+
+#first-hr {
+  margin: 10px 0;
 }
 
 .hidden {
   display: none;
 }
 
+.ht-10 {
+  height: 10px;
+}
+
+.ht-20 {
+  height: 20px;
+}
+
+.ht-30 {
+  height: 30px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.light-blue {
+  color: #39B3D7;
+}
+
 .line-through {
   text-decoration: line-through;
+}
+
+li.assignee a {
+  text-align: left;
+  padding: 1px 10px;
+}
+
+.main-blue {
+  color: #3276B1;
+}
+
+.mb-0 {
+  margin-bottom: 0px;
+}
+
+.mb-5 {
+  margin-bottom: 5px;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.ml-0 {
+  margin-left: 0px;
+}
+
+.mr-0 {
+  margin-right: 0px;
+}
+
+.mt-0 {
+  margin-top: 0px;
+}
+
+.mt-5 {
+  margin-top: 5px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.no-padding {
+  padding: 0 0 0 0;
 }
 
 .open-text-input {
@@ -65,6 +183,52 @@ h1, h2, h3, h4, h5 {
   outline: none;
   box-shadow:none !important;
   border-radius: 0;
+}
+
+.pb-5 {
+  padding-bottom: 5px;
+}
+
+.pl-0 {
+  padding-left: 0px;
+}
+
+.project-name {
+  margin-top:0px;
+}
+
+#projects-nav {
+  max-width: 300px;
+}
+
+.put-add-task-form {
+  margin-left: 37px;
+}
+
+.rename-inline-task .form-group {
+  margin-bottom: 1px;
+  width: 230px;
+}
+
+.rename-inline-task input {
+  height: 20px;
+  padding-left: 0px;
+  padding-bottom: 7px;
+}
+
+.rename-subtask {
+  display: inline;
+}
+
+.rename-subtask .form-group {
+  margin-bottom: 1px;
+  width: 190px;
+}
+
+.rename-task-list .task-name {
+  height: 20px;
+  padding-left: 1px;
+  color: white;
 }
 
 .row {
@@ -82,6 +246,14 @@ h1, h2, h3, h4, h5 {
   background-color: #EEEEEE;
 }
 
+.subtask-checkbox {
+  margin: 0 5px 0;
+}
+
+.subtask-name {
+  padding-bottom: 6px;
+}
+
 .task-avatar {
   width:18px;
   height:18px;
@@ -89,9 +261,23 @@ h1, h2, h3, h4, h5 {
   border: 1px solid black;
 }
 
+.task-checkbox {
+  margin-left: 5px;
+  width: 30px;
+}
+
 .task-description-hover {
   background-color: #DEDEDE;
   border-radius: 3px;
+}
+
+.task-detail {
+  padding-left:20px;
+  padding-right:0;
+}
+
+.task-list-heading {
+  padding: 3px 2px 4px 10px;
 }
 
 .task-no-assignee {
@@ -100,6 +286,34 @@ h1, h2, h3, h4, h5 {
   margin-right:10px;
 }
 
-.vertical-mid {
+.tasks {
+  margin: 15px 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.va-bottom {
+  vertical-align: bottom;
+}
+
+.va-middle {
   vertical-align: middle;
+}
+
+.wd-250 {
+  width: 250px;
+}
+
+.wd-350 {
+  width: 350px;
+}
+
+.white {
+  color: white;
 }

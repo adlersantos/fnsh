@@ -1,20 +1,26 @@
-<div class="well sidebar-nav sidebar-nav-fixed" style="width:357px;">
+<div class="well sidebar-nav sidebar-nav-fixed detail-well">
 <div class="row">
 
-  <div class="row" style="display:block; margin-left:0; margin-right:0; margin-bottom:8px;">
+  <div class="row ml-0 mr-0 detail-buttons">
     <% if (task.get('finished')) { %>
-      <button class="task-detail-finished finished-task btn btn-success btn-xs"><span class="glyphicon glyphicon-check"></span></button>
+      <button class="task-detail-finished finished-task btn btn-success btn-xs">
+        <span class="glyphicon glyphicon-check"></span>
+      </button>
     <% } else { %>
-      <button class="task-detail-finished unfinished-task btn btn-success btn-xs"><span class="glyphicon glyphicon-unchecked"></span></button>
+      <button class="task-detail-finished unfinished-task btn btn-success btn-xs">
+        <span class="glyphicon glyphicon-unchecked"></span>
+      </button>
     <% } %>
 
     <button class="assign-task-button btn btn-primary btn-xs">
-      <div class="dropdown" style="display:inline-block;">
-        <a id="drop4" role="button" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" style="color: white;">&nbsp;</span><b class="caret"></b></a>
+      <div class="dropdown inline-block">
+        <a id="drop4" role="button" data-toggle="dropdown" href="#">
+          <span class="glyphicon glyphicon-user white">&nbsp;</span><b class="caret"></b>
+        </a>
         <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
           <% BC.ProjectUsers.each(function (user) { %>
             <li class="assignee" user-id="<%= user.get('id') %>">
-              <a style="text-align:left; padding:1px 10px;" role="menuitem" tabindex="-1">
+              <a role="menuitem" tabindex="-1">
                 <%= user.escape('display_name') %>
               </a>
             </li>
@@ -22,68 +28,75 @@
         </ul>
       </div>
     </button>
-    <button class="task-due-date btn btn-primary btn-xs"><span class="glyphicon glyphicon-calendar"></span></button>
+    <button class="task-due-date btn btn-primary btn-xs">
+      <span class="glyphicon glyphicon-calendar"></span>
+    </button>
 
     <% if (assignee) { %>
-      <span class="label label-info pull-right" style="padding-bottom:5px; margin-left:2px;">
+      <span class="label label-info pull-right assignee-label">
         <%= assignee.escape('display_name') %>&nbsp; &#124;
-        <a class="unassign-task" href="#"><span class="glyphicon glyphicon-remove" style="color:white;"></span></a>
+        <a class="unassign-task" href="#">
+          <span class="glyphicon glyphicon-remove white"></span>
+        </a>
       </span> &nbsp;
     <% } %>
 
     <% if (dueDate) { %>
-      <span class="label <%= dueDate.color %> pull-right" style="padding-bottom:5px;">
+      <span class="label <%= dueDate.color %> pull-right pb-5">
         <%= dueDate.dateString %>&nbsp; &#124;
-        <a class="clear-due-date" href="#"><span class="glyphicon glyphicon-remove" style="color:white;"></span></a>
+        <a class="clear-due-date" href="#">
+          <span class="glyphicon glyphicon-remove white"></span>
+        </a>
       </span>
     <% } %>
   </div>
 
-  <h3 class="task-detail-name" style="cursor:pointer;">
+  <h3 class="task-detail-name cursor-pointer">
     <span class="task-detail-name"><%= task.escape('name') %></span>
   </h3>
-<!--   <form class="rename-task hidden">
-    <textarea class="task-description form-control" name="task[description]"
-              rows="3" placeholder="Description" style="margin-bottom:5px;"><%= task.escape('description') %></textarea>
-    <button class="set-task-description btn btn-primary btn-xs" type="submit">Submit</button>
-    <button class="cancel-task-description btn btn-primary btn-xs" type="submit">Cancel</button>
-  </form>
- -->
-  <form class="rename-task hidden" role="form" style="margin-bottom:15px;">
-      <div class="form-group" style="margin-bottom:5px;">
+
+  <form class="rename-task hidden mb-15" role="form">
+      <div class="form-group mb-5">
         <textarea type="text" name="task[name]"
                class="task-name input form-control"><%= task.escape('name') %></textarea>
       </div>
     <button type="submit" class="rename-task btn btn-primary btn-xs"
-            task-list-id="<%= task.escape('id') %>"><span class="glyphicon glyphicon-ok"></span></button>
+            task-list-id="<%= task.escape('id') %>">
+            <span class="glyphicon glyphicon-ok"></span>
+    </button>
     <button type="button" class="cancel-rename-task btn btn-primary btn-xs"
-            task-list-id="<%= task.escape('id') %>"><span class="glyphicon glyphicon-remove"></span></button>
+            task-list-id="<%= task.escape('id') %>">
+            <span class="glyphicon glyphicon-remove"></span>
+    </button>
   </form>
 </div>
 
 <div class="row">
   <% if (task.get('description')) { %>
-    <p class="task-description" style="cursor:pointer;"><%= task.escape('description') %></p>
+    <p class="task-description cursor-pointer"><%= task.escape('description') %></p>
   <% } else { %>
     <a href="#" class="put-task-description-form">Add a description</a>
   <% } %>
   <form class="task-description hidden">
-    <textarea class="task-description form-control" name="task[description]"
-              rows="3" placeholder="Description"
-              style="margin-bottom:5px;"><%= task.escape('description') %></textarea>
-    <button class="set-task-description btn btn-primary btn-xs" type="submit"><span class="glyphicon glyphicon-ok"></span></button>
-    <button class="cancel-task-description btn btn-primary btn-xs" type="submit"><span class="glyphicon glyphicon-remove"></span></button>
+    <textarea class="task-description form-control mb-5" name="task[description]"
+              rows="3" placeholder="Description"><%= task.escape('description') %></textarea>
+    <button class="set-task-description btn btn-primary btn-xs" type="submit">
+      <span class="glyphicon glyphicon-ok"></span>
+    </button>
+    <button class="cancel-task-description btn btn-primary btn-xs" type="submit">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
   </form>
 </div>
 
 <div class="row">
-  <hr style="margin-top:10px; margin-bottom:15px;">
+  <hr class="mt-10 mb-15">
 </div>
 
 <div class="subtasks row"></div>
 
 <div class="row">
-  <hr style="margin-top:15px; margin-bottom:15px;">
+  <hr class="mt-15 mb-15">
 </div>
 
 <div class="comments row"></div>
