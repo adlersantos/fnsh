@@ -13,14 +13,32 @@
  *= require_tree .
  */
 
-.row {
-  margin-left:0 !important;
-  margin-right:0 !important;
-}
+@import "twitter/bootstrap";
+
+ @media (max-width: 767px) {
+     .sidebar-nav-fixed {
+         width:auto;
+     }
+ }
+
+ @media (max-width: 979px) {
+     .sidebar-nav-fixed {
+         position:static;
+        width: auto;
+     }
+ }
 
 body {
   background-color: #FBFBFB;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
+
+.bootbox .modal-dialog {
+  width:450px;
 }
 
 .button_to {
@@ -28,10 +46,40 @@ body {
   vertical-align:middle;
 }
 
-@import "twitter/bootstrap";
-
 .container {
   max-width: 1250px;
+}
+
+.hidden {
+  display: none;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+.open-text-input {
+  background-color: transparent;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+  outline: none;
+  box-shadow:none !important;
+  border-radius: 0;
+}
+
+.row {
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+
+.sidebar-nav-fixed {
+     position:fixed;
+     top:65px;
+     width:25%;
+ }
+
+.sortable-placeholder {
+  background-color: #EEEEEE;
 }
 
 .task-avatar {
@@ -52,46 +100,6 @@ body {
   margin-right:10px;
 }
 
-.line-through {
-  text-decoration: line-through;
-}
-
-.hidden {
-  display: none;
-}
-
-.sortable-placeholder {
-  background-color: #EEEEEE;
-}
-
-.open-text-input {
-  background-color: transparent;
-  border-style: solid;
-  border-width: 0px 0px 1px 0px;
-  outline: none;
-  box-shadow:none !important;
-  border-radius: 0;
-}
-
-.sidebar-nav-fixed {
-     position:fixed;
-     top:65px;
-     width:25%;
- }
-
- @media (max-width: 767px) {
-     .sidebar-nav-fixed {
-         width:auto;
-     }
- }
-
- @media (max-width: 979px) {
-     .sidebar-nav-fixed {
-         position:static;
-        width: auto;
-     }
- }
-
-.bootbox .modal-dialog {
-  width:450px;
+.vertical-mid {
+  vertical-align: middle;
 }
